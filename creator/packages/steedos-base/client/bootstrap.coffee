@@ -212,6 +212,7 @@ handleBootstrapData = (result, callback)->
 			object.list_views[_key] = _object_listview
 		Creator.loadObjects object, object_name
 
+	# 计算错误，此时store还没初始化，如何能在react中计算selector？
 	Creator.Apps = result.apps; #ReactSteedos.creatorAppsSelector(ReactSteedos.store.getState())
 	Creator.Menus = result.assigned_menus
 	if Steedos.isMobile()
