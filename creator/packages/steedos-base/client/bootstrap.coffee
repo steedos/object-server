@@ -212,7 +212,7 @@ handleBootstrapData = (result, callback)->
 			object.list_views[_key] = _object_listview
 		Creator.loadObjects object, object_name
 
-	Creator.Apps = ReactSteedos.creatorAppsSelector(ReactSteedos.store.getState())
+	Creator.Apps = result.apps; #ReactSteedos.creatorAppsSelector(ReactSteedos.store.getState())
 	Creator.Menus = result.assigned_menus
 	if Steedos.isMobile()
 		mobileApps = _.filter Creator.getVisibleApps(true), (item)->
