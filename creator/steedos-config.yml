@@ -1,7 +1,7 @@
 datasources:
   default:
     connection: 
-      url: mongodb://127.0.0.1/steedos
+      url: ${MONGO_URL}
 public:
   cfs:
     store: "local"
