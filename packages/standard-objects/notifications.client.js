@@ -1,5 +1,3 @@
-var store = ReactSteedos.store; 
-var loadNotificationsData = ReactSteedos.loadNotificationsData; 
 
 Creator.subs["CreatorNotifications"] = new SubsManager();
 
@@ -57,7 +55,7 @@ var handleMyNotifications = function(id, notification){
 }
 
 var fetchMyNotifications = function(){
-    store.dispatch(loadNotificationsData({id: "steedos-header-notifications"}))
+    ReactSteedos.store.dispatch(ReactSteedos.loadNotificationsData({id: "steedos-header-notifications"}))
 }
 
 Meteor.startup(function(c){
