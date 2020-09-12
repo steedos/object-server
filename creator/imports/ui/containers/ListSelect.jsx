@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 function ListSelect(cellData, options){
 	let items = cellData && cellData.length && cellData[0].items;

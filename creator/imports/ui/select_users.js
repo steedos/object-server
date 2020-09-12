@@ -1,5 +1,5 @@
 import './select_users.html';
-import { store, viewStateSelector } from '@steedos/react';
+const { store, viewStateSelector } = ReactSteedos;
 import SelectUsersContainer from './containers/SelectUsers.jsx'
 var _ = require("underscore");
 

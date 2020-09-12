@@ -29,9 +29,9 @@
 	<meta name="msapplication-config" content="/favicons/browserconfig.xml">
 	<meta property="twitter:image" content="/favicons/twitter.png">
 	<meta property="og:image" content="/favicons/open-graph.png">
-	<script type="text/javascript" src="/assets/js/steedos-components.min.js"></script>
 
 	<meteor-bundled-css />
+	<!-- <script type="text/javascript" src="/assets/js/steedos-components.min.js"></script> -->
 </head>
 
 <body class="skin-blue-light fixed steedos sidebar-mini three-columns loading">
@@ -54,6 +54,7 @@
 </body>
 
 <template name="preloadAssets">
+	<!-- <script type="text/javascript" src="{{absoluteUrl '/assets/js/steedos-components.min.js'}}"></script> -->
 	<link rel="icon" type="image/png" sizes="16x16" href="{{absoluteUrl '/favicons/favicon-16x16.png'}}">
 	<link rel="icon" type="image/png" sizes="32x32" href="{{absoluteUrl '/favicons/favicon-32x32.png'}}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{{absoluteUrl '/favicons/favicon-96x96.png'}}">

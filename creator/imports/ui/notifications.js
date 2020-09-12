@@ -1,5 +1,5 @@
 import './notifications.html';
-import { pluginComponentSelector, store } from '@steedos/react';
+const { pluginComponentSelector, store } = ReactSteedos;
 
 
 Template.notifications.helpers({

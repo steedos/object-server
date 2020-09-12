@@ -1,5 +1,5 @@
 import './object_home.html';
-import { pluginComponentSelector, store } from '@steedos/react';
+const { pluginComponentSelector, store } = ReactSteedos;
 
 Template.object_home.helpers({
 	Component: function(){

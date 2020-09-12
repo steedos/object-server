@@ -1,12 +1,11 @@
 import './404.html';
-import { Illustration } from '@steedos/react';
 
 Template.notFound.helpers({
 	object: function() {
 	  return Creator.getObject();
 	},
 	illustration: function() {
-	  return Illustration;
+	  return ReactSteedos.Illustration;
 	},
 	notFoundPath: function() {
 	  return Creator.getRelativeUrl("/assets/images/illustrations/empty-state-no-results.svg#no-results");

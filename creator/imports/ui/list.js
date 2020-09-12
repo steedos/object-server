@@ -1,7 +1,8 @@
 import './list.html';
 import ListContainer from './containers/ListContainer.jsx'
 import ListSelect from './containers/ListSelect.jsx'
-import { store, createGridAction } from '@steedos/react';
+
+const  { store, createGridAction } = ReactSteedos;
 
 let isListRendered = false;
 let listInstances = {};

@@ -1,7 +1,6 @@
-import React from 'react';
-import { Favorites, Bootstrap, store } from '@steedos/react';
 
 function FavoritesContainer(prop){
+	const { Favorites, Bootstrap, store } = ReactSteedos;
 	const Provider = ReactRedux.Provider;
 	return (
 		<Provider store={store}>

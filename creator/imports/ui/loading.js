@@ -1,5 +1,5 @@
 import './loading.html';
-import { Illustration } from '@steedos/react';
+const { Illustration } = ReactSteedos;
 
 Template.recordLoading.helpers({
 	illustration: function() {

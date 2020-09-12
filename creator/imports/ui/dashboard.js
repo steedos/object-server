@@ -1,6 +1,5 @@
 import './dashboard.html';
 import DashboardContainer from './containers/DashboardContainer.jsx';
-import { getWidgetReductsConfig } from '@steedos/react';
 
 const getWidgetObject = (widgetConfig) => {
 	if(widgetConfig.objectName){
@@ -68,7 +67,7 @@ const dealAssistiveTextColumnsLabel = (assistiveText) => {
 			}
 		}
 	*/
-	let reductsConfig = getWidgetReductsConfig();
+	let reductsConfig = ReactSteedos.getWidgetReductsConfig();
 	_.each(reductsConfig, (value, key) => {
 		let columns = value.columns;
 		let tempObject, tempObjectFields, tempField, tempI18nColumns, tempAssistiveTextWidget;

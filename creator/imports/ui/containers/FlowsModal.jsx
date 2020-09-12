@@ -1,7 +1,6 @@
-import React from 'react';
-import { FlowsModal, Bootstrap, store } from '@steedos/react';
 
 function FlowsModalContainer(prop){
+	const { FlowsModal, Bootstrap, store } = ReactSteedos;
 	const Provider = ReactRedux.Provider;
 	return (
 		<Provider store={store}>

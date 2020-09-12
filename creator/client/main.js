@@ -7,12 +7,20 @@ svg4everybody();
 import("./main.html");
 
 // 把组件导入才能在creator中正常使用
-import * as UI from '../imports/ui';
+
+Meteor.startup(function(){
+    import * as UI from '../imports/ui';
+})
+
+window.React = require('react');
+window.ReactDOM = require('react-dom');
+window.Redux = require('redux');
+window.ReactRedux = require('react-redux');
 
 // 全局变量导入
-// import { registerWindowLibraries, registerDefaultPlugins } from '@steedos/react';
-// registerWindowLibraries();
-// registerDefaultPlugins();
+import { registerWindowLibraries, registerDefaultPlugins } from '@steedos/react';
+registerWindowLibraries();
+registerDefaultPlugins();
 
 Template.preloadAssets.helpers({
     absoluteUrl(url){

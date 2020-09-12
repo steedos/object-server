@@ -1,5 +1,4 @@
 import './flows_tree_modal.html';
-import { store, viewStateSelector, createModalAction, createTreeAction } from '@steedos/react';
 import FlowsTreeModalContainer from './containers/FlowsTreeModal'
 import {
 	getNodeItemLabel,
@@ -7,6 +6,8 @@ import {
 	getModalHeader,
 	getAllFlowNode
 } from './flows_tree'
+
+const { store, viewStateSelector, createModalAction, createTreeAction } = ReactSteedos;
 var _ = require("underscore");
 var appElement = "body";
 var modalId = "chooseFlow";

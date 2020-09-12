@@ -1,5 +1,6 @@
 import {Icon, Button} from '@salesforce/design-system-react';
-import {createTreeAction, store, viewStateSelector, createModalAction} from '@steedos/react';
+
+const {createTreeAction, store, viewStateSelector, createModalAction} = ReactSteedos;
 
 var _ = require("underscore");
 var treeId = "chooseFlowTree";

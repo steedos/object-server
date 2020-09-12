@@ -1,5 +1,3 @@
-import React from 'react';
-import { Grid, store } from '@steedos/react';
 
 var iconPath = `/assets/icons`;
 var gridObjectName = 'space_users';
@@ -36,6 +34,7 @@ var gridColumns = [
 ];
 
 function GridContainer(){
+	const { Grid, store } = ReactSteedos;
 	const Provider = ReactRedux.Provider;
 	return 
 			<Provider store={store}>

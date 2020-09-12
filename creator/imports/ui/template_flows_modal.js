@@ -1,5 +1,5 @@
 import './template_flows_modal.html';
-import { store, viewStateSelector, createFlowsModalAction } from '@steedos/react';
+const { store, viewStateSelector, createFlowsModalAction } = ReactSteedos;
 import FlowsModalContainer from './containers/FlowsModal'
 var _ = require("underscore");
 

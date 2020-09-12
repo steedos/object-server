@@ -1,7 +1,7 @@
-import { store, Bootstrap } from '@steedos/react';
 
 function PageContainer(prop){
-  const Provider = ReactRedux.Provider;
+	const { store, Bootstrap } = ReactSteedos;
+	const Provider = ReactRedux.Provider;
 	const pageId = prop.pageId;
 	if (!pageId || !Creator.Pages[pageId])
 		return null;

@@ -1,9 +1,8 @@
-import React from 'react';
-import { Modal, Bootstrap, store, FlowsTree } from '@steedos/react';
 
 // modalProp： heading={prop.heading} id={prop.modalId} appElement="body" onConfirm={prop.onConfirm} align={prop.align} footer={prop.footer}
 // treeProp: rootNodes={prop.rootNodes} nodes={prop.nodes} id={prop.treeId}
 function FlowsTreeModalContainer(prop){
+	const { Modal, Bootstrap, store, FlowsTree } = ReactSteedos;
 	const Provider = ReactRedux.Provider;
 	// console.log('FlowsTreeModalContainer prop', prop);
 	return (

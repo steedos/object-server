@@ -1,7 +1,6 @@
-import React from 'react';
-import { List, Bootstrap, store } from '@steedos/react';
 
 function ListContainer(prop){
+	const { List, Bootstrap, store } = ReactSteedos;
 	const Provider = ReactRedux.Provider;
 	if(!prop.listProps){
 		return null;

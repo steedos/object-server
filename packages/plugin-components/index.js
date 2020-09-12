@@ -1,7 +1,8 @@
 const express = require('express');
+const fs = require('fs');
 
 function init(context){
-  console.log('hello components')
+  console.log('hello 2 components')
   const router = express.Router()
   dsPath = __dirname + "/dist/";
   let routerPath = "/assets/js/"
@@ -10,6 +11,9 @@ function init(context){
   const cacheTime = 86400000*1; // one day
   router.use(routerPath, express.static(dsPath, { maxAge: cacheTime }));
   WebApp.rawConnectHandlers.use(router);
+
+  let code = fs.readFileSync(__dirname + "/dist/steedos-components.min.js", 'utf8');
+  WebAppInternals.additionalStaticJs["/steedos-components.min.js"] = code;
 }
 
 exports.init = init;
