@@ -43,12 +43,12 @@ module.exports = {
         "prop-types": 'PropTypes',
         // "@steedos/react": 'ReactSteedos',
         // "@steedos/filters": 'SteedosFilters',
-        "@salesforce/design-system-react": 'ReactDesignSystem',
+        // "@salesforce/design-system-react": 'ReactDesignSystem',
     },
     output: {
         path: path.join(__dirname, '..', '/public/assets/js/'),
         publicPath: '/',
-        filename: 'steedos-components.min.js',
+        filename: 'steedos-react.min.js',
     },
     optimization: {
       minimize: false

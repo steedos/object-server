@@ -16,7 +16,7 @@ import("./main.html");
     window.PropTypes = require('prop-types');
 
     const steedosComponents = document.createElement('script')
-    steedosComponents.src = '/assets/js/steedos-components.min.js'
+    steedosComponents.src = '/assets/js/steedos-react.min.js'
     steedosComponents.onload = () => {
         import * as UI from '../imports/ui';
     }
