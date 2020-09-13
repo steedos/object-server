@@ -8,29 +8,29 @@ import("./main.html");
 
 // 把组件导入才能在creator中正常使用
 
-// Meteor.startup(function(){
-    window.React = require('react');
-    window.ReactDom = require('react-dom');
-    window.Redux = require('redux');
-    window.ReactRedux = require('react-redux');
-    window.PropTypes = require('prop-types');
+window.React = require('react');
+window.ReactDom = require('react-dom');
+window.Redux = require('redux');
+window.ReactRedux = require('react-redux');
+window.PropTypes = require('prop-types');
 
-    const steedosComponents = document.createElement('script')
-    steedosComponents.src = '/assets/js/steedos-react.min.js'
-    steedosComponents.onload = () => {
-        import * as UI from '../imports/ui';
-    }
-    document.head.append(steedosComponents)
+// 动态加载 @steedos/react
+// const steedosComponents = document.createElement('script')
+// steedosComponents.src = '/assets/js/steedos-react.min.js'
+// steedosComponents.onload = () => {
+//     import * as UI from '../imports/ui';
+// }
+// document.head.append(steedosComponents)
 
-    // 全局变量导入
-    // const { registerWindowLibraries, registerDefaultPlugins } = ReactSteedos;
-    // import('@steedos/react').then((steedos) => {
-    //     steedos.registerWindowLibraries();
-    //     steedos.registerDefaultPlugins();
-    
-    // });
-// })
+// 直接加载 @steedos/react
+import { registerWindowLibraries, registerDefaultPlugins } from '@steedos/react';
 
+registerWindowLibraries();
+registerDefaultPlugins();
+
+Meteor.startup(function(){
+ import * as UI from '../imports/ui';
+});
 
 Template.preloadAssets.helpers({
     absoluteUrl(url){
