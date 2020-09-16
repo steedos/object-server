@@ -197,6 +197,7 @@ handleBootstrapData = (result, callback)->
 	isSpaceAdmin = Steedos.isSpaceAdmin()
 
 	Session.set "user_permission_sets", result.user_permission_sets
+	Creator.UserPermissionSets = result.user_permission_sets
 
 	_.each Creator.Objects, (object, object_name)->
 		_object_listviews = object_listviews[object_name]

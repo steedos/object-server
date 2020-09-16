@@ -523,7 +523,7 @@ Template.creator_view.helpers
 		data = {
 			id: getRelatedListTemplateId(related_object_name)
 			related_object_name: related_object_name, 
-			object_name: objectApiName, 
+			objectApiName: objectApiName, 
 			recordsTotal: Template.instance().recordsTotal, 
 			is_related: true, 
 			related_list_item_props: related_list_item_props

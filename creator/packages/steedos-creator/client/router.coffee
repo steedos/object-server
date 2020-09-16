@@ -330,15 +330,18 @@ objectRoutes.route '/grid/:list_view_id',
 		app_id = FlowRouter.getParam("app_id")
 		if (app_id != "-")
 			Session.set("app_id", app_id)
-		Session.set("object_name", FlowRouter.getParam("object_name"))
-		Session.set("list_view_id", FlowRouter.getParam("list_view_id"))
+		object_name = FlowRouter.getParam("object_name")
+		list_view_id = FlowRouter.getParam("list_view_id")
+		Session.set("object_name", object_name)
+		Session.set("list_view_id", list_view_id)
 		Session.set("list_view_visible", false)
 
 		Tracker.afterFlush ()->
 			Session.set("list_view_visible", true)
 		
+		console.log("==objectRoutes====", object_name, list_view_id);
 		BlazeLayout.render Creator.getLayout(),
-			main: "creator_list_wrapper"
+			main: "creator_list_wrapper", data: {objectApiName: object_name, listName: list_view_id}
 
 objectRoutes.route '/calendar/',
 	action: (params, queryParams)->

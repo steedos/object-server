@@ -133,8 +133,8 @@ Template.creator_list_wrapper.helpers
 		return !Steedos.isMobile()
 	
 	list_data: ()->
-		object_name = Session.get "object_name"
-		return {object_name: object_name, total: Template.instance().recordsTotal}
+		templateData = Template.currentData()
+		return {objectApiName: templateData.objectApiName, listName: templateData.listName, total: Template.instance().recordsTotal}
 
 	list_views: ()->
 		Session.get("change_list_views")
