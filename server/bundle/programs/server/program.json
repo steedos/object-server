@@ -649,18 +649,8 @@
       "path": "packages/steedos_mailqueue.js"
     },
     {
-      "path": "packages/chuangbo_cookie.js"
-    },
-    {
-      "path": "packages/steedos_sso.js"
-    },
-    {
       "sourceMap": "packages/steedos_webhookqueue.js.map",
       "path": "packages/steedos_webhookqueue.js"
-    },
-    {
-      "sourceMap": "packages/steedos_api-authenticate-user.js.map",
-      "path": "packages/steedos_api-authenticate-user.js"
     },
     {
       "sourceMap": "packages/steedos_huaweipush.js.map",
@@ -680,11 +670,14 @@
       "path": "packages/steedos_autoform-location.js"
     },
     {
-      "sourceMap": "packages/steedos_autoform.js.map",
-      "path": "packages/steedos_autoform.js"
+      "path": "packages/chuangbo_cookie.js"
     },
     {
-      "path": "packages/steedos_app-base.js"
+      "path": "packages/steedos_sso.js"
+    },
+    {
+      "sourceMap": "packages/steedos_autoform.js.map",
+      "path": "packages/steedos_autoform.js"
     },
     {
       "sourceMap": "packages/steedos_creator.js.map",
@@ -765,17 +758,6 @@
     {
       "sourceMap": "packages/steedos_webkit-notification.js.map",
       "path": "packages/steedos_webkit-notification.js"
-    },
-    {
-      "path": "packages/vazco_universe-selectize.js"
-    },
-    {
-      "node_modules": "npm/node_modules/meteor/steedos_cms/node_modules",
-      "sourceMap": "packages/steedos_cms.js.map",
-      "path": "packages/steedos_cms.js",
-      "assets": {
-        "themes/default.html": "assets/packages/steedos_cms/themes/default.html"
-      }
     },
     {
       "path": "packages/hot-code-push.js"

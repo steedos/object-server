@@ -13,12 +13,12 @@ var Promise = Package.promise.Promise;
 
 var require = meteorInstall({"node_modules":{"meteor":{"steedos:lightning-design-system":{"server.js":function(require){
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                   //
-// packages/steedos_lightning-design-system/server.js                                                //
-//                                                                                                   //
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                                                                     //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                  //
+// packages/steedos_lightning-design-system/server.js                                               //
+//                                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                    //
 
 // const express = require("express");
 // const path = require("path");
@@ -42,7 +42,7 @@ var require = meteorInstall({"node_modules":{"meteor":{"steedos:lightning-design
 
 // WebApp.rawConnectHandlers.use(router);
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }}}}},{
   "extensions": [
