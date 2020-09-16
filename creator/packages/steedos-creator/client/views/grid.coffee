@@ -326,8 +326,8 @@ Template.creator_grid.onRendered ->
 		if !creator_obj
 			return
 		related_object_name = self.data.related_object_name
-		if is_related
-			listName = Creator.getListView(related_object_name, "all")._id
+		# if is_related
+		# 	listName = Creator.getListView(related_object_name, "all")._id
 		unless listName
 			toastr.error t("creator_list_view_permissions_lost")
 			return
@@ -347,14 +347,14 @@ Template.creator_grid.onRendered ->
 		isSpaceAdmin = Creator.isSpaceAdmin()
 		isOrganizationAdmin = _.include(user_permission_sets,"organization_admin")
 
-		record_id = self.data.record_id ||  Session.get("record_id")
+		recordId = self.data.record_id || self.data.recordId
 		related_list_item_props = self.data.related_list_item_props || {}
 
 		if Steedos.spaceId() and (is_related or Creator.subs["CreatorListViews"].ready()) and Creator.subs["TabularSetting"].ready()
 			url = Creator.getODataEndpointUrl(objectApiName, listName, is_related, related_object_name)
-			filter = Creator.getListViewFilters(objectApiName, listName, is_related, related_object_name, record_id)
-			console.log("==filter===", objectApiName, listName, is_related, related_object_name, record_id)
-			console.log("==filter==r=", filter)
+			filter = Creator.getListViewFilters(objectApiName, listName, is_related, related_object_name, recordId)
+			# console.log("==filter===", objectApiName, listName, is_related, related_object_name, recordId)
+			# console.log("==filter==r=", filter)
 			pageIndex = 0
 			selectColumns = Creator.getListviewColumns(curObject, objectApiName, is_related, listName, related_list_item_props)
 			# #expand_fields 不需要包含 extra_columns
@@ -608,7 +608,8 @@ Template.creator_grid.events
 			field.push(this.field_name)
 			field = field.join(",")
 
-		objectName = if is_related then (template.data?.related_object_name || Session.get("related_object_name")) else (template.data?.objectApiName || Session.get("object_name"))
+		# objectName = if is_related then (template.data?.related_object_name || Session.get("related_object_name")) else (template.data?.objectApiName || Session.get("object_name"))
+		objectName = if is_related then template.data?.related_object_name else template.data?.objectApiName
 		object = Creator.getObject(objectName)
 		collection_name = object.label
 		record = Creator.odata.get(objectName, this._id)

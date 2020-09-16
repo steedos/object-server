@@ -281,10 +281,10 @@ objectRoutes.route '/:record_id/:related_object_name/grid',
 		object_name = FlowRouter.getParam("object_name")
 		record_id = FlowRouter.getParam("record_id")
 		related_object_name = FlowRouter.getParam("related_object_name")
-		data = {app_id: app_id, object_name: object_name, record_id: record_id, related_object_name: related_object_name}
 		Session.set 'related_object_name', related_object_name
+		data = {objectApiName: object_name, recordId: record_id, relatedObjectName: related_object_name}
 		BlazeLayout.render Creator.getLayout(),
-			main: "related_object_list"
+			main: "related_object_list", data: data
 
 objectRoutes.route '/view/:record_id',
 	action: (params, queryParams)->
@@ -306,9 +306,10 @@ objectRoutes.route '/view/:record_id',
 			main = "creator_view"
 		BlazeLayout.render Creator.getLayout(),
 			main: 'recordLoading'
+		data = {objectApiName: object_name, recordId: record_id}
 		Meteor.setTimeout ()->
 			BlazeLayout.render Creator.getLayout(),
-				main: main, data: {objectApiName: object_name, recordId: record_id}
+				main: main, data: data
 		, 10
 
 objectRoutes.route '/grid/:list_view_id',
@@ -339,9 +340,9 @@ objectRoutes.route '/grid/:list_view_id',
 		Tracker.afterFlush ()->
 			Session.set("list_view_visible", true)
 		
-		console.log("==objectRoutes====", object_name, list_view_id);
+		data = {objectApiName: object_name, listName: list_view_id}
 		BlazeLayout.render Creator.getLayout(),
-			main: "creator_list_wrapper", data: {objectApiName: object_name, listName: list_view_id}
+			main: "creator_list_wrapper", data: data
 
 objectRoutes.route '/calendar/',
 	action: (params, queryParams)->

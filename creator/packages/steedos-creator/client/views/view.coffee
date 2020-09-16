@@ -524,6 +524,8 @@ Template.creator_view.helpers
 			id: getRelatedListTemplateId(related_object_name)
 			related_object_name: related_object_name, 
 			objectApiName: objectApiName, 
+			listName: Creator.getListView(related_object_name, "all")._id,
+			recordId: recordId
 			recordsTotal: Template.instance().recordsTotal, 
 			is_related: true, 
 			related_list_item_props: related_list_item_props
