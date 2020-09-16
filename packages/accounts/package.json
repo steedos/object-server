@@ -21,8 +21,6 @@
     "osy": "cd ../object-server/ && yarn",
     "os": "npm run osy && cp -r ../object-server/packages/* node_modules/@steedos/ && cp -r ../object-server/apps/contracts/src/* node_modules/@steedos/app-contracts/src/",
     "oss": "cp -r ../object-server/packages/standard-objects/* node_modules/@steedos/standard-objects/ && yarn start",
-    "prepare": "yarn build",
-    "compile": "yarn && tsc",
     "pubNext": "npm publish --tag next --registry https://registry.npmjs.org"
   },
   "dependencies": {
@@ -49,7 +47,6 @@
     "validator": "^12.2.0"
   },
   "devDependencies": {
-    "@steedos/app-contracts": "^1.22.0-alpha.6",
     "@steedos/meteor-bundle-runner": "^1.22.0-alpha.6",
     "@steedos/objectql": "^1.22.0-alpha.6",
     "@steedos/steedos-plugin-workflow": "^2.0.4",
