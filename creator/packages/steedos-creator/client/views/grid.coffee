@@ -400,27 +400,28 @@ Template.creator_grid.onRendered ->
 		stateStoring:{
 			type: "custom"
 			enabled: true
-			customSave: (gridState)->
-				if self.data.is_related
-					return
-				columns = gridState.columns
-				column_width = {}
-				sort = []
-				if columns and columns.length
-					columns = _.sortBy(_.values(columns), "visibleIndex")
-					_.each columns, (column_obj)->
-						if column_obj.width
-							column_width[column_obj.dataField] = column_obj.width
-					columns = _.sortBy(_.values(columns), "sortIndex")
-					_.each columns, (column_obj)->
-						if column_obj.sortOrder
-							sort.push {field_name: column_obj.dataField, order: column_obj.sortOrder}
-					Meteor.call 'grid_settings', curObjectName, listName, column_width, sort,
-						(error, result)->
-							if error
-								console.log error
-							else
-								console.log "grid_settings success"
+			# TODO:后续会考虑改为保存到另外一张单独的表中，见#840
+			# customSave: (gridState)->
+			# 	if self.data.is_related
+			# 		return
+			# 	columns = gridState.columns
+			# 	column_width = {}
+			# 	sort = []
+			# 	if columns and columns.length
+			# 		columns = _.sortBy(_.values(columns), "visibleIndex")
+			# 		_.each columns, (column_obj)->
+			# 			if column_obj.width
+			# 				column_width[column_obj.dataField] = column_obj.width
+			# 		columns = _.sortBy(_.values(columns), "sortIndex")
+			# 		_.each columns, (column_obj)->
+			# 			if column_obj.sortOrder
+			# 				sort.push {field_name: column_obj.dataField, order: column_obj.sortOrder}
+			# 		Meteor.call 'grid_settings', curObjectName, listName, column_width, sort,
+			# 			(error, result)->
+			# 				if error
+			# 					console.log error
+			# 				else
+			# 					console.log "grid_settings success"
 			customLoad: ->
 				return {pageIndex: pageIndex}
 		}
