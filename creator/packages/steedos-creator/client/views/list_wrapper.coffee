@@ -3,21 +3,25 @@ Template.creator_list_wrapper.onRendered ->
 	self = this
 	self.rendered = false
 	self.autorun ->
-		if Session.get("list_view_id")
+		templateData = Template.currentData()
+		console.log("===Template.creator_list_wrapper.onRendered==templateData==", templateData)
+		if templateData.listName
 			self.$(".btn-filter-list").removeClass("slds-is-selected")
 			self.$(".filter-list-container").addClass("slds-hide")
 			if self.rendered
 				self.$("#grid-search").val('')
 
 	self.autorun ->
-		if Session.get("list_view_id") && self.rendered
+		templateData = Template.currentData()
+		if templateData.listName && self.rendered
 			# 刷新浏览器或从详细界面返回到列表时，因self.rendered条件不会进入
 			# 切换视图时会进入，清除查找条件
 			Session.set("standard_query", null)
 	
 	self.autorun ->
-		list_view_id = Session.get("list_view_id")
-		object_name = Session.get("object_name")
+		templateData = Template.currentData()
+		list_view_id = templateData.listName
+		object_name = templateData.objectApiName
 		isSubReady = Creator.subs["CreatorListViews"].ready()
 		if isSubReady and list_view_id
 			list_view_obj = Creator.Collections.object_listviews.findOne(list_view_id)
@@ -58,9 +62,10 @@ Template.creator_list_wrapper.onRendered ->
 	self.rendered = true
 
 	self.autorun ->
+		templateData = Template.currentData()
 		# object_name变化时自动请求odata获取每个视图的记录数
-		object_name = Session.get("object_name")
-		listViews = Creator.getListViews()
+		object_name = templateData.objectApiName
+		listViews = Creator.getListViews(object_name)
 		self.recordsListViewTotal.set {}
 		listViews?.forEach (view)->
 			unless view?.show_count
@@ -77,12 +82,12 @@ Template.creator_list_wrapper.onRendered ->
 
 Template.creator_list_wrapper.helpers Creator.helpers
 
-isCalendarView = ()->
-	view = Creator.getListView(Session.get "object_name", Session.get("list_view_id"))
+isCalendarView = (objectApiName, listName)->
+	view = Creator.getListView(objectApiName, listName)
 	return view?.type == 'calendar'
 
-getFollowAction = ()->
-	actions = Creator.getActions()
+getFollowAction = (objectApiName)->
+	actions = Creator.getActions(objectApiName)
 	return _.find actions, (action)->
 		return action.name == 'standard_follow'
 
@@ -92,7 +97,9 @@ isFollowing = ()->
 Template.creator_list_wrapper.helpers
 
 	isCalendarView: ()->
-		return isCalendarView()
+		templateData = Template.currentData()
+		isCalendar = isCalendarView(templateData.objectApiName, templateData.listName)
+		return isCalendar
 
 	object_listviews_fields: ()->
 		listview_fields = Creator.getObject("object_listviews").fields
@@ -119,16 +126,16 @@ Template.creator_list_wrapper.helpers
 		return Template.instance().recordsTotal.get()
 	
 	sidebar: ()->
-		object_name = Session.get "object_name"
-		return !Steedos.isMobile() and Creator.getObject(object_name)?.sidebar
+		templateData = Template.currentData()
+		return !Steedos.isMobile() and Creator.getObject(templateData.objectApiName)?.sidebar
 	
 	sidebarDropdownMenu: ()->
-		object_name = Session.get "object_name"
-		return Steedos.isMobile() and Creator.getObject(object_name)?.sidebar
+		templateData = Template.currentData()
+		return Steedos.isMobile() and Creator.getObject(templateData.objectApiName)?.sidebar
 	
 	showAsGrid: ()->
-		object_name = Session.get "object_name"
-		if Creator.getObject(object_name)?.enable_tree
+		templateData = Template.currentData()
+		if Creator.getObject(templateData.objectApiName)?.enable_tree
 			return true
 		return !Steedos.isMobile()
 	
@@ -138,22 +145,26 @@ Template.creator_list_wrapper.helpers
 
 	list_views: ()->
 		Session.get("change_list_views")
-		return Creator.getListViews()
+		templateData = Template.currentData()
+		return Creator.getListViews(templateData.objectApiName)
 
 	custom_view: ()->
-		return Creator.Collections.object_listviews.find({object_name: Session.get("object_name"), is_default: {$ne: true}})
+		templateData = Template.currentData()
+		return Creator.Collections.object_listviews.find({object_name: templateData.objectApiName, is_default: {$ne: true}})
 
 	list_view: ()->
-		Session.get("change_list_views")
-		list_view = Creator.getListView(Session.get("object_name"), Session.get("list_view_id"))
 
-		if Session.get("list_view_id") and Session.get("list_view_id") != list_view?._id
+		templateData = Template.currentData()
+		Session.get("change_list_views")
+		list_view = Creator.getListView(templateData.objectApiName, templateData.listName)
+
+		if templateData.listName and templateData.listName != list_view?._id
 			return
 
 		if !list_view
 			return
 
-		if list_view?.name != Session.get("list_view_id")
+		if list_view?.name != templateData.listName
 			if list_view?._id
 				Session.set("list_view_id", list_view._id)
 			else
@@ -161,14 +172,14 @@ Template.creator_list_wrapper.helpers
 		return list_view
 
 	list_view_url: (list_view)->
+		templateData = Template.parentData()
 		if list_view._id
 			list_view_id = String(list_view._id)
 		else
 			list_view_id = String(list_view.name)
 		
 		app_id = Session.get("app_id")
-		object_name = Session.get("object_name")
-		return Creator.getListViewUrl(object_name, app_id, list_view_id)
+		return Creator.getListViewUrl(templateData.objectApiName, app_id, list_view_id)
 	
 	list_view_label: (item)->
 		if item
@@ -187,8 +198,9 @@ Template.creator_list_wrapper.helpers
 			return "..."
 
 	actions: ()->
-		actions = Creator.getActions()
-		isCalendar = isCalendarView()
+		templateData = Template.currentData()
+		actions = Creator.getActions(templateData.objectApiName)
+		isCalendar = isCalendarView(templateData.objectApiName, templateData.listName)
 		actions = _.filter actions, (action)->
 			if isCalendar && action.todo == "standard_query"
 				return false
@@ -204,19 +216,22 @@ Template.creator_list_wrapper.helpers
 		return actions
 
 	is_custom_list_view: ()->
-		if Creator.Collections.object_listviews.findOne(Session.get("list_view_id"))
+		templateData = Template.currentData()
+		if Creator.Collections.object_listviews.findOne(templateData.listName)
 			return true
 		else
 			return false
 	
 	is_view_owner: ()->
-		list_view = Creator.Collections.object_listviews.findOne(Session.get("list_view_id"))
+		templateData = Template.currentData()
+		list_view = Creator.Collections.object_listviews.findOne(templateData.listName)
 		if list_view and list_view.owner == Meteor.userId()
 			return true
 		return false
 
 	is_filter_changed: ()->
-		list_view_obj = Creator.Collections.object_listviews.findOne(Session.get("list_view_id"))
+		templateData = Template.currentData()
+		list_view_obj = Creator.Collections.object_listviews.findOne(templateData.listName)
 		is_filter_list_disabled = !list_view_obj or list_view_obj.owner != Meteor.userId()
 		if is_filter_list_disabled
 			# 只读视图不能存在到数据库
@@ -240,17 +255,19 @@ Template.creator_list_wrapper.helpers
 		return Session.get("list_view_visible")
 	
 	current_list_view: ()->
-		list_view_obj = Creator.Collections.object_listviews.findOne(Session.get("list_view_id"))
+		templateData = Template.currentData()
+		list_view_obj = Creator.Collections.object_listviews.findOne(templateData.listName)
 		return list_view_obj?._id
 
 	delete_on_success: ()->
 		return ->
-			list_views = Creator.getListViews()
+			templateData = Template.currentData()
+			list_views = Creator.getListViews(templateData.objectApiName)
 			Session.set("list_view_id", list_views[0]._id)
 
 	isTree: ()->
-		objectName = Session.get("object_name")
-		object = Creator.getObject(objectName)
+		templateData = Template.currentData()
+		object = Creator.getObject(templateData.objectApiName)
 		return object?.enable_tree
 
 	search_text: ()->
@@ -265,9 +282,10 @@ Template.creator_list_wrapper.helpers
 	isFiltering: ()->
 		return Creator.getIsFiltering()
 	canFollow: ()->
-		objectName = Session.get("object_name")
+		templateData = Template.currentData()
+		objectName = templateData.objectApiName
 		object = Creator.getObject(objectName)
-		followAction = getFollowAction();
+		followAction = getFollowAction(objectName);
 		followActionVisible = followAction?.visible
 		if _.isFunction(followActionVisible)
 			followActionVisible = followActionVisible()
@@ -286,14 +304,14 @@ transformFilters = (filters)->
 
 Template.creator_list_wrapper.events
 
-	'click .list-action-custom': (event) ->
-		objectName = Session.get("object_name")
-		object = Creator.getObject(objectName)
+	'click .list-action-custom': (event, template) ->
+		object = Creator.getObject(template.objectApiName)
 		collection_name = object.label
 		Session.set("action_fields", undefined)
-		Session.set("action_collection", "Creator.Collections.#{objectName}")
+		Session.set("action_collection", "Creator.Collections.#{template.objectApiName}")
 		Session.set("action_collection_name", collection_name)
-		if isCalendarView()
+		isCalendar = isCalendarView(template.objectApiName, template.listName)
+		if isCalendar
 			Session.set("action_save_and_insert", false)
 		else
 			Session.set("action_save_and_insert", true)
@@ -314,8 +332,8 @@ Template.creator_list_wrapper.events
 		$(".btn-add-list-view").click()
 
 	'click .copy-list-view': (event, template)->
-
-		current_list_view = _.clone(Creator.getListView(Session.get("object_name"), Session.get("list_view_id")))
+		templateData = Template.currentData()
+		current_list_view = _.clone(Creator.getListView(templateData.objectApiName, templateData.listName))
 
 		delete current_list_view._id
 
@@ -331,8 +349,9 @@ Template.creator_list_wrapper.events
 		$(".btn-add-list-view").click()
 
 	'click .reset-column-width': (event, template)->
-		list_view_id = Session.get("list_view_id")
-		object_name = Session.get("object_name")
+		templateData = Template.currentData()
+		list_view_id = templateData.listName
+		object_name = templateData.objectApiName
 		grid_settings = Creator.getCollection("settings").findOne({object_name: object_name, record_id: "object_gridviews"})
 		column_width = {}
 		_.each grid_settings?.settings[list_view_id]?.column_width,(val, key)->
@@ -355,8 +374,8 @@ Template.creator_list_wrapper.events
 		$(".btn-edit-list-view").click()
 
 	'click .cancel-change': (event, template)->
-		list_view_id = Session.get("list_view_id")
-		listView = Creator.Collections.object_listviews.findOne(list_view_id)
+		templateData = Template.currentData()
+		listView = Creator.Collections.object_listviews.findOne(templateData.listName)
 		filters = listView.filters || []
 		filter_scope = listView.filter_scope
 		filter_logic = listView.filter_logic
@@ -365,7 +384,7 @@ Template.creator_list_wrapper.events
 		Session.set("filter_logic", filter_logic)
 
 	'click .save-change': (event, template)->
-		list_view_id = Session.get("list_view_id")
+		templateData = Template.currentData()
 		filter_items = Session.get("filter_items")
 		filter_scope = Session.get("filter_scope")
 		filter_items = _.map filter_items, (obj) ->
@@ -378,7 +397,7 @@ Template.creator_list_wrapper.events
 		format_logic = template.$("#filter-logic").val()
 		if Creator.validateFilters(filter_items, format_logic)
 			Session.set "list_view_visible", false
-			Meteor.call "update_filters", list_view_id, filter_items, filter_scope, format_logic, (error, result) ->
+			Meteor.call "update_filters", templateData.listName, filter_items, filter_scope, format_logic, (error, result) ->
 				Session.set "list_view_visible", true
 				if error 
 					console.log "error", error 
@@ -401,8 +420,8 @@ Template.creator_list_wrapper.events
 		Modal.show("select_fields")
 
 	'click .delete-list-view': (event, template)->
-		list_view_id = Session.get("list_view_id")
-		Session.set "cmDoc", {_id: list_view_id}
+		templateData = Template.currentData()
+		Session.set "cmDoc", {_id: templateData.listName}
 		$(".btn-delete-list-view").click()
 
 	'click .btn-refresh': (event, template)->
@@ -416,10 +435,10 @@ Template.creator_list_wrapper.events
 		Template["creator_grid"]?.refresh(dxDataGridInstance)
 
 	'keydown input#grid-search': (event, template)->
+		templateData = Template.currentData()
 		if event.keyCode == "13" or event.key == "Enter"
 			searchKey = $(event.currentTarget).val().trim()
-			object_name = Session.get("object_name")
-			obj = Creator.getObject(object_name)
+			obj = Creator.getObject(templateData.objectApiName)
 			if searchKey
 				if obj.enable_tree
 					$(".gridContainer").dxTreeList({}).dxTreeList('instance').searchByText(searchKey)
@@ -429,7 +448,7 @@ Template.creator_list_wrapper.events
 					_.each obj_fields, (field,field_name)->
 						if (field.searchable || field_name == obj.NAME_FIELD_KEY) && field.type != 'number'
 							query[field_name] = searchKey
-					standard_query = object_name: object_name, query: query, is_mini: true, search_text: searchKey
+					standard_query = object_name: templateData.objectApiName, query: query, is_mini: true, search_text: searchKey
 					Session.set 'standard_query', standard_query
 			else
 				if obj.enable_tree
@@ -438,8 +457,9 @@ Template.creator_list_wrapper.events
 					Session.set 'standard_query', null
 
 	'click .list-action-follow': (event, template)->
-		followAction = getFollowAction()
-		Creator.executeAction(Session.get("object_name"), followAction)
+		templateData = Template.currentData()
+		followAction = getFollowAction(templateData.objectApiName)
+		Creator.executeAction(templateData.objectApiName, followAction)
 
 	'click .slds-page-header--object-home .slds-page-header__title .dx-treeview-toggle-item-visibility': (event) ->
 		# 视图下拉菜单中如果有dxTreeView，则应该让点击展开折叠树节点时不隐藏弹出层
@@ -461,9 +481,9 @@ Template.creator_list_wrapper.onCreated ->
 	this.recordsListViewTotal = new ReactiveVar({})
 
 Template.creator_list_wrapper.onDestroyed ->
-	object_name = Session.get("object_name")
-	if object_name
-		Creator.TabularSelectedIds[object_name] = []
+	templateData = Template.currentData()
+	if templateData and templateData.objectApiName
+		Creator.TabularSelectedIds[templateData.objectApiName] = []
 
 
 AutoForm.hooks addListView:
