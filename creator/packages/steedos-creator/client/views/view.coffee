@@ -283,11 +283,7 @@ Template.creator_view.helpers
 		return finalFields
 
 	keyValue: (key) ->
-		objectApiName = Template.instance().objectApiName
-		recordId = Template.instance().recordId
-		if !objectApiName or !recordId
-			return
-		record = Creator.getObjectRecord(objectApiName, recordId)
+		record = Template.instance().record?.get();
 #		return record[key]
 		key.split('.').reduce (o, x) ->
 				o?[x]
@@ -324,8 +320,12 @@ Template.creator_view.helpers
 			return record
 
 	record_name: ()->
-		record = Creator.getObjectRecord(Template.instance().objectApiName, Template.instance().recordId)
-		name_field_key = Creator.getObject()?.NAME_FIELD_KEY
+		objectApiName = Template.instance().objectApiName
+		recordId = Template.instance().recordId
+		if !objectApiName or !recordId
+			return
+		name_field_key = Creator.getObject(objectApiName)?.NAME_FIELD_KEY
+		record = Template.instance().record?.get();
 		if record and name_field_key
 			record_name = record.label || record[name_field_key]
 			Session.set('record_name', record_name)
@@ -335,7 +335,10 @@ Template.creator_view.helpers
 		return Creator.getObjectUrl(Template.instance().objectApiName, null)
 
 	showForm: ()->
-		if Creator.getObjectRecord(Template.instance().objectApiName, Template.instance().recordId)
+		record = Template.instance().record?.get();
+		if _.isEmpty(record)
+			return false
+		else
 			return true
 
 	hasPermission: (permissionName)->
@@ -431,14 +434,12 @@ Template.creator_view.helpers
 			return actions
 
 	isUnlocked: ()->
-
 		objectApiName = Template.instance().objectApiName
-		recordId = Template.instance().recordId
-		if !objectApiName or !recordId
+		if !objectApiName
 			return
 		if Creator.getPermissions(objectApiName).modifyAllRecords
 			return true
-		record = Creator.getObjectRecord(objectApiName, recordId)
+		record = Template.instance().record?.get();
 		return !record?.locked
 
 	detail_info_visible: ()->
@@ -451,7 +452,7 @@ Template.creator_view.helpers
 			return
 		actions = Creator.getActions(objectApiName)
 		if recordId
-			record = Creator.getObjectRecord(objectApiName, recordId)
+			record = Template.instance().record?.get();
 			userId = Meteor.userId()
 			record_permissions = Creator.getRecordPermissions objectApiName, record, userId
 			actions = _.filter actions, (action)->
@@ -471,7 +472,7 @@ Template.creator_view.helpers
 			return
 		actions = Creator.getActions(objectApiName)
 		if recordId
-			record = Creator.getObjectRecord(objectApiName, recordId)
+			record = Template.instance().record?.get();
 			userId = Meteor.userId()
 			record_permissions = Creator.getRecordPermissions objectApiName, record, userId
 			actions = _.filter actions, (action)->
@@ -498,10 +499,9 @@ Template.creator_view.helpers
 
 	cell_data: (key)->
 		objectApiName = Template.instance().objectApiName
-		recordId = Template.instance().recordId
-		if !objectApiName or !recordId
+		if !objectApiName
 			return
-		record = Creator.getObjectRecord(objectApiName, recordId)
+		record = Template.instance().record?.get();
 		data = {}
 		data._id = record._id
 		data.val = record[key]
@@ -531,7 +531,8 @@ Template.creator_view.helpers
 			related_list_item_props: related_list_item_props
 		}
 		if objectApiName == 'objects'
-			data.recordId = Creator.getObjectRecord(objectApiName)?.name
+			record = Template.instance().record?.get();
+			data.recordId = record?.name
 		else
 			data.recordId = recordId
 		return data
@@ -543,11 +544,8 @@ Template.creator_view.helpers
 		return Creator.getObject(objectApiName)?.enable_chatter
 
 	show_chatter: ()->
-		objectApiName = Template.instance().objectApiName
-		recordId = Template.instance().recordId
-		if !objectApiName or !recordId
-			return
-		return Creator.getObjectRecord(objectApiName, recordId)
+		record = Template.instance().record?.get();
+		return record
 
 	agreement: ()->
 		return Template.instance().agreement.get()
@@ -582,7 +580,7 @@ Template.creator_view.events
 		console.log('click action');
 		objectApiName = template.objectApiName
 		recordId = template.recordId
-		record = Creator.getObjectRecord(objectApiName, recordId)
+		record = template.record?.get();
 		object = Creator.getObject(objectApiName)
 		collection_name = object.label
 		Session.set("action_fields", undefined)
