@@ -120,8 +120,8 @@ ui.dxPopover = require("devextreme/ui/popover");
 
 // ui.dxAccordion = require("devextreme/ui/accordion");
 // ui.dxContextMenu = require("devextreme/ui/context_menu");
-// ui.dxDataGrid = require("devextreme/ui/data_grid");
-// ui.dxTreeList = require("devextreme/ui/tree_list");
+ui.dxDataGrid = require("devextreme/ui/data_grid");
+ui.dxTreeList = require("devextreme/ui/tree_list");
 // ui.dxMenu = require("devextreme/ui/menu");
 // ui.dxPivotGrid = require("devextreme/ui/pivot_grid");
 // ui.dxPivotGridFieldChooser = require("devextreme/ui/pivot_grid_field_chooser");

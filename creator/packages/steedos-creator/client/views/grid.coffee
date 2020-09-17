@@ -565,18 +565,9 @@ Template.creator_grid.onRendered ->
 				else
 					dxOptions.rootValue = "-1"
 
-		module.dynamicImport('devextreme/ui/tree_list').then (dxTreeList)->
-			DevExpress.ui.dxTreeList = dxTreeList;
-			self.dxDataGridInstance = self.$(".gridContainer").dxTreeList(dxOptions).dxTreeList('instance')
-			# if !is_related && self.$(".gridContainer").length > 0
-			# 	Session.set("grid_paging", null)
+		self.dxDataGridInstance = self.$(".gridContainer").dxTreeList(dxOptions).dxTreeList('instance')
 	else
-		module.dynamicImport('devextreme/ui/data_grid').then (dxDataGrid)->
-			DevExpress.ui.dxDataGrid = dxDataGrid;
-			self.dxDataGridInstance = self.$(".gridContainer").dxDataGrid(dxOptions).dxDataGrid('instance')
-			# if !is_related && self.$(".gridContainer").length > 0
-			# 	Session.set("grid_paging", null)
-			# self.dxDataGridInstance.pageSize(pageSize)
+		self.dxDataGridInstance = self.$(".gridContainer").dxDataGrid(dxOptions).dxDataGrid('instance')
 Template.creator_grid.helpers Creator.helpers
 
 Template.creator_grid.helpers
