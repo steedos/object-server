@@ -52,14 +52,14 @@ Meteor.startup ->
 			}
 
 
-Meteor.startup ->
-	Tracker.autorun (c)->
-		object_name = Session.get("object_name")
-		related_object_name = Session.get("related_object_name")
-		if object_name or related_object_name
-			object_a = [object_name, related_object_name]
-			object_a = _.compact(object_a)
-			Creator.subs["TabularSetting"].subscribe "user_tabular_settings", object_a
+# Meteor.startup ->
+# 	Tracker.autorun (c)->
+# 		object_name = Session.get("object_name")
+# 		related_object_name = Session.get("related_object_name")
+# 		if object_name or related_object_name
+# 			object_a = [object_name, related_object_name]
+# 			object_a = _.compact(object_a)
+# 			Creator.subs["TabularSetting"].subscribe "user_tabular_settings", object_a
 			
 Meteor.startup ->
 	Tracker.autorun (c)->

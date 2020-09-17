@@ -312,269 +312,270 @@ getObjectpaging = (objectName)->
 
 Template.creator_grid.onRendered ->
 	self = this
-	self.autorun (c)->
-		# if Session.get("object_home_component")
-		# 	# 如果从grid界面切换到plugin自定义的object component则不需要执行下面的代码
-		# 	return
-		# Template.currentData() 这个代码不能删除，用于更新self.data中的数据
-		# templateData = Template.currentData()
-		is_related = self.data.is_related
-		objectApiName = self.data.objectApiName
-		listName = self.data.listName
-		_pageSize = self.data.pageSize
-		creator_obj = Creator.getObject(objectApiName)
-		if !creator_obj
-			return
-		related_object_name = self.data.related_object_name
-		# if is_related
-		# 	listName = Creator.getListView(related_object_name, "all")._id
-		unless listName
-			toastr.error t("creator_list_view_permissions_lost")
-			return
+	# self.autorun (c)->
+	# if Session.get("object_home_component")
+	# 	# 如果从grid界面切换到plugin自定义的object component则不需要执行下面的代码
+	# 	return
+	# Template.currentData() 这个代码不能删除，用于更新self.data中的数据
+	# templateData = Template.currentData()
+	is_related = self.data.is_related
+	objectApiName = self.data.objectApiName
+	listName = self.data.listName
+	_pageSize = self.data.pageSize
+	creator_obj = Creator.getObject(objectApiName)
+	if !creator_obj
+		return
+	related_object_name = self.data.related_object_name
+	# if is_related
+	# 	listName = Creator.getListView(related_object_name, "all")._id
+	unless listName
+		toastr.error t("creator_list_view_permissions_lost")
+		return
 
-		# if !is_related
-		# 	# grid_paging = Tracker.nonreactive ()->
-		# 	# 				_grid_paging = Session.get('grid_paging')
-		# 	# 				if _grid_paging?.objectApiName == objectApiName && _grid_paging.list_view_id == list_view_id
-		# 	# 					return _grid_paging
-		# 	grid_paging = _getGridPaging(objectApiName, listName)
-		curObjectName = if is_related then related_object_name else objectApiName
-		curObject = Creator.getObject(curObjectName)
+	# if !is_related
+	# 	# grid_paging = Tracker.nonreactive ()->
+	# 	# 				_grid_paging = Session.get('grid_paging')
+	# 	# 				if _grid_paging?.objectApiName == objectApiName && _grid_paging.list_view_id == list_view_id
+	# 	# 					return _grid_paging
+	# 	grid_paging = _getGridPaging(objectApiName, listName)
+	curObjectName = if is_related then related_object_name else objectApiName
+	curObject = Creator.getObject(curObjectName)
 
-		# user_permission_sets = Session.get("user_permission_sets")
-		user_permission_sets = Creator.UserPermissionSets
-		userCompanyOrganizationId = Steedos.getUserCompanyOrganizationId()
-		isSpaceAdmin = Creator.isSpaceAdmin()
-		isOrganizationAdmin = _.include(user_permission_sets,"organization_admin")
+	# user_permission_sets = Session.get("user_permission_sets")
+	user_permission_sets = Creator.UserPermissionSets
+	userCompanyOrganizationId = Steedos.getUserCompanyOrganizationId()
+	isSpaceAdmin = Creator.isSpaceAdmin()
+	isOrganizationAdmin = _.include(user_permission_sets,"organization_admin")
 
-		recordId = self.data.record_id || self.data.recordId
-		related_list_item_props = self.data.related_list_item_props || {}
+	recordId = self.data.record_id || self.data.recordId
+	related_list_item_props = self.data.related_list_item_props || {}
 
-		if Steedos.spaceId() and (is_related or Creator.subs["CreatorListViews"].ready()) and Creator.subs["TabularSetting"].ready()
-			url = Creator.getODataEndpointUrl(objectApiName, listName, is_related, related_object_name)
-			filter = Creator.getListViewFilters(objectApiName, listName, is_related, related_object_name, recordId)
-			# console.log("==filter===", objectApiName, listName, is_related, related_object_name, recordId)
-			# console.log("==filter==r=", filter)
-			pageIndex = 0
-			selectColumns = Creator.getListviewColumns(curObject, objectApiName, is_related, listName, related_list_item_props)
-			# #expand_fields 不需要包含 extra_columns
-			expand_fields = _expandFields(curObjectName, selectColumns)
-			showColumns = _getShowColumns.call(self, curObject, selectColumns, is_related, listName, related_list_item_props)
-			pageSize = _getPageSize(is_related, _pageSize)
-			objectPaging = getObjectpaging(curObjectName);
-			# extra_columns不需要显示在表格上，因此不做_columns函数处理
-			selectColumns = Creator.unionSelectColumnsWithExtraAndDepandOn(selectColumns, curObject, objectApiName, is_related)
-			
-			# 对于a.b的字段，发送odata请求时需要转换为a/b
-			selectColumns = selectColumns.map (n)->
-				return n.replace(".", "/");
+	# if Steedos.spaceId() and (is_related or Creator.subs["CreatorListViews"].ready()) and Creator.subs["TabularSetting"].ready()
+	# if true
+	url = Creator.getODataEndpointUrl(objectApiName, listName, is_related, related_object_name)
+	filter = Creator.getListViewFilters(objectApiName, listName, is_related, related_object_name, recordId)
+	# console.log("==filter===", objectApiName, listName, is_related, related_object_name, recordId)
+	# console.log("==filter==r=", filter)
+	pageIndex = 0
+	selectColumns = Creator.getListviewColumns(curObject, objectApiName, is_related, listName, related_list_item_props)
+	# #expand_fields 不需要包含 extra_columns
+	expand_fields = _expandFields(curObjectName, selectColumns)
+	showColumns = _getShowColumns.call(self, curObject, selectColumns, is_related, listName, related_list_item_props)
+	pageSize = _getPageSize(is_related, _pageSize)
+	objectPaging = getObjectpaging(curObjectName);
+	# extra_columns不需要显示在表格上，因此不做_columns函数处理
+	selectColumns = Creator.unionSelectColumnsWithExtraAndDepandOn(selectColumns, curObject, objectApiName, is_related)
+	
+	# 对于a.b的字段，发送odata请求时需要转换为a/b
+	selectColumns = selectColumns.map (n)->
+		return n.replace(".", "/");
 
-			if !filter
-				# filter 为undefined时要设置为空，否则dxDataGrid控件会使用上次使用过的filter
-				filter = null
+	if !filter
+		# filter 为undefined时要设置为空，否则dxDataGrid控件会使用上次使用过的filter
+		filter = null
 
-			_listView = Creator.getListView(objectApiName, listName, true)
-			if _.isNumber(objectPaging?.page_size)
-				pageSize = objectPaging?.page_size
-			dxOptions =
-				remoteOperations: true
-				scrolling: 
-					showScrollbar: "always"
-					mode: _listView?.scrolling_mode || objectPaging?.mode || "standard"
-				paging:
-					pageSize: pageSize
-					enabled: objectPaging?.enabled
-				pager:
-					showPageSizeSelector: true,
-					allowedPageSizes: [10, 50, 100, 200],
-					showInfo: false,
-					showNavigationButtons: true
-				showColumnLines: false
-				allowColumnReordering: true
-				allowColumnResizing: true
-				columnResizingMode: "widget"
-				showRowLines: true
-				savingTimeout: 1000
-				noDataText: t("list_view_no_records")
-				stateStoring:{
-					type: "custom"
-					enabled: true
-					customSave: (gridState)->
-						if self.data.is_related
-							return
-						columns = gridState.columns
-						column_width = {}
-						sort = []
-						if columns and columns.length
-							columns = _.sortBy(_.values(columns), "visibleIndex")
-							_.each columns, (column_obj)->
-								if column_obj.width
-									column_width[column_obj.dataField] = column_obj.width
-							columns = _.sortBy(_.values(columns), "sortIndex")
-							_.each columns, (column_obj)->
-								if column_obj.sortOrder
-									sort.push {field_name: column_obj.dataField, order: column_obj.sortOrder}
-							Meteor.call 'grid_settings', curObjectName, listName, column_width, sort,
-								(error, result)->
-									if error
-										console.log error
-									else
-										console.log "grid_settings success"
-					customLoad: ->
-						return {pageIndex: pageIndex}
-				}
-				dataSource:
-					store:
-						type: "odata"
-						version: 4
-						url: url
-						withCredentials: false
-						beforeSend: (request) ->
-							request.headers['X-User-Id'] = Meteor.userId()
-							request.headers['X-Space-Id'] = Steedos.spaceId()
-							request.headers['X-Auth-Token'] = Accounts._storedLoginToken()
-						errorHandler: (error) ->
-							if error.httpStatus == 404 || error.httpStatus == 400
-								error.message = t "creator_odata_api_not_found"
-							else if error.httpStatus == 401
-								error.message = t "creator_odata_unexpected_character"
-							else if error.httpStatus == 403
-								error.message = t "creator_odata_user_privileges"
-							else if error.httpStatus == 500
-								if error.message == "Unexpected character at 106" or error.message == 'Unexpected character at 374'
-									error.message = t "creator_odata_unexpected_character"
-							toastr.error(error.message)
-							console.error('errorHandler', error)
-						fieldTypes: {
-							'_id': 'String'
-						}
-					select: selectColumns
-					filter: filter
-					expand: expand_fields
-				columns: showColumns
-				columnAutoWidth: false
-				sorting:
-					mode: "multiple"
-				customizeExportData: (col, row)->
-					fields = curObject.fields
-					_.each row, (r)->
-						_.each r.values, (val, index)->
-							if val
-								if val.constructor == Object
-									r.values[index] = val.name || val._NAME_FIELD_VALUE
-								else if val.constructor == Array
-									_val = [];
-									_.each val, (_v)->
-										if _.isString(_v)
-											_val.push _v
-										else if _.isObject(_v)
-											_val.push(_v.name || _v._NAME_FIELD_VALUE)
-									r.values[index] = _val.join(",")
-								else if val.constructor == Date
-									dataField = col[index]?.dataField
-									if fields and fields[dataField]?.type == "date"
-										val = moment(val).format('YYYY-MM-DD')
-										r.values[index] = val
-									else
-										utcOffset = moment().utcOffset() / 60
-										val = moment(val).add(utcOffset, "hours").format('YYYY-MM-DD H:mm')
-										r.values[index] = val
-								else
-									dataField = col[index]?.dataField
-									if fields and fields[dataField]?.type == "select"
-										options = fields[dataField].options
-										valOpt = _.find options, (opt)->
-											return opt.value == val
-										if valOpt
-											r.values[index] = valOpt.label
-				onCellClick: (e)->
-					if e.column?.dataField ==  "_id_actions"
-						_itemClick.call(self, e, curObjectName, listName)
-
-				onContentReady: (e)->
-					if self.data.total
-						self.data.total.set self.dxDataGridInstance.totalCount()
-					else if self.data.recordsTotal
-						recordsTotal = self.data.recordsTotal.get()
-						recordsTotal[curObjectName] = self.dxDataGridInstance.totalCount()
-						self.data.recordsTotal.set recordsTotal
-					unless is_related
-						unless curObject.enable_tree
-							# 不支持tree格式的翻页
-							current_pagesize = self.$(".gridContainer").dxDataGrid().dxDataGrid('instance').pageSize()
-							self.$(".gridContainer").dxDataGrid().dxDataGrid('instance').pageSize(current_pagesize)
-							localStorage.setItem("creator_pageSize:"+Meteor.userId(),current_pagesize)
-				# onNodesInitialized: (e)->
-				# 	if creator_obj.enable_tree
-				# 		# 默认展开第一个节点
-				# 		rootNode = e.component.getRootNode()
-				# 		firstNodeKey = rootNode?.children[0]?.key
-				# 		if firstNodeKey
-				# 			e.component.expandRow(firstNodeKey)
-			if Steedos.isMobile()
-				dxOptions.allowColumnReordering = false
-				dxOptions.allowColumnResizing = false
-
-			if is_related
-				dxOptions.pager.showPageSizeSelector = false
-			fileName = Creator.getObject(curObjectName).label + "-" + Creator.getListView(curObjectName, listName)?.label
-			dxOptions.export =
-				enabled: true
-				fileName: fileName
-				allowExportSelectedData: false
-
-			if !is_related and curObject.enable_tree
-				# 如果是tree则过虑条件适用tree格式，要排除相关项is_related的情况，因为相关项列表不需要支持tree
-				dxOptions.keyExpr = "_id"
-				dxOptions.parentIdExpr = "parent"
-				dxOptions.hasItemsExpr = (params)->
-					if params?.children?.length>0
-						return true
-					return false;
-				dxOptions.expandNodesOnFiltering = true
-				# tree 模式不能设置filter，filter由tree动态生成
-				dxOptions.dataSource.filter = null
-				dxOptions.rootValue = null
-				dxOptions.remoteOperations =
-					filtering: true
-					sorting: false
-					grouping: false
-				dxOptions.scrolling = null
-				dxOptions.pageing =
-					pageSize: 1000
-				# dxOptions.expandedRowKeys = ["9b7maW3W2sXdg8fKq"]
-				# dxOptions.autoExpandAll = true
-				# 不支持tree格式的翻页，因为OData模式下，每次翻页都请求了完整数据，没有意义
-				dxOptions.pager = null
-
-				_.forEach dxOptions.columns, (column)->
-					if column.dataField == 'name' || column.dataField == curObject.NAME_FIELD_KEY
-						column.allowSearch = true
-					else
-						column.allowSearch = false
-
-				if objectApiName == "organizations"
-					unless isSpaceAdmin
-						if isOrganizationAdmin
-							if userCompanyOrganizationId
-								dxOptions.rootValue = userCompanyOrganizationId
+	_listView = Creator.getListView(objectApiName, listName, true)
+	if _.isNumber(objectPaging?.page_size)
+		pageSize = objectPaging?.page_size
+	dxOptions =
+		remoteOperations: true
+		scrolling: 
+			showScrollbar: "always"
+			mode: _listView?.scrolling_mode || objectPaging?.mode || "standard"
+		paging:
+			pageSize: pageSize
+			enabled: objectPaging?.enabled
+		pager:
+			showPageSizeSelector: true,
+			allowedPageSizes: [10, 50, 100, 200],
+			showInfo: false,
+			showNavigationButtons: true
+		showColumnLines: false
+		allowColumnReordering: true
+		allowColumnResizing: true
+		columnResizingMode: "widget"
+		showRowLines: true
+		savingTimeout: 1000
+		noDataText: t("list_view_no_records")
+		stateStoring:{
+			type: "custom"
+			enabled: true
+			customSave: (gridState)->
+				if self.data.is_related
+					return
+				columns = gridState.columns
+				column_width = {}
+				sort = []
+				if columns and columns.length
+					columns = _.sortBy(_.values(columns), "visibleIndex")
+					_.each columns, (column_obj)->
+						if column_obj.width
+							column_width[column_obj.dataField] = column_obj.width
+					columns = _.sortBy(_.values(columns), "sortIndex")
+					_.each columns, (column_obj)->
+						if column_obj.sortOrder
+							sort.push {field_name: column_obj.dataField, order: column_obj.sortOrder}
+					Meteor.call 'grid_settings', curObjectName, listName, column_width, sort,
+						(error, result)->
+							if error
+								console.log error
 							else
-								dxOptions.rootValue = "-1"
+								console.log "grid_settings success"
+			customLoad: ->
+				return {pageIndex: pageIndex}
+		}
+		dataSource:
+			store:
+				type: "odata"
+				version: 4
+				url: url
+				withCredentials: false
+				beforeSend: (request) ->
+					request.headers['X-User-Id'] = Meteor.userId()
+					request.headers['X-Space-Id'] = Steedos.spaceId()
+					request.headers['X-Auth-Token'] = Accounts._storedLoginToken()
+				errorHandler: (error) ->
+					if error.httpStatus == 404 || error.httpStatus == 400
+						error.message = t "creator_odata_api_not_found"
+					else if error.httpStatus == 401
+						error.message = t "creator_odata_unexpected_character"
+					else if error.httpStatus == 403
+						error.message = t "creator_odata_user_privileges"
+					else if error.httpStatus == 500
+						if error.message == "Unexpected character at 106" or error.message == 'Unexpected character at 374'
+							error.message = t "creator_odata_unexpected_character"
+					toastr.error(error.message)
+					console.error('errorHandler', error)
+				fieldTypes: {
+					'_id': 'String'
+				}
+			select: selectColumns
+			filter: filter
+			expand: expand_fields
+		columns: showColumns
+		columnAutoWidth: false
+		sorting:
+			mode: "multiple"
+		customizeExportData: (col, row)->
+			fields = curObject.fields
+			_.each row, (r)->
+				_.each r.values, (val, index)->
+					if val
+						if val.constructor == Object
+							r.values[index] = val.name || val._NAME_FIELD_VALUE
+						else if val.constructor == Array
+							_val = [];
+							_.each val, (_v)->
+								if _.isString(_v)
+									_val.push _v
+								else if _.isObject(_v)
+									_val.push(_v.name || _v._NAME_FIELD_VALUE)
+							r.values[index] = _val.join(",")
+						else if val.constructor == Date
+							dataField = col[index]?.dataField
+							if fields and fields[dataField]?.type == "date"
+								val = moment(val).format('YYYY-MM-DD')
+								r.values[index] = val
+							else
+								utcOffset = moment().utcOffset() / 60
+								val = moment(val).add(utcOffset, "hours").format('YYYY-MM-DD H:mm')
+								r.values[index] = val
 						else
-							dxOptions.rootValue = "-1"
+							dataField = col[index]?.dataField
+							if fields and fields[dataField]?.type == "select"
+								options = fields[dataField].options
+								valOpt = _.find options, (opt)->
+									return opt.value == val
+								if valOpt
+									r.values[index] = valOpt.label
+		onCellClick: (e)->
+			if e.column?.dataField ==  "_id_actions"
+				_itemClick.call(self, e, curObjectName, listName)
 
-				module.dynamicImport('devextreme/ui/tree_list').then (dxTreeList)->
-					DevExpress.ui.dxTreeList = dxTreeList;
-					self.dxDataGridInstance = self.$(".gridContainer").dxTreeList(dxOptions).dxTreeList('instance')
-					# if !is_related && self.$(".gridContainer").length > 0
-					# 	Session.set("grid_paging", null)
+		onContentReady: (e)->
+			if self.data.total
+				self.data.total.set self.dxDataGridInstance.totalCount()
+			else if self.data.recordsTotal
+				recordsTotal = self.data.recordsTotal.get()
+				recordsTotal[curObjectName] = self.dxDataGridInstance.totalCount()
+				self.data.recordsTotal.set recordsTotal
+			unless is_related
+				unless curObject.enable_tree
+					# 不支持tree格式的翻页
+					current_pagesize = self.$(".gridContainer").dxDataGrid().dxDataGrid('instance').pageSize()
+					self.$(".gridContainer").dxDataGrid().dxDataGrid('instance').pageSize(current_pagesize)
+					# localStorage.setItem("creator_pageSize:"+Meteor.userId(),current_pagesize)
+		# onNodesInitialized: (e)->
+		# 	if creator_obj.enable_tree
+		# 		# 默认展开第一个节点
+		# 		rootNode = e.component.getRootNode()
+		# 		firstNodeKey = rootNode?.children[0]?.key
+		# 		if firstNodeKey
+		# 			e.component.expandRow(firstNodeKey)
+	if Steedos.isMobile()
+		dxOptions.allowColumnReordering = false
+		dxOptions.allowColumnResizing = false
+
+	if is_related
+		dxOptions.pager.showPageSizeSelector = false
+	fileName = Creator.getObject(curObjectName).label + "-" + Creator.getListView(curObjectName, listName)?.label
+	dxOptions.export =
+		enabled: true
+		fileName: fileName
+		allowExportSelectedData: false
+
+	if !is_related and curObject.enable_tree
+		# 如果是tree则过虑条件适用tree格式，要排除相关项is_related的情况，因为相关项列表不需要支持tree
+		dxOptions.keyExpr = "_id"
+		dxOptions.parentIdExpr = "parent"
+		dxOptions.hasItemsExpr = (params)->
+			if params?.children?.length>0
+				return true
+			return false;
+		dxOptions.expandNodesOnFiltering = true
+		# tree 模式不能设置filter，filter由tree动态生成
+		dxOptions.dataSource.filter = null
+		dxOptions.rootValue = null
+		dxOptions.remoteOperations =
+			filtering: true
+			sorting: false
+			grouping: false
+		dxOptions.scrolling = null
+		dxOptions.pageing =
+			pageSize: 1000
+		# dxOptions.expandedRowKeys = ["9b7maW3W2sXdg8fKq"]
+		# dxOptions.autoExpandAll = true
+		# 不支持tree格式的翻页，因为OData模式下，每次翻页都请求了完整数据，没有意义
+		dxOptions.pager = null
+
+		_.forEach dxOptions.columns, (column)->
+			if column.dataField == 'name' || column.dataField == curObject.NAME_FIELD_KEY
+				column.allowSearch = true
 			else
-				module.dynamicImport('devextreme/ui/data_grid').then (dxDataGrid)->
-					DevExpress.ui.dxDataGrid = dxDataGrid;
-					self.dxDataGridInstance = self.$(".gridContainer").dxDataGrid(dxOptions).dxDataGrid('instance')
-					# if !is_related && self.$(".gridContainer").length > 0
-					# 	Session.set("grid_paging", null)
-					# self.dxDataGridInstance.pageSize(pageSize)
+				column.allowSearch = false
+
+		if objectApiName == "organizations"
+			unless isSpaceAdmin
+				if isOrganizationAdmin
+					if userCompanyOrganizationId
+						dxOptions.rootValue = userCompanyOrganizationId
+					else
+						dxOptions.rootValue = "-1"
+				else
+					dxOptions.rootValue = "-1"
+
+		module.dynamicImport('devextreme/ui/tree_list').then (dxTreeList)->
+			DevExpress.ui.dxTreeList = dxTreeList;
+			self.dxDataGridInstance = self.$(".gridContainer").dxTreeList(dxOptions).dxTreeList('instance')
+			# if !is_related && self.$(".gridContainer").length > 0
+			# 	Session.set("grid_paging", null)
+	else
+		module.dynamicImport('devextreme/ui/data_grid').then (dxDataGrid)->
+			DevExpress.ui.dxDataGrid = dxDataGrid;
+			self.dxDataGridInstance = self.$(".gridContainer").dxDataGrid(dxOptions).dxDataGrid('instance')
+			# if !is_related && self.$(".gridContainer").length > 0
+			# 	Session.set("grid_paging", null)
+			# self.dxDataGridInstance.pageSize(pageSize)
 Template.creator_grid.helpers Creator.helpers
 
 Template.creator_grid.helpers
