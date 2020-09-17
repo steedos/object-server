@@ -326,7 +326,7 @@ Template.creator_view.helpers
 			return
 		name_field_key = Creator.getObject(objectApiName)?.NAME_FIELD_KEY
 		record = Template.instance().record?.get();
-		if record and name_field_key
+		if !_.isEmpty(record) and name_field_key
 			record_name = record.label || record[name_field_key]
 			Session.set('record_name', record_name)
 		return record_name;
@@ -451,8 +451,8 @@ Template.creator_view.helpers
 		if !objectApiName or !recordId
 			return
 		actions = Creator.getActions(objectApiName)
-		if recordId
-			record = Template.instance().record?.get();
+		record = Template.instance().record?.get()
+		if recordId and !_.isEmpty(record)
 			userId = Meteor.userId()
 			record_permissions = Creator.getRecordPermissions objectApiName, record, userId
 			actions = _.filter actions, (action)->
@@ -471,8 +471,8 @@ Template.creator_view.helpers
 		if !objectApiName or !recordId
 			return
 		actions = Creator.getActions(objectApiName)
-		if recordId
-			record = Template.instance().record?.get();
+		record = Template.instance().record?.get();
+		if recordId and !_.isEmpty(record)
 			userId = Meteor.userId()
 			record_permissions = Creator.getRecordPermissions objectApiName, record, userId
 			actions = _.filter actions, (action)->
@@ -502,6 +502,8 @@ Template.creator_view.helpers
 		if !objectApiName
 			return
 		record = Template.instance().record?.get();
+		if _.isEmpty(record)
+			return {}
 		data = {}
 		data._id = record._id
 		data.val = record[key]
@@ -518,6 +520,9 @@ Template.creator_view.helpers
 		recordId = Template.instance().recordId
 		if !objectApiName or !recordId
 			return {}
+		record = Template.instance().record?.get();
+		if _.isEmpty(record)
+			return {}
 		related_list_item_props = item
 		related_object_name = item.object_name
 		data = {
@@ -531,7 +536,6 @@ Template.creator_view.helpers
 			related_list_item_props: related_list_item_props
 		}
 		if objectApiName == 'objects'
-			record = Template.instance().record?.get();
 			data.recordId = record?.name
 		else
 			data.recordId = recordId
