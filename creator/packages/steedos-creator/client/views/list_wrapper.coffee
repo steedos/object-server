@@ -283,13 +283,13 @@ Template.creator_list_wrapper.helpers
 		return Creator.getIsFiltering()
 	canFollow: ()->
 		templateData = Template.currentData()
-		objectName = templateData.objectApiName
-		object = Creator.getObject(objectName)
-		followAction = getFollowAction(objectName);
+		objectApiName = templateData.objectApiName
+		object = Creator.getObject(objectApiName)
+		followAction = getFollowAction(objectApiName);
 		followActionVisible = followAction?.visible
 		if _.isFunction(followActionVisible)
 			followActionVisible = followActionVisible()
-		return (object?.enable_follow && followActionVisible) || isFollowing(objectName)
+		return (object?.enable_follow && followActionVisible) || isFollowing(objectApiName)
 	isFollowing : ()->
 		templateData = Template.currentData()
 		return isFollowing(templateData.objectApiName);
@@ -306,17 +306,19 @@ transformFilters = (filters)->
 Template.creator_list_wrapper.events
 
 	'click .list-action-custom': (event, template) ->
-		object = Creator.getObject(template.objectApiName)
+		templateData = Template.currentData()
+		objectApiName = templateData.objectApiName
+		object = Creator.getObject(objectApiName)
 		collection_name = object.label
 		Session.set("action_fields", undefined)
-		Session.set("action_collection", "Creator.Collections.#{template.objectApiName}")
+		Session.set("action_collection", "Creator.Collections.#{objectApiName}")
 		Session.set("action_collection_name", collection_name)
-		isCalendar = isCalendarView(template.objectApiName, template.listName)
+		isCalendar = isCalendarView(objectApiName, template.listName)
 		if isCalendar
 			Session.set("action_save_and_insert", false)
 		else
 			Session.set("action_save_and_insert", true)
-		Creator.executeAction objectName, this
+		Creator.executeAction objectApiName, this
 
 	'click .export-data-grid': (event, template)->
 		template.$(".dx-datagrid-export-button").click()
