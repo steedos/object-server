@@ -91,8 +91,8 @@ getFollowAction = (objectApiName)->
 	return _.find actions, (action)->
 		return action.name == 'standard_follow'
 
-isFollowing = ()->
-	return Creator.getCollection("follows")?.findOne({object_name: Session.get("object_name"), owner: Meteor.userId()})
+isFollowing = (objectApiName)->
+	return Creator.getCollection("follows")?.findOne({object_name: objectApiName, owner: Meteor.userId()})
 
 Template.creator_list_wrapper.helpers
 
@@ -144,7 +144,7 @@ Template.creator_list_wrapper.helpers
 		return {objectApiName: templateData.objectApiName, listName: templateData.listName, total: Template.instance().recordsTotal}
 
 	list_views: ()->
-		Session.get("change_list_views")
+		# Session.get("change_list_views")
 		templateData = Template.currentData()
 		return Creator.getListViews(templateData.objectApiName)
 
@@ -155,7 +155,7 @@ Template.creator_list_wrapper.helpers
 	list_view: ()->
 
 		templateData = Template.currentData()
-		Session.get("change_list_views")
+		# Session.get("change_list_views")
 		list_view = Creator.getListView(templateData.objectApiName, templateData.listName)
 
 		if templateData.listName and templateData.listName != list_view?._id
@@ -164,11 +164,11 @@ Template.creator_list_wrapper.helpers
 		if !list_view
 			return
 
-		if list_view?.name != templateData.listName
-			if list_view?._id
-				Session.set("list_view_id", list_view._id)
-			else
-				Session.set("list_view_id", list_view.name)
+		# if list_view?.name != templateData.listName
+		# 	if list_view?._id
+		# 		Session.set("list_view_id", list_view._id)
+		# 	else
+		# 		Session.set("list_view_id", list_view.name)
 		return list_view
 
 	list_view_url: (list_view)->
@@ -289,9 +289,10 @@ Template.creator_list_wrapper.helpers
 		followActionVisible = followAction?.visible
 		if _.isFunction(followActionVisible)
 			followActionVisible = followActionVisible()
-		return (object?.enable_follow && followActionVisible) || isFollowing()
+		return (object?.enable_follow && followActionVisible) || isFollowing(objectName)
 	isFollowing : ()->
-		return isFollowing();
+		templateData = Template.currentData()
+		return isFollowing(templateData.objectApiName);
 
 transformFilters = (filters)->
 	_filters = []
