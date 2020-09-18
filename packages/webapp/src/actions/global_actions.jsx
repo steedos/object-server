@@ -10,14 +10,14 @@ import { selectSpace } from '../actions/spaces';
 const dispatch = store.dispatch;
 const getState = store.getState;
 
-export function emitUserLoggedOutEvent(redirectTo, shouldSignalLogout = true, userAction = true) {
+export function emitUserLoggedOutEvent(redirectToPath, shouldSignalLogout = true, userAction = true) {
     // If the logout was intentional, discard knowledge about having previously been logged in.
     // This bit is otherwise used to detect session expirations on the login page.
     if (userAction) {
     }
 
-    if (!redirectTo)
-        redirectTo = '/login'
+    if (!redirectToPath)
+        redirectToPath = '/login'
 
     dispatch(logout()).then(() => {
         LocalStorageStore.setUserId(null);
@@ -32,9 +32,10 @@ export function emitUserLoggedOutEvent(redirectTo, shouldSignalLogout = true, us
 
         // clearUserCookie();
 
-        this.redirectTo(redirectTo);
-    }).catch(() => {
-        this.redirectTo(redirectTo);
+        redirectTo(redirectToPath);
+    }).catch((e) => {
+        console.log(e);
+        redirectTo(redirectToPath);
     });
 }
 
@@ -66,6 +67,11 @@ export async function redirectUserToDefaultSpace() {
     const spaceId = await selectDefaultSpace();
     
     hashHistory.push(`/home/${spaceId}`);
+}
+
+export async function redirectUserToUpdatePassword(){
+    console.log('redirectUserToUpdatePassword....');
+    hashHistory.push('/update-password');
 }
 
 export async function redirectTo(redirectTo) {

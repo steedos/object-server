@@ -7,9 +7,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import rootReducer from '../reducers'
-import { devToolsEnhancer } from 'redux-devtools-extension';
 import initialState from './initial_state';
-import { ContactSupportOutlined } from '@material-ui/icons';
 
 const store = createStore(
     rootReducer, 

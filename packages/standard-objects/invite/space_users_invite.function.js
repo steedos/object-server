@@ -9,7 +9,7 @@ module.exports = {
         if(record.length > 0 ){
             res.send({token: record[0]._id})
         }else{
-            const result = await objectql.getObject('space_users_invite').insert({valid: true, space: userSession.spaceId});
+            const result = await objectql.getObject('space_users_invite').insert({valid: true, space: userSession.spaceId}, userSession);
             if(result){
                 res.send({token: result._id})
             }

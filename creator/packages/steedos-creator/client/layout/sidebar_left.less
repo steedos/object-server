@@ -16,10 +16,6 @@
 		display: none;
 	}
 
-	.sidebar--left .nav-sidebar__container li.active .sidebar-item, .sidebar--left .nav-sidebar__container li.active .sidebar-item:hover, .sidebar--left .nav-sidebar__container li.active .sidebar-item:focus {
-		color: rgb(255, 255, 255);
-	}
-
 	.sidebar--left {
 		display: flex;
 		flex-direction: column;
@@ -29,7 +25,6 @@
 		position: fixed;
 		width: 220px;
 		z-index: 9999;
-		background: #3F0E40;
 		color: rgba(255, 255, 255, 0.8);
 
 		.slds-global-header {
@@ -39,26 +34,12 @@
 		}
 	}
 
-	.sidebar--left .sidebar--left__icons {
-		border-bottom: 1px solid transparent;
-	}
 	.sidebar--left .sidebar__switcher {
 		flex: 0 0 45px;
 		bottom: 0;
 		display: block;
 		padding-bottom: 0;
 		width: 100%;
-	}
-
-	.sidebar--left .scrollbar--view {
-		position: absolute; 
-		top: 0px; 
-		left: 0px; 
-		right: 0px; 
-		bottom: 0px; 
-		overflow: auto; 
-		margin-right: -8px; 
-		margin-bottom: -8px;
 	}
 
 	.sidebar--left .sidebar__switcher button {
@@ -92,117 +73,6 @@
 		margin: 0 10px 0 0;
 	}
 
-	.sidebar--left .sidebar--left__list {
-		position: relative;
-		flex: 1 1 auto;
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-	}
-
-	.sidebar--left .nav-sidebar__container {
-		-webkit-overflow-scrolling: touch;
-		overflow: auto;
-		position: relative;
-		width: 100%;
-		padding-bottom: 10px;
-	}
-
-	.sidebar--left .nav.nav-sidebar > li + li {
-		margin: 0;
-	}
-	.sidebar--left .nav li > h4 {
-		align-items: end;
-		display: flex;
-		font-size: 14px;
-		font-weight: 400;
-		margin: 1em 0 0.7em;
-		padding: 0 12px 0 15px;
-		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.4);
-	}
-
-	.sidebar--left .nav li > h4 span {
-		flex: 1;
-	}
-
-	.sidebar--left .nav li .sidebar-item {
-		font-size: 1rem;
-		-webkit-transition: none 1s;
-		-webkit-transition-delay: 0s;
-		-moz-transition: none 1s;
-		-o-transition: none 1s;
-		transition: none 1s false false;
-		align-items: center;
-		border-radius: 0;
-		display: flex;
-		line-height: 1.5;
-		outline: none;
-		overflow: hidden;
-		padding: 5px 5px 5px 15px;
-		text-decoration: none;
-		text-align: left;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		width: 100%;
-		color: rgba(255, 255, 255, 0.7);
-		&>.icon{
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-		}
-		&>.right-badge-container{
-			flex: 1;
-			.slds-badge{
-				float: right;
-			}
-		}
-	}
-
-	.sidebar--left .nav li .sidebar-item .status {
-		flex: 0 0 auto;
-	}
-
-
-
-	.sidebar--left .nav li .sidebar-item.has-close:hover .btn-close {
-		filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-		opacity: 0.8;
-		display: block;
-	}
-
-	.sidebar--left .nav li .sidebar-item.has-close .btn-close {
-		filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-		opacity: 0;
-		display: none;
-		font-family: 'Open Sans', sans-serif;
-		font-size: 21px;
-		font-weight: 600;
-		position: relative;
-		width: 24px;
-		height: 20px;
-		line-height: 20px;
-		margin-right: 7px;
-		text-align: center;
-	}
-
-	.sidebar--left .nav li .sidebar-item.has-close .btn-close:hover {
-		filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-		opacity: 1;
-	}
-	.sidebar--left .nav li.active .icon.icon__globe {
-		filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
-		opacity: 0.9;
-	}
-
-	.sidebar--left .nav li.active button, .sidebar--left .nav li.active a,
-	.sidebar--left .nav li.active button:hover, .sidebar--left .nav li.active a:hover,
-	.sidebar--left .nav li.active button:focus, .sidebar--left .nav li.active a:focus {
-		background-color: rgb(17, 100, 163);
-		border-radius: 0;
-		font-weight: 400;
-	}
-
 	.sidebar--left {
 		-webkit-transition: -webkit-transform 0.35s ease;
 		-webkit-transition-delay: 0s;
@@ -224,34 +94,6 @@
 		-ms-transform: translate3d(0, 0, 0);
 		-o-transform: translate3d(0, 0, 0);
 		transform: translate3d(0, 0, 0);
-	}
-	.sidebar--left .nav li .sidebar-item {
-		padding: 2px 15px;
-	}
-
-	.sidebar--left .nav li .sidebar-item.has-close .btn-close {
-		filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
-		opacity: 0.5;
-		display: block;
-		font-size: 25px;
-		margin-right: 4px;
-		width: 30px;
-		height: 30px;
-		line-height: 30px;
-	}
-
-	.sidebar--left .nav li > a {
-		line-height: 2.5;
-		margin: 0;
-		.slds-icon {
-			width: 26px;
-			height: 26px;
-			margin: 6px 6px 6px 0;
-		}
-	}
-
-	.sidebar--left .nav li > a:hover, .sidebar--left .nav li > a:focus {
-		background: rgba(0, 0, 0, 0.2);
 	}
 
 	.steedos.move--right {

@@ -22,9 +22,16 @@ const LOGS_PER_PAGE_DEFAULT = 10000;
 export const DEFAULT_LIMIT_BEFORE = 30;
 export const DEFAULT_LIMIT_AFTER = 30;
 
-export default class Client4 {
+const DEFAULT_LOGIN_EXPIRATION_DAYS = 90;
+const LOGIN_UNEXPIRING_TOKEN_DAYS = 365 * 100;
 
+export default class Client4 {
+    LOGIN_TOKEN_KEY = "Meteor.loginToken";
+    LOGIN_TOKEN_EXPIRES_KEY = "Meteor.loginTokenExpires";
+    USER_ID_KEY = "Meteor.userId";
     logToConsole = false;
+    _lastLoginTokenWhenPolled= null;
+    loginExpirationInDays = null;
     serverVersion = '';
     clusterId = '';
     token = '';
@@ -392,6 +399,52 @@ export default class Client4 {
 
         // rudderAnalytics.track('event', properties, options);
     }
+
+    changePassword = (oldPassword: string, newPassword: string)=>{
+        return this.doFetch<UserProfile>(
+            `${this.getAccountsRoute()}/password/changePassword`,
+            {method: 'POST', body: JSON.stringify({
+                oldPassword: oldPassword,
+                newPassword: newPassword,
+            })},
+        );
+    }
+
+    // _initLocalStorage(ROOT_URL_PATH_PREFIX){
+    //     if (ROOT_URL_PATH_PREFIX) {
+    //         let namespace = `:${ROOT_URL_PATH_PREFIX}`;
+    //         this.LOGIN_TOKEN_KEY += namespace;
+    //         this.LOGIN_TOKEN_EXPIRES_KEY += namespace;
+    //         this.USER_ID_KEY += namespace;
+    //       }
+    // }
+
+    // _getTokenLifetimeMs() {
+    //     const loginExpirationInDays = (this.loginExpirationInDays === null) ? LOGIN_UNEXPIRING_TOKEN_DAYS : this.loginExpirationInDays;
+    //     return (loginExpirationInDays || DEFAULT_LOGIN_EXPIRATION_DAYS) * 24 * 60 * 60 * 1000;
+    // }
+
+    // _tokenExpiration(when) {
+    //     return new Date((new Date(when)).getTime() + this._getTokenLifetimeMs());
+    // }
+    
+    // _storeLoginToken(userId, token, tokenExpires) {
+    //     localStorage.setItem(this.USER_ID_KEY, userId);
+    //     localStorage.setItem(this.LOGIN_TOKEN_KEY, token);
+    //     if (! tokenExpires)
+    //       tokenExpires = this._tokenExpiration(new Date());
+    //       localStorage.setItem(this.LOGIN_TOKEN_EXPIRES_KEY, tokenExpires);
+    
+    //     this._lastLoginTokenWhenPolled = token;
+    //   };
+    
+    // _unstoreLoginToken() {
+    //     localStorage.removeItem(this.USER_ID_KEY);
+    //     localStorage.removeItem(this.LOGIN_TOKEN_KEY);
+    //     localStorage.removeItem(this.LOGIN_TOKEN_EXPIRES_KEY);
+
+    //     this._lastLoginTokenWhenPolled = null;
+    // };
 }
 
 function parseAndMergeNestedHeaders(originalHeaders: any) {

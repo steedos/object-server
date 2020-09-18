@@ -188,3 +188,23 @@ export function sendVerificationToken(loginId: string): ActionFunc {
     };
   }
   
+export function changePassword(oldPassword: string, newPassword: string){
+  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
+    dispatch({type: UserTypes.CHANGEPASSWORD_REQUEST, data: null});
+    let data;
+    try {
+        data = await Client4.changePassword(oldPassword, newPassword);
+    } catch (error) {
+        dispatch(batchActions([
+            {
+                type: UserTypes.CHANGEPASSWORD_FAILURE,
+                error,
+            },
+            logError(error),
+        ]));
+        return {error};
+    }
+
+    return data;
+  };
+}

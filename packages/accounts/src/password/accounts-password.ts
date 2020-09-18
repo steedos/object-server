@@ -207,6 +207,10 @@ export default class AccountsPassword implements AuthenticationService {
     return this.db.findUserByUsername(username);
   }
 
+  public async getInviteInfo(id: string): Promise<any> {
+    return await this.db.getInviteInfo(id);
+  }
+
   /**
    * @description Add an email address for a user.
    * It will trigger the `validateEmail` option and throw if email is invalid.

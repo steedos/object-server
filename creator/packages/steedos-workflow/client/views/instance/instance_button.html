@@ -1,5 +1,5 @@
 <template name="instance_button">
-	<div class="pull-left instance-left-buttons">
+	<div class="instance-left-buttons flex">
 		{{#unless isMobile}}
 			<button type="button" class="btn btn-default btn-instance-back hidden">
 				&nbsp;<i class="ion ion-android-arrow-back"></i>&nbsp;
@@ -13,7 +13,7 @@
 				</a>
 			</div>
 		{{/if}}
-		<div class="slds-button-group" role="group">
+		<div class="slds-button-group ml-2" role="group">
 			<!-- 传阅、取回、重定位、流程图四个按钮放外面，会同时出现的只有发送和传阅  -->
 			{{#each mainButtons}}
 				<div class="slds-button slds-button--neutral slds-truncate {{classNames}}">
@@ -44,7 +44,5 @@
 				</div>
 			{{/if}}
 		</div>
-	</div>
-	<div class="pull-right">
 	</div>
 </template>

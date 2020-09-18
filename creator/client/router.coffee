@@ -15,11 +15,11 @@ FlowRouter.route '/steedos/sign-in',
 		Steedos.redirectToSignIn()
 	]
 
-FlowRouter.route '/steedos/logout',
-	action: (params, queryParams)->
-		$("body").addClass('loading')
-		Meteor.logout ()->
-			return
+#FlowRouter.route '/steedos/logout',
+#	action: (params, queryParams)->
+#		$("body").addClass('loading')
+#		Meteor.logout ()->
+#			return
 
 FlowRouter.route '/select-users',
 	action: (params, queryParams)->

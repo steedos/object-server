@@ -56,7 +56,7 @@ Template.creatorLayout.helpers
 
 Template.creatorLayout.events
 	'click .sidebar-show': (e, t)->
-		$("#sidebar-left").addClass('move--right')
+		$("#sidebar-left").removeClass('hidden')
 		$(".steedos").addClass('move--right')
 
 

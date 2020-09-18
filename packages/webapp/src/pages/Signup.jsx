@@ -58,17 +58,15 @@ class Signup extends React.Component {
     if ((new URLSearchParams(this.props.location.search)).get('email')) {
       email = (new URLSearchParams(this.props.location.search)).get('email');
     }
-    let spaceId = '';
-    if ((new URLSearchParams(this.props.location.search)).get('X-Space-Id')) {
-      spaceId = (new URLSearchParams(this.props.location.search)).get('email');
-    } else if (this.props.settingsTenantId) {
-      spaceId = this.props.settingsTenantId
+    let invite_token = '';
+    if ((new URLSearchParams(this.props.location.search)).get('invite_token')) {
+      invite_token = (new URLSearchParams(this.props.location.search)).get('invite_token');
     }
 
     this.state = {
         // ldapEnabled: this.props.isLicensed && this.props.enableLdap,
         // samlEnabled: this.props.isLicensed && this.props.enableSaml,
-        spaceId,
+        invite_token,
         email,
         mobile: '',
         userId: '',
@@ -278,8 +276,13 @@ class Signup extends React.Component {
       password: this.state.password,
       name: this.state.name,
       locale: 'zh-cn',
-      verifyCode: this.state.verifyCode
+      verifyCode: this.state.verifyCode,
     }
+    
+    if(this.state.invite_token){
+      user.invite_token = this.state.invite_token
+    }
+
     if (this.state.loginBy === 'mobile'){
       user.mobile = this.state.mobile
     } else if (this.state.loginBy === 'email'){

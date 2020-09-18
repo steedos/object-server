@@ -1,11 +1,11 @@
 <template name="workflow_main">
 
 	<!-- {{> workflowSidebar}} -->
-	<div class="content-wrapper">
-		<div class="workflow-main {{#if isWorkflowSidebarOpen}}sidebar-open{{/if}}">
+	<div class="relative flex w-full h-full">
+		<div class="workflow-main flex w-full h-full {{#if isWorkflowSidebarOpen}}sidebar-open{{/if}}">
 			{{> instance_list_wrapper}}
 			{{#if instanceId}}
-			<div class="instance-wrapper shadow">
+			<div class="instance-wrapper flex flex-col shadow">
 				{{#if isNeedToShowInstance}}
 					{{> instance_view}}
 				{{/if}}

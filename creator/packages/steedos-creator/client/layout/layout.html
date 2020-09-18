@@ -1,15 +1,19 @@
 <template name="creatorLayout">
 	{{#if isloading}}
 	{{else}}
-		<div class="steedos skin-blue-light creator {{#if showTrialHearder}}show-trial-header{{/if}}">
+		<div class="steedos skin-blue-light creator h-screen relative flex flex-col relative overflow-hidden {{#if showTrialHearder}}show-trial-header{{/if}}">
+			
 			{{#unless hiddenHeader}}
-				{{> creatorMobileHeader}}
+			  {{> creatorMobileHeader}}
 				{{> creatorHeader}}
 			{{/unless}}
 
 			{{> creatorSidebarLeft}}
+				
+			<div class="creator-content-wrapper  w-full flex-1 overflow-auto relative {{#if split}}split{{/if}}" style="{{#if hiddenHeader}}top: 0px !important;{{/if}}">
 
-			<div class="creator-content-wrapper {{#if split}}split{{/if}}" style="{{#if hiddenHeader}}top: 0px !important;{{/if}}">
+
+
 				{{#if split}}
 					<div class="split-left bg-white shadow">
 						{{> Template.dynamic template="creatorSidebar" data=data}}

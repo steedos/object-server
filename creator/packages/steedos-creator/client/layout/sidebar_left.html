@@ -1,64 +1,66 @@
 <template name="creatorSidebarLeft">
 	<div class="creator-sidebar-left">
-		<div class="sidebar-backdrop"></div>
-		<div class="sidebar--left" id="sidebar-left">
-			{{!--
-			<div id="headerInfo" class="slds-global-header">
-				<div class="slds-global-header__item slds-global-header__item--logo">
-					<div class="slds-global-header__logo">
-						<img src="{{logoUrl}}" alt=""/>
-					</div>
-					<div class="slds-global-header__text">{{spaceName}}</div>
+		<div class="hidden" id="sidebar-left">
+			<div class="fixed inset-0 flex z-40">
+				<div class="fixed inset-0">
+					<div class="absolute inset-0 bg-gray-600 opacity-75"></div>
 				</div>
-			</div>
-			--}}
-			<div class="sidebar--left__icons"></div>
-			<div class="sidebar--left__list">
-				<div style="position: absolute; overflow: hidden; width: 100%; height: 100%;">
-					<div class="scrollbar--view">
-						<div id="sidebarChannelContainer" class="nav-sidebar__container">
-						<ul class="nav nav-sidebar">
+				<div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">
+					<div class="absolute top-0 right-0 -mr-14 p-1" id="closeSidebar">
+						<button class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600" aria-label="Close sidebar">
+							<svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+							</svg>
+						</button>
+					</div>
+					<div class="flex items-center flex-shrink-0 px-4">
+						<img class="h-10 w-auto" src="{{logoUrl}}">
+					</div>
+					<div class="">
+						<div id="sidebarChannelContainer" class="flex-1 px-2 space-y-1">
 							{{#each getApps}}
-								<li><h4 id="favoriteChannel"><span>{{app_name _id}}</span></h4></li>
+								<h3 class="pt-5 px-3 text-sm leading-4 font-semibold text-gray-500 uppercase tracking-wider" id="teams-headline">
+									{{app_name _id}}
+								</h3>
 								{{#unless hideObjects _id}}
 									{{#each app_objects _id}}
-										<li class="{{#if isActive this ../_id}}active{{/if}}">
+										<a href="{{object_url ../_id}}" class="{{#if isActive this ../_id}} bg-gray-100 text-gray-900 {{else}} hover:text-gray-900 hover:bg-gray-50 text-gray-600 {{/if}} flex justify-between no-underline group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150">
+											<div class="flex">
+												{{> steedos_icon class="mr-4 h-6 w-6 slds-icon" source="standard-sprite" name=object_i.icon}}
+												{{_ object_i.label}}
+											</div>
+											{{#with getObjectBadge object_i ../_id}}
+												<div class="flex">
+													<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-red-100 text-red-800">{{this}}</span>
+												</div>
+											{{/with}}
+										</a>
+
+										<!-- <li class="{{#if isActive this ../_id}}active{{/if}}">
 											<a id="sidebarItem_town-square" data-object-name="{{this}}" class="sidebar-item creator-object-nav-{{this}}"
 											href="{{object_url ../_id}}">
 												<span class="icon icon__globe">
 													{{> steedos_icon class="extraSmall slds-icon" source="standard-sprite" name=object_i.icon}}
 													<span>{{_ object_i.label}}</span>
 												</span>
-												{{#with getObjectBadge object_i ../_id}}
-													<span class="right-badge-container">
-														<span class="slds-badge slds-badge_inverse slds-m-left_x-small">{{this}}</span>
-													</span>
-												{{/with}}
 											</a>
-										</li>
+										</li> -->
 									{{/each}}
 								{{/unless}}
 							{{/each}}
-							<li><br></li>
-							<li>
-								<a id="sidebarItem_town-square" class="sidebar-item"
-								href="{{settings_url}}">
-									<span class="icon icon__globe">
-										{{> steedos_icon class="extraSmall slds-icon" source="utility-sprite" name="setup"}}
-										<span>{{_ "app_admin_name"}}</span>
-									</span>
-								</a>
-							</li>
-							<li><br></li>
-						</ul>
+
+							<a href="{{settings_url}}" class="hover:text-gray-900 hover:bg-gray-50 text-gray-600 no-underline group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:bg-blue-700 transition ease-in-out duration-150">
+								{{> steedos_icon class="mr-4 h-6 w-6 slds-icon" source="standard-sprite" name='settings'}}
+								{{_ 'app_admin_name'}}
+							</a>
 						</div>
 					</div>
 				</div>
+
+				<div class="flex-shrink-0 w-14">
+					<!-- Dummy element to force sidebar to shrink to fit close icon -->
+				</div>
 			</div>
-			<!--<div class="sidebar__switcher">-->
-				<!--<button id="sidebarSwitcherButton" class="btn btn-link"><span>切换应用</span><span-->
-						<!--class="switch__shortcut hidden-xs"><span>- CTRL+K</span></span></button>-->
-			<!--</div>-->
 		</div>
 	</div>
 </template>

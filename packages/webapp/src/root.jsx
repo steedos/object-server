@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import { Switch, HashRouter, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getTenant } from './selectors';
+import { getCurrentUser } from './selectors/entities/users'
 import * as GlobalActions from './actions/global_actions';
 import {loadMeAndConfig} from './actions/root';
 
@@ -12,7 +13,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Home from './pages/Home';
-import UpdatePassword from './components/updatePassword';
+import UpdatePassword from './pages/updatePassword';
 import CreateTenant from './pages/CreateTenant';
 import SelectSpace from './pages/SelectSpace';
 import Preference from './pages/Preference';
@@ -50,9 +51,17 @@ class Root extends React.PureComponent {
 
   componentDidMount() {
     this.props.actions.loadMeAndConfig().then((response) => {
-      GlobalActions.selectDefaultSpace();
-      if (document.location.pathname === '/' && document.location.hash === '#/' && response[1] && response[1].data) {
-          GlobalActions.redirectUserToDefaultSpace();
+      let password_expired = false;
+      if(this.props.currentUser && this.props.currentUser.password_expired){
+        password_expired = true;
+      }
+      if(password_expired){
+        GlobalActions.redirectUserToUpdatePassword();
+      }else{
+        GlobalActions.selectDefaultSpace();
+        if (document.location.pathname === '/' && document.location.hash === '#/' && response[1] && response[1].data) {
+            GlobalActions.redirectUserToDefaultSpace();
+        }
       }
       this.onConfigLoaded();
     }).then(() => {
@@ -107,6 +116,7 @@ class Root extends React.PureComponent {
 function mapStateToProps(state) {
   return {
     tenant: getTenant(state),
+    currentUser: getCurrentUser(state),
   };
 }
 

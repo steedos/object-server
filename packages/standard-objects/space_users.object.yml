@@ -240,7 +240,11 @@ fields:
     omit: true
     hidden: true
     name: last_logon 
-    label: Last Logon Date   
+    label: Last Logon Date
+  password_expired:
+    type: boolean
+    omit: true
+    hidden: true
 list_views:
   all:
     label: All Valid Users

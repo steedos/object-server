@@ -24,6 +24,7 @@ const defaultOptions = {
   collectionName: 'users',
   sessionCollectionName: 'sessions',
   codeCollectionName: 'users_verify_code',
+  inviteCollectionName: 'space_users_invite',
   timestamps: {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -46,6 +47,8 @@ export class Mongo implements DatabaseInterface {
   // Code collection
   private codeCollection: Collection;
 
+  private inviteCollection: Collection;
+
   constructor(db: any, options?: AccountsMongoOptions) {
     this.options = merge({ ...defaultOptions }, options);
     if (!db) {
@@ -55,6 +58,7 @@ export class Mongo implements DatabaseInterface {
     this.collection = this.db.collection(this.options.collectionName);
     this.sessionCollection = this.db.collection(this.options.sessionCollectionName);
     this.codeCollection = this.db.collection(this.options.codeCollectionName);
+    this.inviteCollection = this.db.collection(this.options.inviteCollectionName);
   }
 
   public async setupIndexes(): Promise<void> {
@@ -396,7 +400,7 @@ export class Mongo implements DatabaseInterface {
     }
 
     const ret = await this.sessionCollection.insertOne(session);
-    this.updateMeteorSession(userId, token)
+    await this.updateMeteorSession(userId, token)
     return ret.ops[0]._id.toString();
   }
 
@@ -431,6 +435,8 @@ export class Mongo implements DatabaseInterface {
         },
       }
     );
+    const session: any = await this.sessionCollection.findOne({_id: _id});
+    await this.destroyMeteorToken(session.userId, session.token);
   }
 
   public async invalidateAllSessions(userId: string): Promise<void> {
@@ -662,5 +668,29 @@ export class Mongo implements DatabaseInterface {
     await this.collection.updateOne({_id: userId}, {$set: data});
 
     return true
+  }
+
+  public async destroyMeteorToken(userId:string, token:string): Promise<boolean | null>{
+    let stampedAuthToken = {
+      token: token,
+      when: new Date
+    };
+    let hashedTokenDoc = hashStampedToken(stampedAuthToken);
+    let loginToken = hashedTokenDoc.hashedToken;
+    await this.collection.updateOne({_id: userId}, {
+      $pull: {
+        "services.resume.loginTokens": {
+          $or: [
+            { hashedToken: loginToken},
+            { token: loginToken}
+          ]
+        }
+      }
+    });
+    return true;
+  }
+
+  public async getInviteInfo(id: string): Promise<any> {
+    return await this.inviteCollection.findOne({_id: id});
   }
 }

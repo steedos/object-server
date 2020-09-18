@@ -14,21 +14,26 @@ Creator.__l = new ReactiveVar()
 Blaze._allowJavascriptUrls() 
 FlowRouter.wait();
 
+Steedos.logout = ()->
+	Accounts._unstoreLoginToken();
+	window.location.href = Steedos.absoluteUrl("/accounts/a/#/logout");
+
 Steedos.goResetPassword = (redirect)->
 	accountsUrl = Meteor.settings.public?.webservices?.accounts?.url
 	if accountsUrl
 		if !redirect
-			redirect = location.href.replace("/steedos/sign-in", "").replace("/steedos/logout", "")
+			redirect = location.href.replace("/steedos/sign-in", "").replace("/accounts/a/#/logout", "")
 		if _.isFunction(Steedos.isCordova) && Steedos.isCordova()
 			rootUrl = new URL(__meteor_runtime_config__.ROOT_URL)
 			accountsUrl = rootUrl.origin + accountsUrl
+		Accounts._unstoreLoginToken();
 		window.location.href = accountsUrl + "/a/#/update-password?redirect_uri=" + redirect;
 
 Steedos.redirectToSignIn = (redirect)->
 	accountsUrl = Meteor.settings.public?.webservices?.accounts?.url
 	if accountsUrl 
 		if !redirect
-			redirect = location.href.replace("/steedos/sign-in", "").replace("/steedos/logout", "")
+			redirect = location.href.replace("/steedos/sign-in", "").replace("/accounts/a/#/logout", "")
 		if _.isFunction(Steedos.isCordova) && Steedos.isCordova()
 			rootUrl = new URL(__meteor_runtime_config__.ROOT_URL)
 			accountsUrl = rootUrl.origin + accountsUrl
@@ -84,7 +89,7 @@ Setup.validate = (onSuccess)->
 			Accounts.loginWithToken data.authToken, (err) ->
 				if (err)
 					Meteor._debug("Error logging in with token: " + err);
-					FlowRouter.go "/steedos/logout"
+					Steedos.logout();
 					return
 
 		if data.webservices
@@ -301,7 +306,7 @@ requestBootstrapDataUseAjax = (spaceId, callback)->
 
 requestBootstrapDataUseAction = (spaceId)->
 	SteedosReact = require('@steedos/react');
-	store.dispatch(SteedosReact.loadBootstrapEntitiesData({spaceId: spaceId}))
+	SteedosReact.store.dispatch(SteedosReact.loadBootstrapEntitiesData({spaceId: spaceId}))
 
 requestBootstrapData = (spaceId, callback)->
 	SteedosReact = require('@steedos/react');

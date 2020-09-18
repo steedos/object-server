@@ -1,13 +1,13 @@
 {
   "name": "@steedos/webapp",
-  "version": "1.22.0-alpha.5",
+  "version": "1.22.0-alpha.8",
   "private": false,
   "main": "lib/exports.js",
   "scripts": {
     "start": "cross-env SKIP_PREFLIGHT_CHECK=true PUBLIC_URL=/ react-scripts start",
     "build": "cross-env NODE_ENV=production SKIP_PREFLIGHT_CHECK=true PUBLIC_URL=/ react-scripts build",
-    "build-after": "mkdir build/accounts && mkdir build/accounts/a && mv build/index.html build/accounts/a/",
-    "copy-to-public": "rm -rf build/assets && mkdir public/accounts && mv build ./public/accounts/a",
+    "build-after": "mkdirp build/accounts && mkdirp build/accounts/a && mv build/index.html build/accounts/a/",
+    "copy-to-public": "rm -rf build/assets && mkdirp public/accounts && mv build ./public/accounts/a",
     "build-lib": "rm -rf lib && tsc --build tsconfig.lib.json",
     "prepare": "yarn build && yarn build-after && yarn build-lib",
     "test": "SKIP_PREFLIGHT_CHECK=true react-scripts test"
@@ -34,6 +34,7 @@
     "@accounts/client-password": "^0.19.0",
     "@accounts/rest-client": "^0.19.0",
     "@tailwindui/react": "^0.1.1",
+    "qrcode.react": "0.9.3",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.4",
     "react-dom": "^16.13.1",
@@ -43,8 +44,7 @@
     "react-scripts": "^3.4.3",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0",
-    "qrcode.react": "0.9.3" 
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/cli": "7.2.3",
@@ -70,9 +70,13 @@
     "babel-jest": "^26.3.0",
     "core-js": "^3.2.1",
     "cross-env": "^5.2.0",
+    "mkdirp": "^1.0.4",
     "serialize-error": "^7.0.1",
     "tslib": "1.10.0",
     "typescript": "^4.0.2",
     "yarn": "^1.22.5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

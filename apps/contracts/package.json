@@ -1,6 +1,6 @@
 {
   "name": "@steedos/app-contracts",
-  "version": "1.22.0-alpha.6",
+  "version": "1.22.0-alpha.7",
   "description": "contract-management-system",
   "main": "index.js",
   "private": false,
@@ -16,13 +16,13 @@
   "author": "Jack Zhuang",
   "devDependencies": {
     "@salesforce-ux/design-system": "^2.11.0",
-    "@steedos/accounts": "^1.22.0-alpha.6",
-    "@steedos/auth": "^1.22.0-alpha.6",
-    "@steedos/core": "^1.22.0-alpha.6",
-    "@steedos/filters": "^1.22.0-alpha.6",
-    "@steedos/meteor-bundle-runner": "^1.22.0-alpha.6",
-    "@steedos/objectql": "^1.22.0-alpha.6",
-    "@steedos/standard-objects": "^1.22.0-alpha.6",
+    "@steedos/accounts": "^1.22.0-alpha.7",
+    "@steedos/auth": "^1.22.0-alpha.7",
+    "@steedos/core": "^1.22.0-alpha.7",
+    "@steedos/filters": "^1.22.0-alpha.7",
+    "@steedos/meteor-bundle-runner": "^1.22.0-alpha.7",
+    "@steedos/objectql": "^1.22.0-alpha.7",
+    "@steedos/standard-objects": "^1.22.0-alpha.7",
     "@steedos/steedos-plugin-workflow": "^2.0.10",
     "nodemon": "^1.19.1",
     "steedos-server": "^1.22.0-alpha.6"

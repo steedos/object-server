@@ -27,12 +27,9 @@
     "**/debug": "^3.1.0",
     "**/hoek": "^5.0.3",
     "**/cryptiles": "^4.1.2",
-    "**/typescript": "3.6.5"
+    "**/typescript": "3.9.7"
   },
   "devDependencies": {
     "lerna": "^3.22.1"
-  },
-  "dependencies": {
-    "@steedos/react": "^1.21.1"
   }
 }

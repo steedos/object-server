@@ -37,7 +37,7 @@ Template.creatorHeader.helpers
 			return " "
 
 	signOutUrl: ()->
-		return Creator.getRelativeUrl("/steedos/logout")
+		return Creator.getRelativeUrl("/accounts/a/#/logout")
 
 	isAdmin: ()->
 		return Steedos.isSpaceAdmin()

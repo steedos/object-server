@@ -39,4 +39,7 @@ export default keyMirror({
     LOGIN: null,
 
     VERIFICATION_TOKEN_RECIEVED: null,
+
+    CHANGEPASSWORD_REQUEST: null,
+    CHANGEPASSWORD_FAILURE: null
 });

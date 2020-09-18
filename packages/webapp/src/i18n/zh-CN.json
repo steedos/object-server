@@ -116,5 +116,6 @@
     "accounts.invalidRequest": "无效的请求",
     "accounts.serverError": "服务异常",
     "accounts.tooManyFailures": "验证次数过多，请10分钟后再试!",
-    "accounts.invalidVerifyCode": "验证码无效"
+    "accounts.invalidVerifyCode": "验证码无效",
+    "accounts.invalid_invite": "无效邀请链接。请询问您的管理员获得邀请。"
 }

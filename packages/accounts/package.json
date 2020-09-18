@@ -1,7 +1,7 @@
 {
   "name": "@steedos/accounts",
   "private": false,
-  "version": "1.22.0-alpha.6",
+  "version": "1.22.0-alpha.7",
   "main": "lib/index.js",
   "files": [
     "/package.json",
@@ -18,6 +18,7 @@
     "cstart": "yarn build && yarn start",
     "server": "cross-env NODE_ENV=development nodemon -w src -x ts-node server.ts",
     "build": "tsc",
+    "prepare": "tsc",
     "osy": "cd ../object-server/ && yarn",
     "os": "npm run osy && cp -r ../object-server/packages/* node_modules/@steedos/ && cp -r ../object-server/apps/contracts/src/* node_modules/@steedos/app-contracts/src/",
     "oss": "cp -r ../object-server/packages/standard-objects/* node_modules/@steedos/standard-objects/ && yarn start",
@@ -32,6 +33,7 @@
     "app-root-path": "^2.2.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "1.19.0",
+    "chalk": "^2.4.2",
     "cookies": "^0.8.0",
     "cors": "2.8.5",
     "crypto": "^1.0.1",
@@ -47,8 +49,9 @@
     "validator": "^12.2.0"
   },
   "devDependencies": {
-    "@steedos/meteor-bundle-runner": "^1.22.0-alpha.6",
-    "@steedos/objectql": "^1.22.0-alpha.6",
+    "@steedos/auth": "^1.22.0-alpha.7",
+    "@steedos/meteor-bundle-runner": "^1.22.0-alpha.7",
+    "@steedos/objectql": "^1.22.0-alpha.7",
     "@steedos/steedos-plugin-workflow": "^2.0.4",
     "@types/dotenv-flow": "^3.0.0",
     "@types/node": "12.6.8",

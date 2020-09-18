@@ -12,6 +12,7 @@ import Navbar from '../components/Navbar';
 import { selectSpace, goSpaceHome } from '../actions/spaces';
 import { hashHistory } from "../utils/hash_history";
 import LocalStorageStore from '../stores/local_storage_store';
+import * as GlobalAction from '../actions/global_actions';
 
 class Home extends React.PureComponent {
 
@@ -26,7 +27,11 @@ class Home extends React.PureComponent {
     const {currentSpaceId} = this.props;
 
     const spaceId = paramSpaceId?paramSpaceId:currentSpaceId?currentSpaceId:previousSpaceId
-
+    let password_expired = this.props.currentUser.password_expired;
+    if(password_expired){
+      GlobalAction.redirectUserToUpdatePassword();
+      return;
+    }
     if (spaceId) {
       this.props.actions.selectSpace(spaceId).then(async (result) => {
         if (result && result.data == false) {

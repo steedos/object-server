@@ -12,7 +12,7 @@ import { bindActionCreators, Dispatch, AnyAction } from 'redux';
 import { login, sendVerificationToken } from '../actions/users';
 import { withRouter } from "react-router-dom";
 import * as GlobalAction from '../actions/global_actions';
-import { getCurrentUserId } from '../selectors/entities/users';
+import { getCurrentUserId, getCurrentUser } from '../selectors/entities/users';
 import { useCountDown } from "../components/countdown";
 import LocalStorageStore from '../stores/local_storage_store';
 
@@ -146,7 +146,7 @@ class Login extends React.Component {
 
   handleLoginIdChange = (e) => {
     const loginId = e.target.value;
-    if (loginId.indexOf('@')) {
+    if (loginId.indexOf('@') > 0) {
       this.setState({
         loginId,
         email: e.target.value,
@@ -280,6 +280,12 @@ class Login extends React.Component {
 
 
   finishSignin = (team) => {
+    let password_expired = this.props.currentUser.password_expired;
+    if(password_expired){
+      GlobalAction.redirectUserToUpdatePassword();
+      return;
+    }
+
     let redirect_uri = new URLSearchParams(this.props.location.search).get('redirect_uri')
     if (!redirect_uri)
       redirect_uri = '/'
@@ -442,6 +448,7 @@ class Login extends React.Component {
 function mapStateToProps(state) {
   return {
     getCurrentUserId: getCurrentUserId(state),
+    currentUser: getCurrentUser(state),
     settings: getSettings(state),
     tenant: getTenant(state),
     settingsTenantId: getSettingsTenantId(state)

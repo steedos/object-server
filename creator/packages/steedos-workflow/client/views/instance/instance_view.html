@@ -1,9 +1,9 @@
 <template name="instance_view">
-    <div class="navigation-bar">
+    <div class="bg-cool-gray-50 py-3 px-3 border-b border-solid border-cool-gray-200 flex-none relative">
         <div style='display:none'><input id="instanceId" value="{{instance._id}}"/></div>
         {{> instance_button}}
     </div>
-    <div class="instance-view {{get_priority_class}}">
+    <div class="instance-view flex-1 relative {{get_priority_class}}">
         {{> instance_suggestion}}
         <div class="instance {{instanceStyle instance.form}}">
             <div class="instance-form {{instance_box_style }} {{box}}">

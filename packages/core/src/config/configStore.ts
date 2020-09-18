@@ -8,7 +8,6 @@
 import { AsyncCreatable, set } from '@salesforce/kit';
 import { AnyJson, definiteEntriesOf, definiteValuesOf, get, getAnyJson, JsonMap, Optional } from '@salesforce/ts-types';
 import { Dictionary } from '@salesforce/ts-types';
-import { ConfigContents } from './configStore';
 
 /**
  * The allowed types stored in a config store.
