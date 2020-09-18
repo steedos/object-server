@@ -17,7 +17,7 @@ const getListViewId = (is_related, related_object_name) => {
 	return list_view_id;
 }
 
-const getListProps = ({id, object_name, related_object_name, is_related, recordsTotal, total, related_list_item_props}, withoutFilters) => {
+const getListProps = ({id, objectApiName: object_name, related_object_name, is_related, recordsTotal, total, related_list_item_props}, withoutFilters) => {
 	let object = Creator.getObject(object_name);
 	if (!object) {
 		return;
