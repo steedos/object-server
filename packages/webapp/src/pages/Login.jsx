@@ -258,8 +258,8 @@ class Login extends React.Component {
     // }
 
     const user = {
-      email: this.state.email,
-      mobile: this.state.mobile,
+      email: this.state.loginBy === 'email'?this.state.email:'',
+      mobile: this.state.loginBy === 'mobile'?this.state.mobile:'',
       spaceId: this.state.spaceId,
     }
     this.props.actions.login(user, this.state.password, this.state.verifyCode).then(async ({error}) => {

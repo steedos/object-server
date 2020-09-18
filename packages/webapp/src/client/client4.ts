@@ -410,6 +410,26 @@ export default class Client4 {
         );
     }
 
+    verifyEmail = (email: string, code: string)=>{
+        return this.doFetch<UserProfile>(
+            `${this.getAccountsRoute()}/password/verify/email`,
+            {method: 'POST', body: JSON.stringify({
+                email: email,
+                code: code,
+            })},
+        );
+    }
+
+    verifyMobile = (mobile: string, code: string)=>{
+        return this.doFetch<UserProfile>(
+            `${this.getAccountsRoute()}/password/verify/mobile`,
+            {method: 'POST', body: JSON.stringify({
+                mobile: mobile,
+                code: code,
+            })},
+        );
+    }
+
     // _initLocalStorage(ROOT_URL_PATH_PREFIX){
     //     if (ROOT_URL_PATH_PREFIX) {
     //         let namespace = `:${ROOT_URL_PATH_PREFIX}`;

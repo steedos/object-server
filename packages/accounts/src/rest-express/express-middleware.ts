@@ -85,6 +85,9 @@ const accountsExpress = (
     router.post(`${path}/password/sendVerificationCode`, sendVerificationCode(accountsServer));
 
     router.post(`${path}/password/sendResetPasswordEmail`, sendResetPasswordEmail(accountsServer));
+
+    // router.post(`${path}/password/verify/email`, todo(accountsServer)); TODO
+    // router.post(`${path}/password/verify/mobile`, todo(accountsServer)); TODO
     
     router.post(
       `${path}/password/changePassword`,

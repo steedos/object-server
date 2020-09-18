@@ -208,3 +208,45 @@ export function changePassword(oldPassword: string, newPassword: string){
     return data;
   };
 }
+
+export function verifyEmail(email: string, code: string){
+  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
+    dispatch({type: UserTypes.VERIFYEMAIL_REQUEST, data: null});
+    let data;
+    try {
+        data = await Client4.verifyEmail(email, code);
+    } catch (error) {
+        dispatch(batchActions([
+            {
+                type: UserTypes.VERIFYEMAIL_FAILURE,
+                error,
+            },
+            logError(error),
+        ]));
+        return {error};
+    }
+
+    return data;
+  };
+}
+
+export function verifyMobile(mobile: string, code: string){
+  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
+    dispatch({type: UserTypes.VERIFYMOBILE_REQUEST, data: null});
+    let data;
+    try {
+        data = await Client4.verifyMobile(mobile, code);
+    } catch (error) {
+        dispatch(batchActions([
+            {
+                type: UserTypes.VERIFYMOBILE_FAILURE,
+                error,
+            },
+            logError(error),
+        ]));
+        return {error};
+    }
+
+    return data;
+  };
+}
