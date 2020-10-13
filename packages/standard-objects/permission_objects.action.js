@@ -24,7 +24,7 @@ module.exports = {
         Creator.odata.insert(object_name, Object.assign(newDoc, {permission_set_id: permissionSetId}), function(result, error){
             if(result){
                 if(Session.get("object_name") === 'permission_objects'){
-                    FlowRouter.go(`/app/-/${object_name}/view/${result._id}`)
+                    FlowRouter.go("/app/-/".concat(object_name, "/view/").concat(result._id));
                 }else{
                     href = Creator.getObjectUrl(object_name, result._id);
                     window.open(href,'_blank','width=800, height=600, left=50, top= 50, toolbar=no, status=no, menubar=no, resizable=yes, scrollbars=yes')

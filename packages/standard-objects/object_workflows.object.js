@@ -68,26 +68,27 @@ Creator.Objects.object_workflows.actions = {
       $("body").addClass("loading");
       Meteor.call('object_workflows.forcesync', record_id, function (error, result) {
         $("body").removeClass("loading");
+      
         if (error) {
           toastr.error(error.message);
         }
+      
         if (result.error) {
           var errorLi = "";
-          var href = `${Steedos.absoluteUrl('workflow/space/' + Session.get('spaceId') + '/monitor/')}`
+          var href = "".concat(Steedos.absoluteUrl('workflow/space/' + Session.get('spaceId') + '/monitor/'));
           result.error.forEach(function (e) {
-            errorLi += `<tr><td><a href='${href + e._id}' target='_blank'>${e.name}</a></td><td>${e.message}</td></tr>`;
-          })
+            errorLi += "<tr><td><a href='".concat(href + e._id, "' target='_blank'>").concat(e.name, "</a></td><td>").concat(e.message, "</td></tr>");
+          });
           swal({
             title: t('object_workflows_sync_history_instances_failed'),
-            text: `<div style="height: 400px;overflow: auto;"><table><tbody>${errorLi}</tbody></table></div>`,
+            text: "<div style=\"height: 400px;overflow: auto;\"><table><tbody>".concat(errorLi, "</tbody></table></div>"),
             html: true,
             confirmButtonText: t('OK')
-          })
-        }
-        else {
+          });
+        } else {
           toastr.success(t('object_workflows_sync_history_instances_success'));
         }
-      })
+      });
     }
   }
 }

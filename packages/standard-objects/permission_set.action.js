@@ -3,7 +3,7 @@ module.exports = {
         var doc = Creator.odata.get(object_name, record_id)
         Creator.odata.insert(object_name, {name: doc.name, label: doc.label, type: doc.type}, function(result, error){
             if(result){
-                FlowRouter.go(`/app/-/${object_name}/view/${result._id}`)
+                FlowRouter.go("/app/-/".concat(object_name, "/view/").concat(result._id));
             }
         });
             

@@ -19,7 +19,10 @@ module.exports = {
         }
     }
 
-    var allViews = Creator.odata.query('object_listviews', {$select: '_id', $filter: `(((contains(tolower(object_name),'${record.name}'))) and ((contains(tolower(name),'all'))))`}, true);
+    var allViews = Creator.odata.query('object_listviews', {
+        $select: '_id',
+        $filter: "(((contains(tolower(object_name),'".concat(record.name, "'))) and ((contains(tolower(name),'all'))))")
+      }, true);
 
     if(allViews && allViews.length > 0){
         Steedos.openWindow(Creator.getRelativeUrl("/app/-/" + record.name + "/grid/" + allViews[0]._id))

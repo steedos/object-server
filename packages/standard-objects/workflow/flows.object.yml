@@ -639,57 +639,68 @@ actions:
             swal.showInputError('您输入的名称不正确');
             return false;
           }
+
           $("body").addClass("loading");
           var userSession = Creator.USER_CONTEXT;
           var authorization = "Bearer " + userSession.spaceId + "," + userSession.user.authToken;
           $.ajax({
             type: "POST",
             url: Steedos.absoluteUrl("/am/forms?methodOverride=DELETE"),
-            data: JSON.stringify({ 'Forms': [{ 'id': formId }] }),
+            data: JSON.stringify({
+              'Forms': [{
+                'id': formId
+              }]
+            }),
             dataType: "json",
             contentType: 'application/json',
-            beforeSend: function (XHR) {
+            beforeSend: function beforeSend(XHR) {
               XHR.setRequestHeader('Content-Type', 'application/json');
               XHR.setRequestHeader('Authorization', authorization);
             },
-            success: function (data) {
+            success: function success(data) {
               $("body").removeClass("loading");
               toastr.success("操作已成功！");
-              var gridObjectNameClass = object_name.replace(/\./g,"-");
-              var gridContainer = $(`.gridContainer.${gridObjectNameClass}`);
+              var gridObjectNameClass = object_name.replace(/\./g, "-");
+              var gridContainer = $(".gridContainer.".concat(gridObjectNameClass));
               var dxDataGridInstance, isOpenerRemove;
+
               if (!(gridContainer != null ? gridContainer.length : void 0)) {
                 if (window.opener) {
                   isOpenerRemove = true;
-                  gridContainer = window.opener.$(`.gridContainer.${gridObjectNameClass}`);
+                  gridContainer = window.opener.$(".gridContainer.".concat(gridObjectNameClass));
                 }
               }
+
               if (gridContainer != null ? gridContainer.length : void 0) {
                 dxDataGridInstance = gridContainer.dxDataGrid().dxDataGrid('instance');
               }
+
               if (dxDataGridInstance) {
                 Template.creator_grid.refresh(dxDataGridInstance);
               }
+
               if (isOpenerRemove || !dxDataGridInstance) {
                 if (isOpenerRemove) {
                   window.close();
                 } else if (record_id === Session.get("record_id") && !Steedos.isMobile() && list_view_id !== 'calendar' && object_name !== "cms_posts") {
                   var appid = Session.get("app_id");
                   var list_view_id = Session.get("list_view_id");
+
                   if (!list_view_id) {
                     list_view_id = "all";
                   }
-                  FlowRouter.go(`/app/${appid}/${object_name}/grid/${list_view_id}`);
+
+                  FlowRouter.go("/app/".concat(appid, "/").concat(object_name, "/grid/").concat(list_view_id));
                 }
               }
             },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            error: function error(XMLHttpRequest, textStatus, errorThrown) {
               $("body").removeClass("loading");
               toastr.error(XMLHttpRequest.responseJSON);
             }
           });
           sweetAlert.close();
-        })
+        });
       }
 relatedList:
   - cms_files
