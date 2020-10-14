@@ -407,15 +407,26 @@ export const updateDocsFieldFormulaValue = async (docs: any, fieldFormulaConfig:
     if (!_.isArray(docs)) {
         docs = [docs];
     }
-    const fieldNames = [fieldFormulaConfig.field_name];
-    const formulaQuotedByConfigs = getObjectQuotedByFieldFormulaConfigs(fieldFormulaObjectName, fieldNames, escapeConfigs);
-    const summaryQuotedByConfigs = getObjectQuotedByFieldSummaryConfigs(fieldFormulaObjectName, fieldNames);
     let currentUserId = userSession ? userSession.userId : undefined;
     for (let doc of docs) {
         let value = await computeFieldFormulaValue(doc, fieldFormulaConfig, currentUserId);
         let setDoc = {};
         setDoc[fieldFormulaConfig.field_name] = value;
         await getSteedosSchema().getObject(fieldFormulaObjectName).directUpdate(doc._id, setDoc);
+    }
+    // 这里特意重新遍历一次docs而不是直接在当前函数中每次更新一条记录后立即处理被引用字段的级联变更，见：公式或汇总触发级联重算时，数据类型变更可能会造成无法重算 #965
+    await updateQuotedByDocsForFormulaType(docs, fieldFormulaConfig, userSession, escapeConfigs);
+}
+
+export const updateQuotedByDocsForFormulaType = async (docs: any, fieldFormulaConfig: SteedosFieldFormulaTypeConfig, userSession: any, escapeConfigs?: Array<SteedosFieldFormulaTypeConfig> | Array<string>) => {
+    const { object_name: fieldFormulaObjectName } = fieldFormulaConfig;
+    if (!_.isArray(docs)) {
+        docs = [docs];
+    }
+    const fieldNames = [fieldFormulaConfig.field_name];
+    const formulaQuotedByConfigs = getObjectQuotedByFieldFormulaConfigs(fieldFormulaObjectName, fieldNames, escapeConfigs);
+    const summaryQuotedByConfigs = getObjectQuotedByFieldSummaryConfigs(fieldFormulaObjectName, fieldNames);
+    for (let doc of docs) {
         // 公式字段修改后，需要找到引用了该公式字段的其他公式字段并更新其值
         await runQuotedByObjectFieldFormulas(fieldFormulaObjectName, doc._id, userSession, {
             fieldNames, 

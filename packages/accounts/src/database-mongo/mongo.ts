@@ -688,10 +688,13 @@ export class Mongo implements DatabaseInterface {
     if (!record) 
       return null;
     
-    if (user.email && (foundedUser.email_verified == false))
+    if (user.email && (foundedUser.email_verified != true)){
       await this.verifyEmail(owner, user.email)
-    else if (user.mobile && foundedUser.mobile_verified == false)
+      foundedUser = await this.findUserById(owner);
+    }else if (user.mobile && foundedUser.mobile_verified != true){
       await this.verifyMobile(owner, user.mobile)
+      foundedUser = await this.findUserById(owner);
+    }
     
     return foundedUser;
   }
