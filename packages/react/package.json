@@ -1,6 +1,6 @@
 {
   "name": "@steedos/react",
-  "version": "1.22.0-alpha.14",
+  "version": "1.22.0-alpha.15",
   "private": false,
   "files": [
     "package.json",
@@ -14,7 +14,7 @@
     "@material-ui/core": "^4.4.0",
     "@material-ui/icons": "^4.2.1",
     "@salesforce-ux/icons": "^9.38.0",
-    "@steedos/design-system-react": "^1.22.0-alpha.14",
+    "@steedos/design-system-react": "^1.22.0-alpha.15",
     "dotenv-flow": "^3.1.0",
     "immer": "^4.0.1",
     "marked": "^0.8.0",

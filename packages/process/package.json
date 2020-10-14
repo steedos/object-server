@@ -1,6 +1,6 @@
 {
   "name": "@steedos/process",
-  "version": "1.22.0-alpha.14",
+  "version": "1.22.0-alpha.15",
   "main": "lib/index.js",
   "repository": "https://github.com/steedos/steedos-platform.git",
   "scripts": {

@@ -1,7 +1,7 @@
 {
   "name": "@steedos/auth",
   "private": false,
-  "version": "1.22.0-alpha.14",
+  "version": "1.22.0-alpha.15",
   "main": "lib/index.js",
   "scripts": {
     "watch": "tsc --watch",
@@ -14,7 +14,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@steedos/objectql": "^1.22.0-alpha.14",
+    "@steedos/objectql": "^1.22.0-alpha.15",
     "cookies": "^0.7.3",
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
