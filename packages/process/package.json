@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "typescript": "3.5.3"
+  },
+  "dependencies": {
+    "@steedos/core": "^1.22.0-alpha.15"
   }
 }

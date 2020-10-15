@@ -1,7 +1,8 @@
+const fetch = require('node-fetch');
 const data = {};
 const etags = {};
 
-export default (url = null, options = {headers: {}}) => {
+export default (url:any = null, options:any = {headers: {}}) => {
     url = url || options.url; // eslint-disable-line no-param-reassign
 
     if (options.method === 'GET' || !options.method) {

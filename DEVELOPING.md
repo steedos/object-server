@@ -19,10 +19,16 @@
     ```
         cd steedos-platform
     ```
-3. 通常情况下在develop分支进行开发，从master分支发布版本，因此，需要在本地拷贝远程master分支
-    ```
-        git checkout -t origin/master
-    ```
+3. 配置代理服务器
+
+```
+export http_proxy=http://192.168.0.88:7890
+export https_proxy=http://192.168.0.88:7890
+git config --global https.proxy http://192.168.0.88:7890
+git config --global https.proxy http://192.168.0.88:7890
+yarn config registry https://registry.npm.taobao.org
+```
+
 4. 在当前的Lerna存储库中引导软件包并安装所有依赖包。
     ```
         yarn bootstrap
@@ -35,6 +41,7 @@
 
 ## 运行项目
 以运行合同项目为例：
+
 
 1. 在文本编辑器中打开steedos-platform，进入apps/contracts
     ```

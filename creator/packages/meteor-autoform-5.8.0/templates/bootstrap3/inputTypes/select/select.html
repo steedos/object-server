@@ -1,15 +1,17 @@
 <template name="afSelect_bootstrap3">
-  <select {{attsPlusFormControlClass}}>
-    {{#each this.items}}
-    {{#if this.optgroup}}
-    <optgroup label="{{this.optgroup}}">
+  <div class="slds-select_container">
+    <select {{attsPlusFormControlClass}}>
       {{#each this.items}}
-      <option {{afSelectOptionAtts}}>{{this.label}}</option>
+        {{#if this.optgroup}}
+          <optgroup label="{{this.optgroup}}">
+            {{#each this.items}}
+            <option {{afSelectOptionAtts}}>{{this.label}}</option>
+            {{/each}}
+          </optgroup>
+        {{else}}
+          <option {{afSelectOptionAtts}}>{{this.label}}</option>
+        {{/if}}
       {{/each}}
-    </optgroup>
-    {{else}}
-    <option {{afSelectOptionAtts}}>{{this.label}}</option>
-    {{/if}}
-    {{/each}}
-  </select>
+    </select>
+  </div>
 </template>

@@ -1,0 +1,16 @@
+{
+  "extends": "../../../node_modules/@salesforce/dev-config/tsconfig",
+  "include": ["unit/**/*.ts", "../node_modules/@types/**/*.d.ts"],
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": false,
+    "noUnusedLocals": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+  }
+}

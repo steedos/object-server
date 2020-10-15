@@ -93,6 +93,8 @@ AutoForm.addInputType("select", {
       context.atts.disabled = "";
     }
 
+    context.atts.class = "slds-select"
+
     return context;
   }
 });
