@@ -1630,10 +1630,10 @@
   resolved "https://registry.npm.taobao.org/@protobufjs/utf8/download/@protobufjs/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@salesforce-ux/design-system@^2.11.0":
-  version "2.13.1"
-  resolved "https://registry.npm.taobao.org/@salesforce-ux/design-system/download/@salesforce-ux/design-system-2.13.1.tgz#0024b4fa6ab308189741e23b3dae54b7d85286b4"
-  integrity sha1-ACS0+mqzCBiXQeI7Pa5Ut9hShrQ=
+"@salesforce-ux/design-system@2.12.2":
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/@salesforce-ux/design-system/-/design-system-2.12.2.tgz#f2d393da0d277f4d755b693a3581c6b63c6bc412"
+  integrity sha512-a2GiCsNfQD8o+6jEieg+PbFlsbjQGNqgImRr/Xeb13Hea3x+QYwJ1XTbVqSz239GGTOiUScjD7/QN+gb5R4giQ==
 
 "@salesforce/babel-preset-design-system-react@^3.0.0":
   version "3.0.0"
@@ -1722,7 +1722,7 @@
     validator "^12.2.0"
 
 "@steedos/app-admin@../apps/steedos-app-admin":
-  version "1.22.0-alpha.9"
+  version "1.22.0-alpha.15"
 
 "@steedos/app-contracts@^1.22.0-alpha.5":
   version "1.22.0"
@@ -1732,7 +1732,7 @@
     dotenv-flow "^3.1.0"
 
 "@steedos/app-crm@../apps/steedos-app-crm":
-  version "1.22.0-alpha.9"
+  version "1.22.0-alpha.15"
   dependencies:
     dotenv-flow "^3.2.0"
     underscore "1.9.2"
