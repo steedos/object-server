@@ -18,17 +18,14 @@ function buildDistFile() {
         },
         plugins: [
           require('./tailwind-ui.js'),
-          // require("tailwindcss-theming")({
-          //   variants: {
-          //     dark: true,
-          //     light: true
-          //   },
-          // })
+          require("tailwindcss-theming")({
+            variants: {
+              dark: true,
+              light: true
+            },
+          })
         ],
         target: 'ie11' 
-      }),
-      postcssCustomProperties({
-        preserve: false
       }),
       require('autoprefixer'),
     ])
@@ -45,12 +42,11 @@ function buildDistFile() {
         }
       )
       .then(result => {
-        // disableCustomProperties
-        fs.writeFileSync(`./dist/steedos-tailwind.css`, normalizeStyles + preflight + result.css)
+        fs.writeFileSync(`./dist/steedos-tailwind.css`, normalizeStyles + preflight + '\r\n' + result.css)
         return result
       })
       .then(result => {
-        const minified = new CleanCSS().minify(normalizeStyles + preflight + result.css)
+        const minified = new CleanCSS().minify(normalizeStyles + preflight + '\r\n' + result.css)
         fs.writeFileSync(`./dist/steedos-tailwind.min.css`, minified.styles)
       })
       .then(resolve)
