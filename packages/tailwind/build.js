@@ -1,5 +1,6 @@
 const fs = require('fs')
 const postcss = require('postcss')
+const postcssCustomProperties = require('postcss-custom-properties');
 const tailwind = require('tailwindcss')
 const CleanCSS = require('clean-css')
 
@@ -17,13 +18,17 @@ function buildDistFile() {
         },
         plugins: [
           require('./tailwind-ui.js'),
-          require("tailwindcss-theming")({
-            variants: {
-              dark: true,
-              light: true
-            },
-          })
+          // require("tailwindcss-theming")({
+          //   variants: {
+          //     dark: true,
+          //     light: true
+          //   },
+          // })
         ],
+        target: 'ie11' 
+      }),
+      postcssCustomProperties({
+        preserve: false
       }),
       require('autoprefixer'),
     ])
@@ -40,6 +45,7 @@ function buildDistFile() {
         }
       )
       .then(result => {
+        // disableCustomProperties
         fs.writeFileSync(`./dist/steedos-tailwind.css`, normalizeStyles + preflight + result.css)
         return result
       })
