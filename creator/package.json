@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",
-    "@salesforce-ux/design-system": "^2.11.0",
+    "@salesforce-ux/design-system": "2.12.2",
     "@salesforce/design-system-react": "^0.10.17",
     "@steedos/accounts": "^1.22.0-alpha.5",
     "@steedos/app-admin": "../apps/steedos-app-admin",
