@@ -6,9 +6,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node build.js",
-    "build": "cross-env NODE_ENV=production node build.js",
+    "prod": "cross-env NODE_ENV=production node build.js",
     "copy-to-public": "cp dist/steedos-tailwind.min.css ../webapp/public/assets/styles && cp dist/steedos-tailwind.min.css ../webapp/build/assets/styles",
-    "prepare": "yarn build && yarn copy-to-public"
+    "build": "yarn prod && yarn copy-to-public"
   },
   "devDependencies": {
     "@tailwindcss/custom-forms": "^0.2.1",
