@@ -229,6 +229,34 @@ fields:
     omit: true
     disabled: true
     readonly: true
+  sharing_model:
+    label: Sharing model
+    group: Security sharing
+    type: select
+    firstOption: false
+    options:
+      - label: Private
+        value: Private
+      - label: Public Read Only
+        value: Read
+      - label: Public Read/Write
+        value: ReadWrite
+      - label: Public Read/Write/Transfer
+        value: ReadWriteTransfer
+  external_sharing_model:
+    label: External sharing model
+    group: Security sharing
+    type: select
+    firstOption: false
+    options:
+      - label: Private
+        value: Private
+      - label: Public Read Only
+        value: Read
+      - label: Public Read/Write
+        value: ReadWrite
+      - label: Public Read/Write/Transfer
+        value: ReadWriteTransfer
   created_by:
     label: Created by
   modified_by:
