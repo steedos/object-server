@@ -97,6 +97,10 @@ fields:
     label: 版本名称
     help: 
     description: 
+  is_enable:
+    label: 启用
+    help: 
+    description:
 groups:
   package_components: 软件包组件
 listviews:
@@ -107,6 +111,10 @@ listviews:
 actions:
   install:
     label: 安装软件包
+  enable:
+    label: 启用
+  disable:
+    label: 停用
 CustomLabels:
   imported_package_action_install: 安装软件包
   imported_package_action_install_success: 安装成功

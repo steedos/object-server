@@ -97,6 +97,10 @@ fields:
     label: Version Name
     help: 
     description: 
+  is_enable:
+    label: Enable
+    help: 
+    description:
 groups:
   package_components: Package Components
 listviews:
@@ -107,6 +111,10 @@ listviews:
 actions:
   install:
     label: Install Package
+  enable:
+    label: Enable
+  disable:
+    label: Disable
 CustomLabels:
   imported_package_action_install: Install Package
   imported_package_action_install_success: Installed
