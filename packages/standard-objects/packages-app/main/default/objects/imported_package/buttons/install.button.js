@@ -37,7 +37,8 @@ module.exports = {
             Meteor.setTimeout(function(){
                 const installPackage = function(formValues, e, t){
                     $("body").addClass('loading');
-                    var result = Steedos.authRequest(`/api/package/installing_from_store/file/${data.packageVersionId}`, {type: 'post', async: false, data: JSON.stringify({password: data.password})});
+                    debugger;
+                    var result = Steedos.authRequest(`/api/package/installing_from_store/file/${data.packageVersionId}`, {type: 'post', async: false, data: JSON.stringify({password: data.password, packageType: _doc.packageType})});
                     if(!result){
                         return $("body").removeClass('loading');
                     }
