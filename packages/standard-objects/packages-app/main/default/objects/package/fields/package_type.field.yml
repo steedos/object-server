@@ -1,6 +1,6 @@
 name: package_type
 filterable: false
-hidden: true
+hidden: false
 index: false
 is_name: false
 is_wide: false
@@ -8,12 +8,12 @@ label: 软件包类型
 multiple: false
 omit: false
 options:
-  - label: 受管
-    value: managed
-  - label: 不受管
-    value: unmanaged
+  - label: 托管
+    value: Managed
+  - label: 非托管
+    value: Unlocked
 readonly: false
-required: false
+required: true
 searchable: false
 sort_no: 140
 sortable: false
