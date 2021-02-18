@@ -1,0 +1,5 @@
+name: app_exchage
+is_enable: true
+label: App Exchage
+'on': list
+visible: true
