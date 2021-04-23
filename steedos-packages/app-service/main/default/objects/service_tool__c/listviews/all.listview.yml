@@ -1,0 +1,36 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: tool_num__c
+    wrap: false
+  - field: material__c
+    wrap: false
+  - field: tool_id__c
+    wrap: false
+  - field: producer__c
+    wrap: false
+  - field: tool_statue__c
+    wrap: false
+  - field: tool_use_statue__c
+    wrap: false
+  - field: purchase_date__c
+    wrap: false
+  - field: guarantee_end__c
+    wrap: false
+filter_fields:
+  - name
+  - material__c
+  - tool_id__c
+  - tool_group__c
+  - producer__c
+  - tool_use_statue__c
+  - proportion__c
+  - tool_statue__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

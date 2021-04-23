@@ -1,0 +1,14 @@
+name: name
+filterable: false
+hidden: false
+index: false
+is_name: true
+is_wide: false
+label: 故障名称
+omit: false
+readonly: false
+required: true
+searchable: false
+sort_no: 100
+sortable: false
+type: text

@@ -1,0 +1,14 @@
+name: receiver__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 收货人
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 200
+sortable: false
+type: text

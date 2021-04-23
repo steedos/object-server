@@ -1,0 +1,22 @@
+name: statue__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 保修状态
+multiple: false
+omit: false
+options:
+  - label: 待定
+    value: 待定
+  - label: 在保
+    value: 在保
+  - label: 不在保
+    value: 不在保
+readonly: false
+required: false
+searchable: false
+sort_no: 210
+sortable: false
+type: select

@@ -1,0 +1,26 @@
+name: work_type__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 工单类型
+multiple: false
+omit: false
+options:
+  - label: 机理模型
+    value: mechanism_model
+  - label: 维修
+    value: maintain
+  - label: 外协
+    value: outsource
+  - label: 工序
+    value: process
+  - label: 物联网IOT平台
+    value: IoT_platform
+readonly: false
+required: false
+searchable: false
+sort_no: 120
+sortable: false
+type: select

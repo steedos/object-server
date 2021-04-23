@@ -1,0 +1,25 @@
+name: all
+columns:
+  - field: fault_num__c
+    wrap: false
+  - field: fault_classify__c
+    wrap: false
+  - field: created_by
+    wrap: false
+  - field: created
+    wrap: false
+  - field: modified_by
+    wrap: false
+  - field: deleted
+    wrap: false
+  - field: name
+    wrap: false
+filter_fields:
+  - fault_key__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

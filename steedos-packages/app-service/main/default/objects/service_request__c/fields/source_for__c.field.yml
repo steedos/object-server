@@ -1,0 +1,32 @@
+name: source_for__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 渠道来源
+multiple: false
+omit: false
+options:
+  - label: 电话
+    value: phone
+  - label: 微信
+    value: wechat
+  - label: H5
+    value: h5
+  - label: APP
+    value: app
+  - label: 计划
+    value: plan
+  - label: API
+    value: api
+  - label: 客户端
+    value: client_side
+  - label: 其他
+    value: else
+readonly: false
+required: false
+searchable: false
+sort_no: 130
+sortable: false
+type: select

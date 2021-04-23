@@ -1,0 +1,16 @@
+name: quotation_number__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 报价单号
+multiple: false
+omit: false
+readonly: false
+reference_to: service_quotation__c
+required: false
+searchable: false
+sort_no: 120
+sortable: false
+type: lookup

@@ -1,0 +1,22 @@
+name: position__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 身份
+multiple: false
+omit: false
+options:
+  - label: 主资源
+    value: 主资源
+  - label: 辅资源
+    value: 辅资源
+  - label: 待定
+    value: 待定
+readonly: false
+required: false
+searchable: false
+sort_no: 220
+sortable: false
+type: select

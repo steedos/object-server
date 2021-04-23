@@ -1,0 +1,15 @@
+name: supplier__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 供应商
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 290
+sortable: false
+type: text

@@ -1,0 +1,24 @@
+name: material_type__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 物料类型
+multiple: false
+omit: false
+options:
+  - label: 备件
+    value: spare_part
+  - label: 产品
+    value: product
+  - label: 服务
+    value: server
+  - label: 工具
+    value: tool
+readonly: false
+required: false
+searchable: false
+sort_no: 140
+sortable: false
+type: select

@@ -1,0 +1,37 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: warehouse__c
+    wrap: false
+  - field: warehouse_type__c
+    wrap: false
+  - field: material__c
+    wrap: false
+  - field: material_id__c
+    wrap: false
+  - field: stock_in_transit__c
+    wrap: false
+  - field: inventory_data__c
+    wrap: false
+  - field: cost_unit_price__c
+    wrap: false
+  - field: total_cost__c
+    wrap: false
+  - field: lock__c
+    wrap: false
+  - field: usable__c
+    wrap: false
+filter_fields:
+  - name
+  - warehouse__c
+  - warehouse_type__c
+  - material__c
+  - inventory_data__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

@@ -1,0 +1,24 @@
+name: project_statue__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 项目状态
+multiple: false
+omit: false
+options:
+  - label: 立项
+    value: 立项
+  - label: 进行
+    value: 进行
+  - label: 验收
+    value: 验收
+  - label: 结案
+    value: 结案
+readonly: false
+required: false
+searchable: false
+sort_no: 120
+sortable: false
+type: select

@@ -1,0 +1,17 @@
+name: default_tax__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 默认税率
+multiple: false
+omit: false
+readonly: false
+reference_to: service_tax__c
+required: false
+searchable: false
+sort_no: 290
+sortable: false
+type: lookup

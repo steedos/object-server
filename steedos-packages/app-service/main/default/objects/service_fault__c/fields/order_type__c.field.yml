@@ -1,0 +1,26 @@
+name: order_type__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 工单类型
+multiple: false
+omit: false
+options:
+  - label: 机理模型
+    value: 机理模型
+  - label: 维修
+    value: 维修
+  - label: 外协
+    value: 外协
+  - label: 工序
+    value: 工序
+  - label: 物联网IOT平台
+    value: 物联网IOT平台
+readonly: false
+required: false
+searchable: false
+sort_no: 140
+sortable: false
+type: select

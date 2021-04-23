@@ -1,0 +1,31 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: quotation_number__c
+    wrap: false
+  - field: basic_order_number__c
+    wrap: false
+  - field: offer_details__c
+    wrap: false
+  - field: amount__c
+    wrap: false
+  - field: settlement_quantity__c
+    wrap: false
+  - field: price__c
+    wrap: false
+  - field: settlement_amount__c
+    wrap: false
+  - field: bill__c
+    wrap: false
+filter_fields:
+  - name
+  - offer_details__c
+  - bill__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

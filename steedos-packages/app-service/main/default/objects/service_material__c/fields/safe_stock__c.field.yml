@@ -1,0 +1,17 @@
+name: safe_stock__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 安全库存
+omit: false
+precision: 18
+readonly: false
+required: false
+scale: 0
+searchable: false
+sort_no: 180
+sortable: false
+type: number

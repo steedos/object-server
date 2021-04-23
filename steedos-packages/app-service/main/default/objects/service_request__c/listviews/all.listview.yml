@@ -1,0 +1,32 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: source_for__c
+    wrap: false
+  - field: work_type__c
+    wrap: false
+  - field: after_service__c
+    wrap: false
+  - field: account__c
+    wrap: false
+  - field: customer_contact__c
+    wrap: false
+  - field: created_by
+    wrap: false
+  - field: created
+    wrap: false
+filter_fields:
+  - name
+  - work_type__c
+  - source_for__c
+  - fault_phenomenon__c
+  - account__c
+  - after_service__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

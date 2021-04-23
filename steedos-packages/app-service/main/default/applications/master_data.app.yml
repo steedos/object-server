@@ -1,0 +1,26 @@
+name: 主数据管理
+code: master_data
+description: 管理基础数据，包括：客户、资源、项目、车辆、网点、故障及解决步骤，以及物料、设备、工具等。
+icon_slds: maintenance_plan
+is_creator: true
+is_new_window: false
+is_use_ie: false
+is_use_iframe: false
+mobile: false
+oauth2_enabled: false
+oauth2_logout_enabled: false
+objects:
+  - accounts
+  - service_engineer__c
+  - service_fault__c
+  - service_project__c
+  - service_car__c
+  - service_workbranch__c
+  - service_material__c
+  - service_device__c
+  - service_tool__c
+  - service_solution__c
+saml_enabled: false
+saml_logout_enabled: false
+sort: 9100
+visible: true

@@ -1,0 +1,27 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: state__c
+    wrap: false
+  - field: shift_to__c
+    wrap: false
+  - field: roll_out__c
+    wrap: false
+  - field: allot_date__c
+    wrap: false
+  - field: remark__c
+    wrap: false
+filter_fields:
+  - name
+  - shift_to__c
+  - roll_out__c
+  - allot_date__c
+  - state__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

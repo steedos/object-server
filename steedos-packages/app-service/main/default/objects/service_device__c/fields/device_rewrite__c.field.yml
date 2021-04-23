@@ -1,0 +1,16 @@
+name: device_rewrite__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 设备反写字段
+omit: false
+readonly: false
+required: false
+rows: 2
+searchable: false
+sort_no: 280
+sortable: false
+type: textarea

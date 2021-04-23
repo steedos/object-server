@@ -1,0 +1,20 @@
+name: sell_type__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 出库类型
+multiple: false
+omit: false
+options:
+  - label: 出库
+    value: sell
+  - label: 结算出库
+    value: settle_accounts
+readonly: false
+required: false
+searchable: false
+sort_no: 150
+sortable: false
+type: select

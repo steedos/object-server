@@ -1,0 +1,17 @@
+name: floor_price__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 最低价
+omit: false
+precision: 18
+readonly: false
+required: false
+scale: 2
+searchable: false
+sort_no: 270
+sortable: false
+type: currency

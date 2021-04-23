@@ -1,0 +1,16 @@
+name: fault_phenomenon__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 故障现象
+multiple: false
+omit: false
+readonly: false
+reference_to: service_fault__c
+required: false
+searchable: false
+sort_no: 270
+sortable: false
+type: lookup

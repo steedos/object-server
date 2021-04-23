@@ -1,0 +1,22 @@
+name: resource_type__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 资源类型
+multiple: false
+omit: false
+options:
+  - label: 通用
+    value: '0'
+  - label: 用户
+    value: '1'
+  - label: 服务商
+    value: '2'
+readonly: false
+required: true
+searchable: false
+sort_no: 140
+sortable: false
+type: select

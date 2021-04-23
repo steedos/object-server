@@ -1,0 +1,7 @@
+name: owner
+hidden: true
+index: true
+label: 所有者
+omit: true
+sort_no: 100
+sortable: true

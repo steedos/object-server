@@ -1,0 +1,15 @@
+name: name
+filterable: false
+formula: '340210413{000000}'
+hidden: false
+index: true
+is_name: true
+is_wide: false
+label: 调拨单号
+omit: false
+readonly: false
+required: false
+searchable: true
+sort_no: 100
+sortable: false
+type: autonumber

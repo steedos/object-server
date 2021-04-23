@@ -1,0 +1,14 @@
+name: actual_end__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 实际结束时间
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 270
+sortable: false
+type: datetime

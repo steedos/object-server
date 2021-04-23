@@ -1,0 +1,21 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: state__c
+    wrap: false
+  - field: warehouse__c
+    wrap: false
+  - field: type__c
+    wrap: false
+  - field: return_date__c
+    wrap: false
+  - field: remark__c
+    wrap: false
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

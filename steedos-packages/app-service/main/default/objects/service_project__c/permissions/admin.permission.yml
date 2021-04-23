@@ -1,0 +1,10 @@
+name: 项目.管理员
+allowCreate: true
+allowDelete: true
+allowEdit: true
+allowRead: true
+modifyAllRecords: true
+modifyCompanyRecords: true
+permission_set_id: admin
+viewAllRecords: true
+viewCompanyRecords: true

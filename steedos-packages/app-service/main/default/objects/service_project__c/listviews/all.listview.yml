@@ -1,0 +1,28 @@
+name: all
+columns:
+  - field: project_num__c
+    wrap: false
+  - field: name
+    wrap: false
+  - field: project_statue__c
+    wrap: false
+  - field: project_manager__c
+    wrap: false
+  - field: service_level__c
+    wrap: false
+  - field: peoject_start__c
+    wrap: false
+  - field: project_end__c
+    wrap: false
+filter_fields:
+  - project_statue__c
+  - name
+  - project_manager__c
+  - service_level__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

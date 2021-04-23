@@ -1,0 +1,23 @@
+name: warranty_status__c
+defaultValue: undetermined
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 保修状态
+multiple: false
+omit: false
+options:
+  - label: 待定
+    value: undetermined
+  - label: 不在保
+    value: don't_keep
+  - label: 在保
+    value: under_warranty
+readonly: false
+required: false
+searchable: false
+sort_no: 260
+sortable: false
+type: select

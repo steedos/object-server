@@ -1,0 +1,20 @@
+name: 工单管理
+code: work_order
+description: 工单管理模块，包括服务请求、创建工单、工单处理、工单查询。
+icon_slds: work_order_item
+is_creator: true
+is_new_window: false
+is_use_ie: false
+is_use_iframe: false
+mobile: false
+oauth2_enabled: false
+oauth2_logout_enabled: false
+objects:
+  - service_request__c
+  - service_work_order__c
+  - service_resourceplan__c
+  - reports
+saml_enabled: false
+saml_logout_enabled: false
+sort: 9400
+visible: true

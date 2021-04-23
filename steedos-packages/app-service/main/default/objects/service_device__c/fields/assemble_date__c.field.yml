@@ -1,0 +1,15 @@
+name: assemble_date__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 装配日期
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 230
+sortable: false
+type: date

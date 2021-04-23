@@ -1,0 +1,8 @@
+{
+  "name": "@steedos/app-service-management",
+  "version": "0.0.1",
+  "description": "A Steedos App",
+  "main": "package.service.js",
+  "license": "MIT",
+  "private": true
+}

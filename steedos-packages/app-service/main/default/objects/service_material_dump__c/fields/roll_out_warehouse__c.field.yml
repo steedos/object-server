@@ -1,0 +1,16 @@
+name: roll_out_warehouse__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 转出仓库
+multiple: false
+omit: false
+readonly: false
+reference_to: service_warehouse__c
+required: false
+searchable: false
+sort_no: 120
+sortable: false
+type: lookup

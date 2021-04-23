@@ -1,0 +1,15 @@
+name: guarantee_end__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 保修到期日
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 190
+sortable: false
+type: date

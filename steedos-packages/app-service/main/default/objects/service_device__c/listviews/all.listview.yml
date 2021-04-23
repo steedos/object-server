@@ -1,0 +1,27 @@
+name: all
+columns:
+  - field: device_num__c
+    wrap: false
+  - field: name
+    wrap: false
+  - field: device_id__c
+    wrap: false
+  - field: statue__c
+    wrap: false
+  - field: product__c
+    wrap: false
+  - field: client__c
+    wrap: false
+  - field: client__c
+    wrap: false
+  - field: sale__c
+    wrap: false
+  - field: engineer__c
+    wrap: false
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

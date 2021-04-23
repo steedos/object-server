@@ -1,0 +1,16 @@
+name: project_manager__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 项目负责人
+multiple: false
+omit: false
+readonly: false
+reference_to: space_users
+required: false
+searchable: false
+sort_no: 130
+sortable: false
+type: lookup

@@ -1,0 +1,30 @@
+name: express_company__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 快递公司
+multiple: false
+omit: false
+options:
+  - label: 顺丰速运
+    value: SF
+  - label: 韵达快递
+    value: YunDa
+  - label: 圆通快递
+    value: YTO
+  - label: 中通快递
+    value: ZTO
+  - label: 申通快递
+    value: STO
+  - label: 百世快递
+    value: Immortal_courier
+  - label: EMS
+    value: EMS
+readonly: false
+required: false
+searchable: false
+sort_no: 180
+sortable: false
+type: select

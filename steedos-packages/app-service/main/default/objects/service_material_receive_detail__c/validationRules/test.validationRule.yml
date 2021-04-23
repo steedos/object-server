@@ -1,0 +1,4 @@
+name: test
+active: true
+error_condition_formula: material__c.name!=material_inventory__c.name
+error_message: 物料必须与库存一览对应！

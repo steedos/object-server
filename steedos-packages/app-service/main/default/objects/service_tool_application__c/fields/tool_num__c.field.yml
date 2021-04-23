@@ -1,0 +1,14 @@
+name: tool_num__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 工具序列号
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 190
+sortable: false
+type: text

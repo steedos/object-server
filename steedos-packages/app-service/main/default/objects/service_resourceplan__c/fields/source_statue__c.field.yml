@@ -1,0 +1,34 @@
+name: source_statue__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 状态
+multiple: false
+omit: false
+options:
+  - label: 已计划
+    value: '0'
+  - label: 已接收
+    value: '1'
+  - label: 已出发签到
+    value: '2'
+  - label: 已现场签到
+    value: '3'
+  - label: 已完修离场
+    value: '4'
+  - label: 已回到驻地
+    value: '5'
+  - label: 已暂停
+    value: '6'
+  - label: 已关闭
+    value: '7'
+  - label: 已取消
+    value: '8'
+readonly: false
+required: false
+searchable: false
+sort_no: 200
+sortable: false
+type: select

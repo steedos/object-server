@@ -1,0 +1,14 @@
+name: remark__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: true
+label: 备注
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 170
+sortable: false
+type: text

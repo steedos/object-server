@@ -1,0 +1,33 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: correlation_work__c
+    wrap: false
+  - field: state__c
+    wrap: false
+  - field: warehouse__c
+    wrap: false
+  - field: warehouse_type__c
+    wrap: false
+  - field: sell_type__c
+    wrap: false
+  - field: sell_date__c
+    wrap: false
+  - field: remark__c
+    wrap: false
+filter_fields:
+  - name
+  - warehouse__c
+  - warehouse_type__c
+  - sell_date__c
+  - sell_type__c
+  - project__c
+  - state__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

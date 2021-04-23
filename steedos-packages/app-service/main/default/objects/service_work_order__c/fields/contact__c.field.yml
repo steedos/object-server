@@ -1,0 +1,17 @@
+name: contact__c
+data_type: text
+filterable: false
+formula: '"songshi"'
+formula_blank_value: blanks
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 联系人姓名
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 160
+sortable: false
+type: formula

@@ -1,0 +1,16 @@
+name: request__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 服务请求
+multiple: false
+omit: false
+readonly: false
+reference_to: service_request__c
+required: false
+searchable: false
+sort_no: 370
+sortable: false
+type: lookup

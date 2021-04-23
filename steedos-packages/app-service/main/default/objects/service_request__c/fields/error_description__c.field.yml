@@ -1,0 +1,15 @@
+name: error_description__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: true
+label: 故障描述
+omit: false
+readonly: false
+required: false
+rows: 1
+searchable: false
+sort_no: 260
+sortable: false
+type: textarea

@@ -1,0 +1,34 @@
+name: order_statue__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 工单状态
+multiple: false
+omit: false
+options:
+  - label: 已创建
+    value: 已创建
+  - label: 已派工
+    value: 已派工
+  - label: 已报价
+    value: 已报价
+  - label: 已接收
+    value: 已接收
+  - label: 已签到
+    value: 已签到
+  - label: 已完工
+    value: 已完工
+  - label: 已回访
+    value: 已回访
+  - label: 已完成
+    value: 已完成
+  - label: 已取消
+    value: 已取消
+readonly: false
+required: false
+searchable: false
+sort_no: 210
+sortable: false
+type: select

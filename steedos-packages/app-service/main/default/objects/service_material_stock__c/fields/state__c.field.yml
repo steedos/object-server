@@ -1,0 +1,28 @@
+name: state__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 状态
+multiple: false
+omit: false
+options:
+  - label: 草稿
+    value: draft
+  - label: 审批中
+    value: being_approved
+  - label: 已审批
+    value: approve
+  - label: 已完成
+    value: accomplish
+  - label: 已驳回
+    value: reject
+  - label: 已取消
+    value: cancel
+readonly: false
+required: false
+searchable: false
+sort_no: 180
+sortable: false
+type: select

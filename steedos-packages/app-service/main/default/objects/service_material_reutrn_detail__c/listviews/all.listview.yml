@@ -1,0 +1,19 @@
+name: all
+columns:
+  - field: material__c
+    wrap: false
+  - field: material_id__c
+    wrap: false
+  - field: unit__c
+    wrap: false
+  - field: count__c
+    wrap: false
+  - field: remark__c
+    wrap: false
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

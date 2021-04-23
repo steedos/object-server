@@ -1,0 +1,17 @@
+name: address__c
+data_type: text
+filterable: false
+formula: '"公式"'
+formula_blank_value: blanks
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 详细地址
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 200
+sortable: false
+type: formula

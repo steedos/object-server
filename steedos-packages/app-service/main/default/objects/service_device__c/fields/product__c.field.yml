@@ -1,0 +1,16 @@
+name: product__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 产品名称
+multiple: false
+omit: false
+readonly: false
+reference_to: service_material__c
+required: false
+searchable: false
+sort_no: 130
+sortable: false
+type: lookup

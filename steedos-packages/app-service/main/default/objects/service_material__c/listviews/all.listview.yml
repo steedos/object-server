@@ -1,0 +1,38 @@
+name: all
+columns:
+  - field: id__c
+    wrap: false
+  - field: name
+    wrap: false
+  - field: specification__c
+    wrap: false
+  - field: product_category__c
+    wrap: false
+  - field: material_type__c
+    wrap: false
+  - field: unit__c
+    wrap: false
+  - field: cost__c
+    wrap: false
+  - field: market_price__c
+    wrap: false
+  - field: floor_price__c
+    wrap: false
+  - field: default_tax__c
+    wrap: false
+  - field: remark__c
+    wrap: false
+filter_fields:
+  - name
+  - product_category__c
+  - material_type__c
+  - resource_skills__c
+  - brand_name__c
+  - specification__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

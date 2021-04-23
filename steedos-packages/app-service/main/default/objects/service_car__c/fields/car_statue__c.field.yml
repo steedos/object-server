@@ -1,0 +1,20 @@
+name: car_statue__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 车辆状态
+multiple: false
+omit: false
+options:
+  - label: 空闲
+    value: 空闲
+  - label: 借用
+    value: 借用
+readonly: false
+required: false
+searchable: false
+sort_no: 140
+sortable: false
+type: select

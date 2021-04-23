@@ -1,0 +1,26 @@
+name: state__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 状态
+multiple: false
+omit: false
+options:
+  - label: 接收工单
+    value: receive
+  - label: 现场签到
+    value: sign in
+  - label: 完修离场
+    value: departure
+  - label: 客户回访
+    value: visit
+  - label: 关闭工单
+    value: close
+readonly: false
+required: false
+searchable: false
+sort_no: 370
+sortable: false
+type: select

@@ -1,0 +1,41 @@
+name: all
+columns:
+  - field: plan_id__c
+    wrap: false
+  - field: resource_id__c
+    wrap: false
+  - field: resource__c
+    wrap: false
+  - field: resource_group__c
+    wrap: false
+  - field: client__c
+    wrap: false
+  - field: source_statue__c
+    wrap: false
+  - field: plan_start__c
+    wrap: false
+  - field: plan_end__c
+    wrap: false
+  - field: plan_contine__c
+    wrap: false
+  - field: actual_start__c
+    wrap: false
+  - field: actual_end__c
+    wrap: false
+  - field: actual_contine__c
+    wrap: false
+filter_fields:
+  - resource__c
+  - resource_group__c
+  - client__c
+  - source_statue__c
+  - order__c
+  - order_statue__c
+  - position__c
+filter_scope: space
+filters: []
+label: 所有数据
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

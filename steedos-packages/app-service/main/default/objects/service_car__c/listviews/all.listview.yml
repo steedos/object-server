@@ -1,0 +1,27 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: car_num__c
+    wrap: false
+  - field: car_num__c
+    wrap: false
+  - field: car_statue__c
+    wrap: false
+  - field: created_by
+    wrap: false
+  - field: created
+    wrap: false
+  - field: car_id__c
+    wrap: false
+filter_fields:
+  - name
+  - car_id__c
+  - car_statue__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

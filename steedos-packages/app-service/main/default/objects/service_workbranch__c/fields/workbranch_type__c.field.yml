@@ -1,0 +1,20 @@
+name: workbranch_type__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 网点类型
+multiple: false
+omit: false
+options:
+  - label: 加盟
+    value: 加盟
+  - label: 直营
+    value: 直营
+readonly: false
+required: false
+searchable: false
+sort_no: 130
+sortable: false
+type: select

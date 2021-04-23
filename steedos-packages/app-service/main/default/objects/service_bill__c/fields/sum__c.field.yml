@@ -1,0 +1,16 @@
+name: sum__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 总金额
+omit: false
+precision: 18
+readonly: false
+required: false
+scale: 2
+searchable: false
+sort_no: 210
+sortable: false
+type: currency

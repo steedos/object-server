@@ -1,0 +1,9 @@
+name: all
+columns:
+  - field: name
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+type: grid

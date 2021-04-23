@@ -1,0 +1,26 @@
+name: 物料管理
+code: material_management
+description: 物料及其库存管理，包括库存一览、出入库、物料的申请、归还、消耗、回收、调拨等。
+icon_slds: performance
+is_creator: true
+is_new_window: false
+is_use_ie: false
+is_use_iframe: false
+mobile: false
+oauth2_enabled: false
+oauth2_logout_enabled: false
+objects:
+  - service_material_inventory__c
+  - service_material_stock__c
+  - service_material_sell__c
+  - service_material_dump__c
+  - service_material_applyfor__c
+  - service_material_return__c
+  - service_material_consumption__c
+  - service_material_recycle__c
+  - service_material_allot__c
+  - service_tool_application__c
+saml_enabled: false
+saml_logout_enabled: false
+sort: 9200
+visible: true

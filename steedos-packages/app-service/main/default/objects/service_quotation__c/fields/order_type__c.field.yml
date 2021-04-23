@@ -1,0 +1,20 @@
+name: order_type__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 开票类型
+multiple: false
+omit: false
+options:
+  - label: 普通发票
+    value: 普通发票
+  - label: 专用发票
+    value: 专用发票
+readonly: false
+required: false
+searchable: false
+sort_no: 170
+sortable: false
+type: select

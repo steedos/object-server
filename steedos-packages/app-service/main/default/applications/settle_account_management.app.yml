@@ -1,0 +1,22 @@
+name: 结算管理
+code: settle_account_management
+description: 为客户结算、服务商结算、及工程师报销单等与费用相关的结算管理模块。
+icon_slds: campaign
+is_creator: true
+is_new_window: false
+is_use_ie: false
+is_use_iframe: false
+mobile: false
+oauth2_enabled: false
+oauth2_logout_enabled: false
+objects:
+  - service_quotation__c
+  - service_price_detile__c
+  - service_bill__c
+  - service_settlement_details__c
+  - receipt__c
+  - receipt_detail__c
+saml_enabled: false
+saml_logout_enabled: false
+sort: 9500
+visible: true

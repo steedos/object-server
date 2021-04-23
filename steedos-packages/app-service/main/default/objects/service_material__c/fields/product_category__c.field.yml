@@ -1,0 +1,18 @@
+name: product_category__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 产品类目
+multiple: false
+omit: false
+options:
+  - label: 默认
+    value: 默认
+readonly: false
+required: false
+searchable: false
+sort_no: 130
+sortable: false
+type: select

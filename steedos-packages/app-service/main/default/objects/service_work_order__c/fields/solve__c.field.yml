@@ -1,0 +1,20 @@
+name: solve__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 是否解决
+multiple: false
+omit: false
+options:
+  - label: 已解决
+    value: resolved
+  - label: 未解决
+    value: unsolved
+readonly: false
+required: false
+searchable: false
+sort_no: 360
+sortable: false
+type: select

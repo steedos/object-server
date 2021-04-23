@@ -1,0 +1,18 @@
+name: dump_type__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 转储类型
+multiple: false
+omit: false
+options:
+  - label: 库存转储
+    value: dump
+readonly: false
+required: false
+searchable: false
+sort_no: 170
+sortable: false
+type: select

@@ -1,0 +1,25 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: client__c
+    wrap: false
+  - field: customer_contact__c
+    wrap: false
+  - field: phone__c
+    wrap: false
+  - field: settlement_date__c
+    wrap: false
+  - field: due_date__c
+    wrap: false
+filter_fields:
+  - client__c
+  - project__c
+  - settlement_date__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

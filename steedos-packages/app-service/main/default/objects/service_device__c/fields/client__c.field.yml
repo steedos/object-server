@@ -1,0 +1,16 @@
+name: client__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 客户名称
+multiple: false
+omit: false
+readonly: false
+reference_to: accounts
+required: false
+searchable: false
+sort_no: 150
+sortable: false
+type: lookup

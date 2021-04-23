@@ -1,0 +1,16 @@
+name: engineer__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 工程师
+multiple: false
+omit: false
+readonly: false
+reference_to: service_engineer__c
+required: false
+searchable: false
+sort_no: 120
+sortable: false
+type: lookup

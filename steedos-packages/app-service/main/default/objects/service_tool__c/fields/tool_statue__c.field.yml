@@ -1,0 +1,23 @@
+name: tool_statue__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 工具状态
+multiple: false
+omit: false
+options:
+  - label: ' 损坏'
+    value: 损坏
+  - label: 正常
+    value: 正常
+  - label: 维修中
+    value: 维修中
+readonly: false
+required: false
+searchable: false
+sort_no: 210
+sortable: false
+type: select

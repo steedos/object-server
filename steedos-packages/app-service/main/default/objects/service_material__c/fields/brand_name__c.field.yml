@@ -1,0 +1,17 @@
+name: brand_name__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 品牌名称
+multiple: false
+omit: false
+readonly: false
+reference_to: service_brand__c
+required: false
+searchable: false
+sort_no: 200
+sortable: false
+type: lookup

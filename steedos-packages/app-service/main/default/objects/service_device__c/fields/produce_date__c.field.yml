@@ -1,0 +1,15 @@
+name: produce_date__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 生产日期
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 240
+sortable: false
+type: date

@@ -1,0 +1,23 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: step_num__c
+    wrap: false
+  - field: job_code__c
+    wrap: false
+  - field: comp_code__c
+    wrap: false
+  - field: work_hours__c
+    wrap: false
+filter_fields:
+  - name
+  - job_code__c
+  - comp_code__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

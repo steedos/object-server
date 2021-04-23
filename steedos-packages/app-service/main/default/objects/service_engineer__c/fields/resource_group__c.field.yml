@@ -1,0 +1,22 @@
+name: resource_group__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 所属资源组
+multiple: false
+omit: false
+options:
+  - label: 内部工程师
+    value: '0'
+  - label: 外部工程师
+    value: '1'
+  - label: 工具
+    value: '2'
+readonly: false
+required: true
+searchable: false
+sort_no: 150
+sortable: false
+type: select

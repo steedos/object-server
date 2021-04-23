@@ -1,0 +1,29 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: statue__c
+    wrap: false
+  - field: payment_date__c
+    wrap: false
+  - field: actual_collection__c
+    wrap: false
+  - field: customer__c
+    wrap: false
+  - field: contract__c
+    wrap: false
+  - field: contract_phone__c
+    wrap: false
+  - field: remark__c
+    wrap: false
+filter_fields:
+  - name
+  - customer__c
+  - project__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

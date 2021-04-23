@@ -1,0 +1,16 @@
+name: allot_id__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 调拨单号
+omit: false
+readonly: false
+reference_to: service_material_allot__c
+required: false
+searchable: false
+sort_no: 120
+sortable: false
+type: master_detail
+write_requires_master_read: true

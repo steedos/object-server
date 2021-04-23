@@ -1,0 +1,16 @@
+name: basic_order_num__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 基础单编号
+multiple: false
+omit: false
+readonly: false
+reference_to: service_work_order__c
+required: false
+searchable: false
+sort_no: 220
+sortable: false
+type: lookup

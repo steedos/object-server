@@ -1,0 +1,17 @@
+name: service_area__c
+data_type: text
+filterable: false
+formula: '"gognshi"'
+formula_blank_value: zeroes
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 服务地区
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 190
+sortable: false
+type: formula

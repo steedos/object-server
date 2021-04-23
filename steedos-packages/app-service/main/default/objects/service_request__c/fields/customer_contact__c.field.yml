@@ -1,0 +1,17 @@
+name: customer_contact__c
+data_type: text
+filterable: false
+formula: '"联系人姓名"'
+formula_blank_value: blanks
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 客户联系人
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 170
+sortable: false
+type: formula

@@ -1,0 +1,15 @@
+name: after_service__c
+defaultValue: 待定
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 保修状态
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 240
+sortable: false
+type: text

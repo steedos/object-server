@@ -1,0 +1,30 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: basic_order_num__c
+    wrap: false
+  - field: created
+    wrap: false
+  - field: customer__c
+    wrap: false
+  - field: contact__c
+    wrap: false
+  - field: phone__c
+    wrap: false
+  - field: sum_price__c
+    wrap: false
+filter_fields:
+  - name
+  - customer__c
+  - project__c
+  - order_type__c
+  - site__c
+  - order__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

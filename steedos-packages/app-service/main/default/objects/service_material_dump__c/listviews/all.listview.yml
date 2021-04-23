@@ -1,0 +1,34 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: state__c
+    wrap: false
+  - field: roll_out_warehouse__c
+    wrap: false
+  - field: roll_out_warehouse_type__c
+    wrap: false
+  - field: shift_to_warehouse__c
+    wrap: false
+  - field: shift_to_warehouse_type__c
+    wrap: false
+  - field: dump_date__c
+    wrap: false
+  - field: dump_type__c
+    wrap: false
+  - field: remark__c
+    wrap: false
+filter_fields:
+  - name
+  - roll_out_warehouse__c
+  - shift_to_warehouse__c
+  - dump_date__c
+  - dump_type__c
+  - state__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

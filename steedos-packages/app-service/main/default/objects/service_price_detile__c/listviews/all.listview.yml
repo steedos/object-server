@@ -1,0 +1,26 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: material__c
+    wrap: false
+  - field: material_num__c
+    wrap: false
+  - field: price__c
+    wrap: false
+  - field: amount__c
+    wrap: false
+  - field: sum__c
+    wrap: false
+  - field: price_order__c
+    wrap: false
+filter_fields:
+  - price_order__c
+  - material__c
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

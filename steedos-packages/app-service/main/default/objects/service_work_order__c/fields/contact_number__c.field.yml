@@ -1,0 +1,17 @@
+name: contact_number__c
+data_type: text
+filterable: false
+formula: '"gongshi"'
+formula_blank_value: blanks
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 联系人电话
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 180
+sortable: false
+type: formula

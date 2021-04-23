@@ -1,0 +1,5 @@
+name: accept
+is_enable: true
+label: 受理
+'on': record
+visible: true

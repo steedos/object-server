@@ -1,0 +1,17 @@
+name: material_id__c
+data_type: text
+filterable: false
+formula: material__c.id__c
+formula_blank_value: blanks
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 物料编码
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 150
+sortable: false
+type: formula

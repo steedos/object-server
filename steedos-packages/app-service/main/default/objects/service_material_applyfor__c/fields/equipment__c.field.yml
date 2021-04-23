@@ -1,0 +1,14 @@
+name: equipment__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 设备信息
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 192
+sortable: false
+type: text

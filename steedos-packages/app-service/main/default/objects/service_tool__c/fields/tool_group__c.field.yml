@@ -1,0 +1,20 @@
+name: tool_group__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 工具组
+multiple: false
+omit: false
+options:
+  - label: 常规工具
+    value: 常规工具
+  - label: 非常规工具
+    value: 非常规工具
+readonly: false
+required: false
+searchable: false
+sort_no: 150
+sortable: false
+type: select

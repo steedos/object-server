@@ -1,0 +1,16 @@
+name: statement_number__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 结算单号
+omit: false
+readonly: false
+reference_to: service_bill__c
+required: false
+searchable: false
+sort_no: 150
+sortable: false
+type: master_detail
+write_requires_master_read: false

@@ -1,0 +1,14 @@
+name: phone__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 手机号
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 140
+sortable: false
+type: text

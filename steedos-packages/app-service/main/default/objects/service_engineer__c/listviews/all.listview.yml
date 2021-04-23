@@ -1,0 +1,17 @@
+name: all
+columns:
+  - field: name
+    wrap: false
+  - field: resource_id__c
+    wrap: false
+  - field: resource_type__c
+    wrap: false
+  - field: resource_group__c
+    wrap: false
+filter_scope: space
+filters: []
+label: 所有
+scrolling_mode: standard
+shared: true
+show_count: false
+type: grid

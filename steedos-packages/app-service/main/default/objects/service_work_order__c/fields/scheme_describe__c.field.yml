@@ -1,0 +1,15 @@
+name: scheme_describe__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: true
+label: 方案描述
+omit: false
+readonly: false
+required: false
+rows: 1
+searchable: false
+sort_no: 340
+sortable: false
+type: textarea

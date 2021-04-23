@@ -1,0 +1,16 @@
+name: property__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 属性
+omit: false
+readonly: false
+required: false
+rows: 2
+searchable: false
+sort_no: 270
+sortable: false
+type: textarea

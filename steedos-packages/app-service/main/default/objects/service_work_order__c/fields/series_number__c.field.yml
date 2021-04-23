@@ -1,0 +1,17 @@
+name: series_number__c
+data_type: text
+filterable: false
+formula: '"公式"'
+formula_blank_value: blanks
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 设备序列号
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 250
+sortable: false
+type: formula

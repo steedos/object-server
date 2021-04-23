@@ -1,0 +1,15 @@
+name: car_num__c
+filterable: false
+formula: '{0000}'
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 车辆编码
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 120
+sortable: false
+type: autonumber

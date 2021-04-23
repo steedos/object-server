@@ -1,0 +1,14 @@
+name: payment_date__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 收款日期
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 150
+sortable: false
+type: date

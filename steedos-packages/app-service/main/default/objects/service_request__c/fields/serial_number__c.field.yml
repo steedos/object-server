@@ -1,0 +1,14 @@
+name: serial_number__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 设备序列号
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 250
+sortable: false
+type: text

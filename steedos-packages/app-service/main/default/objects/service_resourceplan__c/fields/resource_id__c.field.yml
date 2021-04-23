@@ -1,0 +1,17 @@
+name: resource_id__c
+data_type: text
+filterable: false
+formula: resource__c.resource_id__c
+formula_blank_value: blanks
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 资源编号
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 170
+sortable: false
+type: formula

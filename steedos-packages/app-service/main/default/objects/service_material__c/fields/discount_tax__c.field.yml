@@ -1,0 +1,15 @@
+name: discount_tax__c
+filterable: false
+group: 基础信息
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 最低价折扣税
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 280
+sortable: false
+type: percent

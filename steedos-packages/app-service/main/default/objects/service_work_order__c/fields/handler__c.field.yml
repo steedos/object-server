@@ -1,0 +1,16 @@
+name: handler__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 工单处理人
+multiple: false
+omit: false
+readonly: false
+reference_to: space_users
+required: false
+searchable: false
+sort_no: 320
+sortable: false
+type: lookup

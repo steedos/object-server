@@ -1,0 +1,14 @@
+name: recipient_address__c
+filterable: false
+hidden: false
+index: false
+is_name: false
+is_wide: false
+label: 收货人地址
+omit: false
+readonly: false
+required: false
+searchable: false
+sort_no: 220
+sortable: false
+type: text
