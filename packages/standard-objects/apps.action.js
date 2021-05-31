@@ -7,6 +7,7 @@ module.exports = {
         newRecord.from_code_id = record_id;
         Creator.odata.insert(object_name, newRecord, function(result, error){
             if(result){
+                console.log("test");
                 FlowRouter.go(`/app/-/${object_name}/view/${result._id}`)
             }
         });
