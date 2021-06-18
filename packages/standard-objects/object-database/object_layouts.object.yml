@@ -244,6 +244,10 @@ fields:
   related_lists.$.visible_on:
     label: Visible on
     type: textarea
+  related_lists.$.pageSize:
+    label: PageSize
+    type: number
+    defaultValue: 5
 list_views:
   all:
     columns:

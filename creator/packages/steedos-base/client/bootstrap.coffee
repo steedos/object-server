@@ -217,7 +217,7 @@ Creator.bootstrapLoaded = new ReactiveVar(false)
 
 handleBootstrapData = (result, callback)->
 	requestLicense(result?.space?._id);
-	Creator._recordSafeObjectCache = []; # 切换工作区时，情况object缓存
+	Creator._recordSafeObjectCache = []; # 切换工作区时，清空object缓存
 	Creator.Objects = result.objects;
 	Creator.baseObject = Creator.Objects.base;
 	Creator.objectsByName = {};

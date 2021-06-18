@@ -104,8 +104,31 @@ if Meteor.isClient
 			return
 		relatedListObjects = {}
 		relatedListNames = []
+		objectLayoutRelatedListObjects = [];
 		_object = Creator.getObject(object_name)
 		if _object
+			layoutRelatedList = _object.related_lists;
+			if !_.isEmpty layoutRelatedList
+				_.each layoutRelatedList, (item)->
+					reObjectName = item.related_field_fullname.split('.')[0]
+					reFieldName = item.related_field_fullname.split('.')[1]
+					write_requires_master_read = Creator.getObject(reObjectName)?.fields[reFieldName]?.write_requires_master_read
+					related =
+						object_name: reObjectName
+						columns: item.field_names
+						mobile_columns: item.field_names
+						is_file: reObjectName == "cms_files"
+						filtersFunction: item.filters
+						sort: item.sort
+						related_field_name: reFieldName
+						customRelatedListObject: true
+						write_requires_master_read: write_requires_master_read
+						label: item.label
+						actions: item.buttons
+						visible_on: item.visible_on
+						pageSize: item.pageSize
+					objectLayoutRelatedListObjects.push(related)
+				return objectLayoutRelatedListObjects;
 			relatedList = _object.relatedList
 			if !_.isEmpty relatedList
 				_.each relatedList, (objOrName)->
@@ -121,6 +144,7 @@ if Meteor.isClient
 							customRelatedListObject: true
 							label: objOrName.label
 							actions: objOrName.actions
+							pageSize: objOrName.pageSize
 						relatedListObjects[objOrName.objectName] = related
 						relatedListNames.push objOrName.objectName
 					else if _.isString objOrName

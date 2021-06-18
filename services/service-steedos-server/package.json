@@ -6,7 +6,7 @@
   "dependencies": {
     "@steedos/accounts": "^2.0.19",
     "@steedos/core": "^2.0.19",
-    "@steedos/metadata-api": "^2.0.0",
+    "@steedos/metadata-api": "^2.0.1",
     "@steedos/plugin-dingtalk": "^2.0.19",
     "@steedos/plugin-enterprise": "^2.0.19",
     "@steedos/plugin-qywx": "^2.0.19",
@@ -14,7 +14,7 @@
     "@steedos/service-meteor-package-loader": "^2.0.19",
     "@steedos/service-node-red": "^2.0.19",
     "@steedos/steedos-plugin-schema-builder": "^2.0.19",
-    "@steedos/word-template": "^2.0.0",
+    "@steedos/word-template": "^2.0.1",
     "@steedos/workflow": "^2.0.19",
     "dotenv-flow": "^3.2.0",
     "moleculer": "^0.14.10",
