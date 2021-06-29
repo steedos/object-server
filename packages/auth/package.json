@@ -17,7 +17,7 @@
     "@steedos/objectql": "^1.23.36",
     "cookies": "^0.7.3",
     "express": "^4.16.4",
-    "express-jwt": "^5.3.1",
+    "express-jwt": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "sha256": "^0.2.0",
     "underscore": "^1.9.1"
