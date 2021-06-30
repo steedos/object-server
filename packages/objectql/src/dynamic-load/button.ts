@@ -54,7 +54,7 @@ export const removeObjectButtonsConfig = (objectName: string, json: SteedosActio
     }
 }
 
-export const loadObjectButtons = async function (filePath: string, serviceName: string){
+export const loadObjectButtons = async function (filePath: string, serviceName?: string){
     let buttonJsons = util.loadButtons(filePath);
     buttonJsons.forEach(element => {
         addObjectButtonsConfig(element.object_name, element);

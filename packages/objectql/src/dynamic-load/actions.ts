@@ -93,7 +93,7 @@ export const addObjectActionConfig = (json: SteedosActionTypeConfig)=>{
     }
 }
 
-export const loadObjectActions = async function (filePath: string, serviceName: string){
+export const loadObjectActions = async function (filePath: string, serviceName?: string){
     let actions = util.loadActions(filePath)
     _.each(actions, (json: SteedosActionTypeConfig) => {
         addObjectActionConfig(json);

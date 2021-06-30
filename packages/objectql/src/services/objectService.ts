@@ -555,24 +555,24 @@ module.exports = {
                 if (datasource) {
                     const localObjectConfig = getObjectConfig(objectConfig.name);
                     if(localObjectConfig){
-                        objectConfig.listeners = localObjectConfig.listeners; 
-                        objectConfig.methods = localObjectConfig.methods; 
+                        objectConfig.listeners = localObjectConfig.listeners;
+                        objectConfig.methods = localObjectConfig.methods;
                     }
                     const object = new SteedosObjectType(objectConfig.name, datasource, objectConfig)
                     datasource.setLocalObject(objectConfig.name, object);
 
-                    if(datasource.name === 'meteor' && Creator.Objects[objectConfig.name]){
+                    if(datasource.name === 'meteor' && Creator.getObject(objectConfig.name)){
                         jsonToObject(objectConfig);
                         const localTriggers = (localObjectConfig as any).triggers;
                         if(localTriggers){
-                            objectConfig.triggers = localTriggers; 
+                            objectConfig.triggers = localTriggers;
                         }
                         extend(objectConfig, {triggers: (localObjectConfig as any)._baseTriggers})
                         Creator.Objects[objectConfig.name] = objectConfig;
                         Creator.loadObjects(objectConfig, objectConfig.name);
                     }
                 }
-                
+
                 let gobj = generateSettingsGraphql(objectConfig);
                 this.settings.graphql = gobj;
                 ctx.emit('$services.changed');

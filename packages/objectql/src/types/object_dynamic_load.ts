@@ -58,9 +58,16 @@ export const getOriginalObjectConfig = (object_name: string):SteedosObjectTypeCo
     return _.find(_original_objectConfigs, {name: object_name})
 }
 
-export const getOriginalObjectConfigs = (datasource: string) => {
-    if (datasource) {
-        return _.filter(_original_objectConfigs, {datasource: datasource})
+export const getOriginalObjectConfigs = (datasource: string, serviceName: string) : Array<SteedosObjectTypeConfig> => {
+    if (datasource || serviceName) {
+        const filterConfig : any = {};
+        if (datasource) {
+            filterConfig.datasource = datasource;
+        }
+        if (serviceName) {
+            filterConfig.__serviceName = serviceName;
+        }
+        return _.filter(_original_objectConfigs, filterConfig)
     } else {
         return _original_objectConfigs
     }
@@ -111,24 +118,25 @@ export const addObjectConfigFiles = async (filePath: string, datasource: string,
         if(_mf && element.name){
             element.fields_serial_number = _mf.sort_no + 10;
         }
-        await addObjectConfig(element, datasource, serviceName);
+        element.__serviceName = serviceName;
+        await addObjectConfig(element, datasource);
     }
 
-    await loadObjectFields(filePath, serviceName);
+    await loadObjectFields(filePath);
 
-    await loadObjectListViews(filePath, serviceName);
+    await loadObjectListViews(filePath);
 
-    await loadObjectButtons(filePath, serviceName);
+    await loadObjectButtons(filePath);
 
     loadObjectTriggers(filePath);
 
-    await loadObjectActions(filePath, serviceName);
+    await loadObjectActions(filePath);
 
     loadObjectMethods(filePath);  //此功能不支持微服务模式
 
     await loadObjectLayouts(filePath, serviceName);
 
-    await loadObjectPermissions(filePath, serviceName);
+    await loadObjectPermissions(filePath);
 
     await loadSourceProfiles(filePath, serviceName);
 
@@ -217,7 +225,7 @@ export const addObjectConfig = async (objectConfig: SteedosObjectTypeConfig, dat
         object_name = objectConfig.extend
         let parentObjectConfig = getObjectConfig(object_name);
         if(_.isEmpty(parentObjectConfig)){
-            return; //TODO 
+            return; //TODO
             throw new Error(`Object extend failed, object not exist: ${objectConfig.extend}`);
         }
         config = util.extend(config, clone(parentObjectConfig), clone(objectConfig));
@@ -314,7 +322,7 @@ export const loadStandardMetadata = async (serviceName: string, datasourceApiNam
 }
 
 export const loadStandardBaseObjects = async (serviceName: string) => {
-    
+
     if (standardObjectsLoaded)
         return;
 
@@ -345,7 +353,7 @@ export const loadStandardBaseObjects = async (serviceName: string) => {
 }
 
 export const addRouterConfig = (prefix: string, router: any) => {
-    if (!prefix) 
+    if (!prefix)
         throw new Error(`Error add router, prefix required`);
     _.remove(_routerConfigs, {prefix: prefix});
     _routerConfigs.push({prefix: prefix, router: router})
@@ -356,9 +364,9 @@ export const getRouterConfigs = () => {
 }
 
 export function addObjectMethod(objectName: string, methodName: string, method: Function){
-    
+
     let object = getObjectConfig(objectName);
-    if (!object) 
+    if (!object)
         throw new Error(`Error add method ${methodName}, object not found: ${objectName}`);
 
     if(!object.methods){
@@ -369,11 +377,11 @@ export function addObjectMethod(objectName: string, methodName: string, method: 
 
 //TODO 写入到addOriginalObjectConfigs
 export function addObjectAction(objectName: string, actionConfig: SteedosActionTypeConfig){
-    if (!actionConfig.name) 
+    if (!actionConfig.name)
         throw new Error(`Error add action, name required`);
 
     let object = getObjectConfig(objectName);
-    if (!object) 
+    if (!object)
         throw new Error(`Error add action ${actionConfig.name}, object not found: ${objectName}`);
 
     if(!object.actions){
@@ -383,12 +391,12 @@ export function addObjectAction(objectName: string, actionConfig: SteedosActionT
 }
 
 export function addObjectPermission(objectName: string, permissionConfig: SteedosObjectPermissionTypeConfig){
-    
-    if (!permissionConfig.name) 
+
+    if (!permissionConfig.name)
         throw new Error(`Error add permission, name required`);
 
     let object = getObjectConfig(objectName);
-    if (!object) 
+    if (!object)
         throw new Error(`Error add permission ${permissionConfig.name}, object not found: ${objectName}`);
 
     if(!object.permissions){

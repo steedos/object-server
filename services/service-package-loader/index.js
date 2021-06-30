@@ -62,6 +62,7 @@ module.exports = {
                 await objectql.loadStandardMetadata(name, datasourceName);
                 await objectql.addAllConfigFiles(packagePath, datasourceName, name);
                 const datasource = objectql.getDataSource(datasourceName);
+				datasource.setServiceName(name);
                 await datasource.init();
                 await triggerLoader.load(this.broker, packagePath, name);
                 return;

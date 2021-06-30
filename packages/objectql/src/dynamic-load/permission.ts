@@ -40,7 +40,7 @@ export const addPermissionConfig = (objectName: string, json: SteedosObjectPermi
     }
 }
 
-export const loadObjectPermissions = async function (filePath: string, serviceName: string){
+export const loadObjectPermissions = async function (filePath: string, serviceName?: string){
     let permissions = util.loadPermissions(filePath);
     permissions.forEach(permission => {
         addPermissionConfig(permission.object_name, permission);

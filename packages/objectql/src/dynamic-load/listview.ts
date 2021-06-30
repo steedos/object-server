@@ -43,7 +43,7 @@ export const addObjectListViewConfig = (objectName: string, json: SteedosObjectL
     }
 }
 
-export const loadObjectListViews = async function (filePath: string, serviceName: string){
+export const loadObjectListViews = async function (filePath: string, serviceName?: string){
     let listViewJsons = util.loadListViews(filePath);
     listViewJsons.forEach(element => {
         addObjectListViewConfig(element.object_name, element);

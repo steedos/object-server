@@ -31,6 +31,8 @@ import { SteedosDriverConfig } from '../driver';
 import { createObjectService } from '../metadata-register/objectServiceManager';
 import { getObjectDispatcher } from '../services/index';
 import path = require('path');
+import { getOriginalObjectConfigs } from './object_dynamic_load';
+
 let Fiber = require('fibers');
 
 export enum SteedosDatabaseDriverType {
@@ -78,6 +80,7 @@ export class SteedosDataSourceType implements Dictionary {
     private _url: string;
     private _host: string;
     private _port: number;
+    private _serviceName?: string;
     private _username?: string;
     private _password?: string;
     private _database?: string;
@@ -114,6 +117,14 @@ export class SteedosDataSourceType implements Dictionary {
             return this._objects
         }
         return await this.schema.metadataRegister.getObjectsConfig(this.name);
+    }
+
+    getSrviceName() {
+        return this._serviceName;
+    }
+
+    setServiceName(serviceName: string) {
+        this._serviceName = serviceName;
     }
 
     getLocalObjects() {
@@ -215,8 +226,8 @@ export class SteedosDataSourceType implements Dictionary {
             //从本地对象配置中读取触发器配置
             const localObjectConfig = getObjectConfig(objectConfig.name);
             if(localObjectConfig){
-                objectConfig.listeners = localObjectConfig.listeners; 
-                objectConfig.methods = localObjectConfig.methods; 
+                objectConfig.listeners = localObjectConfig.listeners;
+                objectConfig.methods = localObjectConfig.methods;
             }
             // if(self._schema.metadataBroker){
             //     const res = await self._schema.metadataRegister.object(object)
@@ -460,10 +471,28 @@ export class SteedosDataSourceType implements Dictionary {
     }
 
     async init() {
+        await this.sendConfigToMetadata();
         await this.initObjects();
         this.initTypeORM();
         // initObjectFieldsSummarys(this.name);
         // this.schema.transformReferenceOfObject(this);
+    }
+
+    async sendConfigToMetadata() {
+        // let baseObject = getObjectConfig(MONGO_BASE_OBJECT);
+        // if (baseObject) {
+        //     await this.schema.metadataRegister.addObjectConfig(baseObject.__serviceName, baseObject);
+        // }
+        // baseObject = getObjectConfig(SQL_BASE_OBJECT);
+        // if (baseObject) {
+        //     await this.schema.metadataRegister.addObjectConfig(baseObject.__serviceName, baseObject);
+        // }
+        // user xxx.filter() will cause more memory ...
+        const originalObjectConfigs = getOriginalObjectConfigs(this.name, this._serviceName);
+        for await (const objectConfig of originalObjectConfigs) {
+            await this.schema.metadataRegister.addObjectConfig(objectConfig.__serviceName, objectConfig);
+        }
+
     }
 
     initTypeORM() {
@@ -494,15 +523,15 @@ export class SteedosDataSourceType implements Dictionary {
     async connect() {
         // this.initObjects();
         // init typeorm
-        if (this._adapter.connect) 
+        if (this._adapter.connect)
             await this._adapter.connect()
         // init typeorm
-        if (this._adapter.init) 
+        if (this._adapter.init)
             await this._adapter.init(this._objects)
     }
 
     async close() {
-        if (this._adapter.close) 
+        if (this._adapter.close)
             this._adapter.close()
     }
 }

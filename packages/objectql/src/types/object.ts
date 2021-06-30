@@ -96,6 +96,7 @@ abstract class SteedosObjectProperties {
 
 export interface SteedosObjectTypeConfig extends SteedosObjectProperties {
     __filename?: string
+    __serviceName?: string
     name?: string
     datasource?: string
     fields: Dictionary<SteedosFieldTypeConfig>
@@ -465,7 +466,7 @@ export class SteedosObjectType extends SteedosObjectProperties {
     async getMaxMastersLeave(paths?){
         return await this.callMetadataObjectServiceAction(`getMaxMastersLeave`, {objectApiName: this.name, paths});
     }
-   
+
     addMaster(object_name: string) {
         let index = this._masters.indexOf(object_name);
         if (index < 0) {
@@ -881,7 +882,7 @@ export class SteedosObjectType extends SteedosObjectProperties {
                     if(_.has(_item, 'group')){
                         _fields[_item.field_name].group = _item.group
                     }
-                    
+
                     if(_item.is_required){
                         _fields[_item.field_name].readonly = false
                         _fields[_item.field_name].disabled = false
@@ -906,7 +907,7 @@ export class SteedosObjectType extends SteedosObjectProperties {
             _.each(layoutFieldKeys, function(fieldApiName){
                 objectConfig.fields[fieldApiName] = _fields[fieldApiName];
             })
-            
+
             _.each(difference, function(fieldApiName){
                 objectConfig.fields[fieldApiName].hidden = true;
             })
@@ -963,7 +964,7 @@ export class SteedosObjectType extends SteedosObjectProperties {
         const type = 'record';
         const profiles = ['user'];
         const buttons = null;
-        const fields = []; 
+        const fields = [];
         const related_lists = [];
 
         const objectConfig: any = await this.callMetadataObjectServiceAction('getOriginalObject', {objectApiName: this.name});
