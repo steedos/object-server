@@ -47,7 +47,7 @@
     "semver": "5.4.1",
     "send": "0.16.1",
     "sha256": "0.2.0",
-    "sockjs": "0.3.19",
+    "sockjs": "0.3.20",
     "stream-buffers": "0.2.5",
     "stream-to-string": "1.1.0",
     "uglify-js": "3.4.9",
