@@ -6,6 +6,7 @@ import { generateActionRestProp, generateActionGraphqlProp, generateSettingsGrap
 import { getObjectServiceName } from '.';
 import { jsonToObject } from '../metadata-register/object';
 import { extend } from '../util';
+import { addObjectConfig } from './helpers/cache';
 // import { parse } from '@steedos/formula';
 // mongodb pipeline: https://docs.mongodb.com/manual/core/aggregation-pipeline/
 declare var Creator: any;
@@ -182,6 +183,7 @@ function getObjectServiceActionsSchema() {
                 externalPipeline: { type: "array", items: "object" }
             },
             async handler(ctx) {
+                console.log(`call aggregate`)
                 const userSession = ctx.meta.user;
                 const { query, externalPipeline } = ctx.params;
                 return await this.aggregate(query, externalPipeline, userSession)
@@ -196,6 +198,7 @@ function getObjectServiceActionsSchema() {
                 sort: { type: 'string', optional: true }
             },
             async handler(ctx) {
+                console.log(`call find`, ctx.options.parentCtx.params.req.body)
                 const userSession = ctx.meta.user;
                 return this.find(ctx.params, userSession)
             }
@@ -206,6 +209,7 @@ function getObjectServiceActionsSchema() {
                 query: { type: "object", optional: true }
             },
             async handler(ctx) {
+                console.log(`call findOne`, ctx.params)
                 const userSession = ctx.meta.user;
                 const { id, query } = ctx.params;
                 return this.findOne(id, query, userSession)
@@ -301,6 +305,7 @@ function getObjectServiceActionsSchema() {
                 externalPipeline: { type: "array", items: "object" }
             },
             async handler(ctx) {
+                console.log(`call directAggregate`)
                 const userSession = ctx.meta.user;
                 const { query, externalPipeline } = ctx.params;
                 return this.directAggregate(query, externalPipeline, userSession)
@@ -312,6 +317,7 @@ function getObjectServiceActionsSchema() {
                 prefixalPipeline: { type: "array", items: "object" }
             },
             async handler(ctx) {
+                console.log(`call directAggregatePrefixalPipeline`)
                 const userSession = ctx.meta.user;
                 const { query, prefixalPipeline } = ctx.params;
                 return this.directAggregatePrefixalPipeline(query, prefixalPipeline, userSession)
@@ -326,6 +332,7 @@ function getObjectServiceActionsSchema() {
                 sort: { type: 'string', optional: true }
             },
             async handler(ctx) {
+                console.log(`call directFind`, ctx.params)
                 const userSession = ctx.meta.user;
                 return this.directFind(ctx.params, userSession)
             }
@@ -547,6 +554,7 @@ module.exports = {
     merged(schema) {
         let settings = schema.settings;
         let objectConfig = settings.objectConfig;
+        addObjectConfig(objectConfig.name, objectConfig)
         if (objectConfig.enable_api) {
             _.each(schema.actions, (action, actionName) => {
                 let rest = generateActionRestProp(actionName);
@@ -587,6 +595,7 @@ module.exports = {
         schema.events[`${getObjectServiceName(objectConfig.name)}.metadata.objects.inserted`] = {
             handler: async function (ctx) {
                 let objectConfig = ctx.params.data;
+                addObjectConfig(objectConfig.name, objectConfig)
                 // 对象发生变化时，重新创建Steedos Object 对象
                 const datasource = getDataSource(objectConfig.datasource);
                 if (datasource) {
